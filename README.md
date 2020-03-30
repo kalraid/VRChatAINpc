@@ -53,6 +53,11 @@ VRChat를 AI가 자동으로 즐길수 있게 만들고자 시작한 프로젝�
 
 
 
-VRChat APi 사이트
-https://vrchatapi.github.io/#/
-https://github.com/VRChatAPI/vrchatapi.github.io
+VRChat APi 사이트  
+https://vrchatapi.github.io/#/  
+https://github.com/VRChatAPI/vrchatapi.github.io  
+
+패턴 관련 사이트 
+
+https://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries/2707195#2707195 
+
