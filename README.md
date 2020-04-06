@@ -25,24 +25,24 @@
 -------------------------------------
 
 
-### 파이썬 : 디장고 - 대화 분석용 모듈 + 행동 명령용 모듈
-### 자바 : 스프링부트 - 화면 채증 + vrchat 접속 + 명령에 따른 행동 구현
-### 디장고 서버 2, 스프링 부트 1 구성
+#### 파이썬 : 디장고 - 대화 분석용 모듈 + 행동 명령용 모듈
+#### 자바 : 스프링부트 - 화면 채증 + vrchat 접속 + 명령에 따른 행동 구현
+#### 디장고 서버 2, 스프링 부트 1 구성
 
-### 각 서버간 데이터 전송은 메세지큐 방식을 도입(https://www.smoh.kr/289) - 스프링 자바(메인) - 메세지큐 - 파이썬 서버 두개
+#### 각 서버간 데이터 전송은 메세지큐 방식을 도입(https://www.smoh.kr/289) - 스프링 자바(메인) - 메세지큐 - 파이썬 서버 두개
 
-### DB는 마리아 SQL로 자바 메인, 파이썬 서버 마다 하나씩
+#### DB는 마리아 SQL로 자바 메인, 파이썬 서버 마다 하나씩
 
-### 자바 메인서버
-#### * 스프링 부트기반
-#### * spring boot devtools
-#### * lombok
-#### * spring configuration prc
-#### * spring for rabbitmq
-#### * spring boot actuator(https://supawer0728.github.io/2018/05/12/spring-actuator/)
-#### * mybatis framework(https://4urdev.tistory.com/46)(maria db 적용 필요)
-#### * spring REST Docs
-#### * thymeleaf(https://eblo.tistory.com/54)
+#### 자바 메인서버
+##### * 스프링 부트기반
+##### * spring boot devtools
+##### * lombok
+##### * spring configuration prc
+##### * spring for rabbitmq
+##### * spring boot actuator(https://supawer0728.github.io/2018/05/12/spring-actuator/)
+##### * mybatis framework(https://4urdev.tistory.com/46)(maria db 적용 필요)
+##### * spring REST Docs
+##### * thymeleaf(https://eblo.tistory.com/54)
 
 ***
 
