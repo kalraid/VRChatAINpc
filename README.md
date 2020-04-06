@@ -61,3 +61,19 @@ https://github.com/VRChatAPI/vrchatapi.github.io
 
 https://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries/2707195#2707195 
 
+
+각 서버간 데이터 전송은 메세지큐 방식을 도입(https://www.smoh.kr/289) - 스프링 자바(메인) - 메세지큐 - 파이썬 서버 두개
+
+DB는 마리아 SQL로 자바 메인, 파이썬 서버 마다 하나씩
+
+자바 메인서버 : 
+
+스프링 부트기반
+spring boot devtools
+lombok
+spring configuration prc
+spring for rabbitmq
+spring boot actuator(https://supawer0728.github.io/2018/05/12/spring-actuator/)
+mybatis framework(https://4urdev.tistory.com/46)(maria db 적용 필요)
+spring REST Docs
+thymeleaf(https://eblo.tistory.com/54)
