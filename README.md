@@ -101,6 +101,11 @@
 #### - https://jythonbook-ko.readthedocs.io/en/latest/JythonAndJavaIntegration.html
 
 
+
 고민해야될 사항
-디장고 서버 대신 스프링부트로 만들어 놓고 자이썬으로 .py를 직접 실행시키는 방법이 더 낫지않을까?
-마찬가지로 C#를 직접 쓰지 말고 해당 api 호출하는부분 및 데이터 받는부분만 대신 사용시키면?
+디장고 서버 대신 스프링부트로 만들어 놓고 자이썬으로 .py를 직접 실행시키는 방법이 더 낫지않을까? (자이썬 활용)
+마찬가지로 C#를 직접 쓰지 말고 해당 api 호출하는부분 및 데이터 받는부분만 대신 사용시키면? 
+1. http://pds10.egloos.com/pds/200907/25/69/Call_CSharp_Code_in_Java(JNI).pdf
+2. http://sjava.net/2010/04/%EC%9E%90%EB%B0%94-cc-c-%EB%A9%94%EC%84%9C%EB%93%9C-%ED%98%B8%EC%B6%9C-%EC%A7%80%EC%9B%90-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC/
+3. http://egloos.zum.com/js7309/v/11155038
+4. http://blog.naver.com/estern/220705777919
