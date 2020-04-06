@@ -97,3 +97,10 @@
 #### 패턴 관련 사이트 
 #### - https://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries/2707195#2707195 
 
+#### 자이썬
+#### - https://jythonbook-ko.readthedocs.io/en/latest/JythonAndJavaIntegration.html
+
+
+고민해야될 사항
+디장고 서버 대신 스프링부트로 만들어 놓고 자이썬으로 .py를 직접 실행시키는 방법이 더 낫지않을까?
+마찬가지로 C#를 직접 쓰지 말고 해당 api 호출하는부분 및 데이터 받는부분만 대신 사용시키면?
