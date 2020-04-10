@@ -131,6 +131,13 @@
 - https://pypi.org/project/py-eureka-client/#files
 - https://niceman.tistory.com/101
 - https://mainia.tistory.com/4533
+
+* 플라스크
 - https://niceman.tistory.com/151 (플라스크 예제)
-- https://hamait.tistory.com/864(플라스크 예제)
-- https://www.finterstella.com/8(플라스크 프로젝트 구조 예제)
+- https://hamait.tistory.com/864 (플라스크 예제)
+- https://www.finterstella.com/8 (플라스크 프로젝트 구조 예제)
+
+* 스프링 리액티브 웹
+- http://wiki.sys4u.co.kr/display/SOWIKI/Design+Patterns
+- https://parkcheolu.tistory.com/134
+- https://brunch.co.kr/@springboot/96
