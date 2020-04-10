@@ -33,8 +33,8 @@
 
 #### DB는 마리아 SQL로 자바 메인, 파이썬 서버 마다 하나씩
 
+### * 스프링 부트기반
 #### 자바 메인서버 <- AI 컨트롤용 페이지 + VRChat 접속 + 각 서버 상태 확인(가능한 가볍게)
-##### * 스프링 부트기반
 ##### * spring boot devtools
 ##### * lombok
 ##### * spring configuration prc
@@ -45,6 +45,9 @@
 ##### * thymeleaf(https://eblo.tistory.com/54)
 
 #### 자바 바디서버 <- AI 행동명령 및 언어신경과 행동신경 연결 및 해당 행동내용, 전달내용 메인서버에 로그로 받고 페이지에 볼수있게 전달
+
+
+## 플라스크 기반 (http://blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=221375101934&from=search&redirect=Log&widgetTypeCall=true&directAccess=false)
 
 #### 언어신경 서버(보고 들은내용으로 뭘말할지 정리) <- 바디서버를 통해 받은 정보를 토대로 행해야할 행동 분석후 바디서버로 전달
 #### 청각신경 서버(듣고 들은내용 정리) <- 청각에 따른 정보 획득 후 바디서버로 전달
