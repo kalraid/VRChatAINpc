@@ -132,4 +132,5 @@
 - https://niceman.tistory.com/101
 - https://mainia.tistory.com/4533
 - https://niceman.tistory.com/151 (플라스크 예제)
-
+- https://hamait.tistory.com/864(플라스크 예제)
+- https://www.finterstella.com/8(플라스크 프로젝트 구조 예제)
