@@ -2,8 +2,8 @@
 # main.py
 from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
-from speaker.flaskr.url import API
-from speaker.reinforcement.learning import learning
+from mic.flaskr.url import API
+from mic.common.eureka.eureka_client import eureka_client_setting
 
 app = Flask(__name__)
 api = Api(app)
@@ -38,6 +38,11 @@ for i in apiUrl:
 
 if __name__ == '__main__':
 #     app.run(host='0.0.0.0', port = 8787, debug=True) 
-    app.run(port = 8787, debug=True) 
+    port = 8752
+    service_name = "Mic"
+    eureka_server = "http://localhost:8761/eureka"
+    ec = eureka_client_setting();
+    ec.client_init(eureka_server, service_name, port) 
+    app.run(port=port, debug=True) 
 
     
