@@ -3,3 +3,10 @@ server :
 eureka :
   client:    register-with-eureka: false
     fetchRegistry: false 
+spring:
+   rabbitmq:
+      host: localhost
+      port: ${server.port}
+      username: user
+      password: password
+      
