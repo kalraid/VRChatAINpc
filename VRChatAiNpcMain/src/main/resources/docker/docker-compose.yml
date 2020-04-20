@@ -1,0 +1,69 @@
+# Use root/example as user/password credentials
+version: '3.1'
+# docker-compose up
+# docker start docker_rabbitmq_1 docker_body_db_1 docker_keyboard_db_1 docker_mic_db_1 docker_speaker_db_1 docker_heart_db_1
+services:
+
+  body_db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
+    volumes:
+      - D:/dev/volumns/mariadb/1/data:/var/lib/mysql
+      - D:/dev/volumns/mariadb/1/conf.d:/etc/mysql/conf.d
+    ports:
+      - '33301:3306'
+   
+   
+  heart_db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
+    volumes:
+      - D:/dev/volumns/mariadb/2/data:/var/lib/mysql
+      - D:/dev/volumns/mariadb/2/conf.d:/etc/mysql/conf.d
+    ports:
+      - '33302:3306'
+    
+  keyboard_db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
+    volumes:
+      - D:/dev/volumns/mariadb/3/data:/var/lib/mysql
+      - D:/dev/volumns/mariadb/3/conf.d:/etc/mysql/conf.d
+    ports:
+    - '33303:3306'
+    
+    
+  mic_db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
+    volumes:
+      - /Users/aaaa/con_volumes/mariadb/4/data:/var/lib/mysql
+      - /Users/aaaa/con_volumes/mariadb/4/conf.d:/etc/mysql/conf.d
+    ports:
+      - '33304:3306'
+   
+   
+  speaker_db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
+    volumes:
+      - /Users/aaaa/con_volumes/mariadb/5/data:/var/lib/mysql
+      - /Users/aaaa/con_volumes/mariadb/5/conf.d:/etc/mysql/conf.d
+    ports:
+      - '33305:3306'
+
+  rabbitmq:
+     image: rabbitmq:management
+     ports:
+       - "5672:5672"
+       - "15672:15672"      
