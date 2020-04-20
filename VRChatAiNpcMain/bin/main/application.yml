@@ -6,7 +6,12 @@ eureka :
 spring:
    rabbitmq:
       host: localhost
-      port: ${server.port}
-      username: user
+      port: 5672
+      username: ***REMOVED***   
       password: ***REMOVED***
-      
+   datasource:
+      driverClassName : org.mariadb.jdbc.Driver
+      url : jdbc:mariadb://localhost:33301      
+      username : root
+      password : ***REMOVED***
+  

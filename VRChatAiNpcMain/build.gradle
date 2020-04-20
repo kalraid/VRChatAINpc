@@ -37,6 +37,8 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '2.2.5.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.mariadb.jdbc:mariadb-java-client'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
