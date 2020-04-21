@@ -1,0 +1,606 @@
+RabbitMQ with Python #1/6 by KillinS
+RabbitMQ를 지원하는 파이썬 라이브러리들에는 아래와 같은 것들이 있다.
+py-amqplib
+txAMQP
+pika
+RabbitMQ 공식 사이트에서 사용하는 파이썬용 라이브러리는 pika이므로, 이것을 이용해서 간단한 producer, queue, consumer 예제 프로그램(Hello world?)를 만들어보도록 한다. producer 프로그램은 send.py, consumer는 receive.py, 큐의 이름은 hello로 한다.
+
+
+1. pika 설치
+
+우선 아래와 같이 pika를 설치한다.
+
+    $ sudo pip install pika
+
+
+2. producer 작성
+
+pika 설치가 끝나면 먼저 메시지를 생성할 producer를 작성한다. producer에서 해야 할 일은 브로커(exchange)와 연결하고, 메시지를 보낼 큐를 설정(또는 큐를 생성)한 뒤 메시지를 브로커로 보내면 된다.
+
+우선 RabbitMQ 메시지 브로커와 연결을 설정한다. Producer와 consumer가 같은 서버에 존재한다고 가정하므로 localhost로 설정해주면 된다.
+
+    import pika
+    connection = pika.BlockingConnection(
+                         pika.ConnectionParameters(host='localhost'))
+    channel = connection.channel()
+
+다음으로 메시지를 전달할 큐를 생성한다.
+
+    channel.queue_declare(queue='hello')
+
+이제 전달할 메시지를 큐를 통해 publish한다. 메시지는 "Hello World!"로 보내고, 전달이 끝나면 끝났다는 메시지를 화면에 출력하고 브로커와의 연결을 끊는다. basic_publish의 인자를 보면 exchange를 지정하는것을 알 수 있는데, 예제에서는 우선 기본 exchange를 사용하도록 한다.
+
+    channel.basic_publish(exchange='',
+                          routing_key='hello',
+                          body='Hello World!')
+    print " [x] Sent 'Hello World!'"
+    connection.close()
+
+send.py의 전체 코드는 아래와 같다.
+
+    #!/usr/bin/env python
+    import pika
+
+    connection = pika.BlockingConnection(
+                         pika.ConnectionParameters(host='localhost'))
+    channel = connection.channel()
+    channel.queue_declare(queue='hello')
+    channel.basic_publish(exchange='',
+                          routing_key='hello',
+                          body='Hello World!')
+    print " [x] Sent 'Hello World!'"
+    connection.close()
+
+
+3. consumer 작성
+
+이제 큐로부터 메시지를 전달받을 consumer를 작성한다. consumer가 할 일은 브로커와 연결을 설정하고 메시지를 받아올 큐를 설정한 뒤 메시지를 받아와 처리하는 것이다.
+
+우선 브로커와의 연결을 설정한다. 이부분은 producer와 동일하게 작성하면 된다.
+
+    import pika
+    connection = pika.BlockingConnection(
+                         pika.ConnectionParameters(host='localhost'))
+    channel = connection.channel()
+
+다음으로 메시지를 전달받을 큐를 설정한다. 사실 메시지를 수신하기위해 별도로 큐를 설정할 필요는 없고, 메시지를 수신할 때 어떤 큐에서 수신할지를 명시해주면 되지만 큐가 확실히 생성되어 있지 않다면 에러가 발생할 수 있으므로 producer에서 했던것과 마찬가지로 큐를 생성하도록 한다. 같은 이름으로 여러곳에서 큐를 생성하더라도 큐는 최초에 오직 하나만 생성되므로 이런식으로 큐의 생성 여부를 확실히 해주는것도 좋다.
+
+    channel.queue_declare(queue='hello')
+
+이제 메시지를 수신하여 처리해주면된다. RabbitMQ에서는 메시지 수신 및 처리를 콜백함수를 통하여 수행한다. 즉, 메시지를 수신하여 처리할 부분을 함수로 선언하고 이것을 브로커(RabbitMQ)에 넘겨주면 브로커가 해당 메시지 수신 시 해당 함수를 호출하여 처리하는 방식으로 수행되는 것이다. 메시지 처리는 수신한 메시지를 화면에 출력하는것으로 한다.
+
+    def callback(ch, method, properties, body):
+        print " [x] Received %r" % (body,)
+    channel.basic_consume(callback, queue='hello', no_ack=True)
+
+메시지 처리에 대한 설정이 끝나면 메시지 처리를 작동시킨다.
+
+    channel.start_consuming()
+
+receive.py의 전체 코드는 아래와 같다.
+
+    #!/usr/bin/env python
+    import pika
+
+    def callback(ch, method, properties, body):
+        print " [x] Received %r" % (body,)
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+    channel = connection.channel()
+    channel.queue_declare(queue='hello')
+    channel.basic_consume(callback, queue='hello', no_ack=True)
+    print ' [*] Waiting for messages. To exit press CTRL+C'
+    channel.start_consuming()
+
+
+4. 테스트
+
+이제 consumer를 먼저 실행시키고 producer를 실행시켜보면 메시지가 정상적으로 처리됨을 확인할 수 있다.
+
+  $ python receive.py
+
+  $ python send.py
+
+
+
+* 출처 : www.rabbitmq.com
+
+
+http://killins.egloos.com/3025564
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+일반적으로 MQ를 사용하는 이유는 즉각적인 응답이 불가능한, 또는 불필요한 작업들에 대하여 (async) 각각의 작업들을 처리하는 프로세스들에 균등하게 작업을 분배하는, 말그대로 큐잉을 위함이 대부분일 것이다. 예제 #1은 요청에 대한 즉시 응답을 구현해보았으니 이런 MQ의 기본 기능을 덧붙여 보도록 한다.
+
+우선 테스트를 위해 처리하는 작업에 다소 시간이 걸리도록 프로그램을 변경한다. producer는 커맨드 라인으로 입력받은 "."을 포함하는 문자열을 메시지로 보내고, consumer는 이것을 받아 "."의 개수 만큼의 초를 대기한 뒤 수신한 문자열을 표시하는 방식으로 작업을 수행하도록 한다. 이와 같이 구현하기 위해 send.py와 receive.py를 각각 아래와 같이 변경한다.
+
+    #send.py
+    import sys
+    message = ' '.join(sys.argv[1:]) or "Hello World..."
+    channel.basic_publish(exchange='', routing_key='hello', body=message)
+    print "[x] Send %r" % message
+
+    #receive.py
+    import time
+    def callback(ch, method, properties, body):
+        print "[x] Received %r" % (body,)
+        time.sleep(body.count('.'))
+        print "[x] Done"
+
+
+
+1. 복수개의 consumer
+
+하나의 큐를 여러개의 consumer에서 처리하도록 한다. 사실 이것을 위해 앞서 작성한 소스코드를 변경할 필요는 없고, 단지 consumer 프로세스를 복수개 기동하기만 하면 브로커에서 알아서 메시지가 들어오는 순서대로 round-robin 방식으로 적절하게 프로세스별로 분배하여 메시지를 전달해준다. 터미널을 3개 이상 띄우고 receive.py를 2개 이상 기동시킨 뒤 send.py를 몇번 실행해보면 차례대로 여러개의 receive 프로세스에 메시지가 전달됨을 확인할 수 있다.
+
+
+
+2. 메시지 수신 확인
+
+브로커가 메시지를 consumer에게 전달한 뒤 메시지가 정상적으로 처리되기 전에 consumer가 어떤 문제로 인해 crash 되었다면, 해당 메시지는 영영 처리되지 않은 상태로 잃어버리게 된다. RabbitMQ에서는 이러한 상황을 방지하기 위해 consumer가 메시지를 정상적으로 수신하여 처리까지 완료되었는지를 확인하고, 처리되지 못했을 경우 동일한 메시지를 다른 consumer에게 재송신하는 기능을 갖고 있다. consumer에서 메시지를 처리할 callback 함수를 브로커에 알려줄 때 이 기능의 사용 여부도 no_ack 파라미터로 함께 알려주면 된다. 브로커에서 메시지가 정상처리되었다는것을 알아야 하므로, 콜백함수에서는 정상 처리 여부를 전달하는 부분이 추가되어야 한다. 예제의 receive.py 코드는 아래와 같이 변경된다.
+
+    def callback(ch, method, properties, body):
+        print "[x] Received %r" % (body,)
+        time.sleep(body.count('.'))
+        print "[x] Done"
+        ch.basic_ack(delivery_tag=method.delivery_tag)
+    channel.basic_consume(callback, queue='hello')
+
+한가지 주의할것은, acknowledge 기능에 timeout이 없다는 것이다. 따라서 브로커는 consumer가 특정 메시지를 수신한 후 정상 처리했다는 응답이 올때까지 무한정 기다리게되고, 이것은 큰 문제를 불러일으킬 소지가 있다. 더군다나 위 소스코드를 보면 알겠지만 기본적으로 no_ack 파라미터를 주지 않으면 RabbitMQ는 acknowledge 기능을 enable 하도록 되어있다. 따라서 RabbitMQ를 사용할 때는 항상 이 기능에 유의하도록 한다.
+
+
+
+3. 메시지 Durability
+
+위에 언급된 방법을 사용하면 consumer가 crash 됨으로 인한 사고는 막을 수 있지만, 기본적으로 RabbitMQ가 메모리를 사용하기 때문에 RabbitMQ 자체의 crash로 인한 메시지 및 큐의 손실은 방지할 수 없다. RabbitMQ에서는 이런 사고를 막기 위해 큐와 메시지를 디스크에 저장하는 기능을 제공한다. 큐를 선언할 때 durable 파라미터를 True로 주면 해당 큐의 전문들을 메모리가 아닌 디스크에 쓰는것이 가능해지고, producer가 메시지를 송신할 때 delivery_mode를 2로 주면 해당 메시지는 디스크에 쓰여지게 된다. 당연히 메시지를 디스크에 쓰기 위해서는 우선 해당 큐가 durable 하게 선언되어 있어야 한다.
+
+Durable 큐를 만들기 위해서는 큐를 선언하는 소스 코드를 아래와 같이 변경하면 된다.
+
+    channel.queue_declare(queue='hello', durable=True)
+
+하지만 위와 같이 코드를 변경하고 프로그램을 실행하면 오류가 발생하는데, 이것은 한번 생성한 큐의 속성은 변경 불가능하기 때문이다. 이미 앞의 예제에서 durable하지 않은 hello라는 이름의 큐를 생성했으므로, durable한 새로운 이름의 큐를 생성하거나 hello 큐를 제거하고 다시 생성해야 한다. 여기서는 새로운 큐를 생성하도록 한다.
+
+    channel.queue_declare(queue='task_queue', durable=True)
+
+그리고 durable 메시지를 보내기 위해서는 메시지 송신 시 아래와 같이 호출하면 된다.
+
+    channel.basic_publish(exchange='', routing_key='task_queue', body=message'
+                properties=pika.BasicProperties(delivery_mode=2,))
+
+물론 위와 같은 방법이 100% 큐 및 메시지 손실을 방지할 수 있는것은 아니다. 브로커가 메시지를 수신하여 저장하기까지의 시간은 무방비 상태일 수 밖에 없고, 또한 RabbitMQ가 모든 메시지에 대해 fsync를 사용하지 않기 때문에 캐시에서 디스크에 쓰기까지의 시간도 위험하다. 좀 더 강력한 메시지 유실 방지를 위해서는 트랜잭션을 사용하는 방법도 검토할 수 있다.
+
+
+
+4. 공평한 메시지 분배
+
+앞에서 살펴본것처럼 RabbitMQ는 메시지를 복수의 consumer에 분배할때 기본적으로 라운드 로빈 방식을 사용하는데, 사실 이것은 효율적인 방법이 아니다. 처리 시간이 오래 걸리는 메시지들이 특정 큐에 몰릴 가능성도 존재하기 때문에, 이것을 사전에 방지하기 위해서는 consumer가 메시지를 처리 중인지를 판단하여 처리중일 경우 다른 consumer에서 메시지를 fetch하는 방법을 사용해야 한다. 이것을 위해서는 consumer에서 브로커와의 연결을 설정할 때 basic_qos 함수를 이용하여 prefetch_count 값을 설정해주면 된다. 만약 라운드 로빈에 의한 다음 consumer가 prefetch_count만큼의 메시지를 수신하여 처리중이라면, 브로커는 다음 메시지를 한가한 consumer에 송신하고, 모든 consumer가 busy한 상태라면 이용 가능한 consumer가 생길때까지 큐에 계속 메시지를 보관하게 된다. 이것은 메시지의 처리 여부를 브로커가 알아야 하므로 acknowledge 기능과 함께 사용해야한다. 소스코드는 아래와 같다.
+
+    channel.basic_qos(prefetch_count=1)
+
+
+위에서 나온 모든 기능을 추가한 소스코드는 아래와 같다.
+
+    #send.py
+    #!/usr/bin/env python
+    import pika
+    import sys
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+    channel = connection.channel()
+    channel.queue_declare(queue='task_queue', durable=True)
+
+    message = ' '.join(sys.argv[1:]) or "Hello World!"
+    channel.basic_publish(exchange='', routing_key='task_queue', body=message,
+                      properties=pika.BasicProperties(delivery_mode = 2,))
+    print " [x] Sent %r" % (message,)
+    connection.close()
+
+    #receive.py
+    #!/usr/bin/env python
+    import pika
+    import time
+
+    def callback(ch, method, properties, body):
+        print " [x] Received %r" % (body,)
+        time.sleep( body.count('.') )
+        print " [x] Done"
+        ch.basic_ack(delivery_tag = method.delivery_tag)
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+    channel = connection.channel()
+    channel.queue_declare(queue='task_queue', durable=True)
+    channel.basic_qos(prefetch_count=1)
+    channel.basic_consume(callback,queue='task_queue')
+
+    print ' [*] Waiting for messages. To exit press CTRL+C'
+    channel.start_consuming()
+
+
+
+* 출처 : www.rabbitmq.com
+출처:RabbitMQ with Python #2/6
+
+http://killins.egloos.com/3025575
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+RabbitMQ는 AMQP를 구현한것이기 때문에 AMQP에서 정의된 exchange type을 지원한다. 그 중 하나인 fanout을 이용해서 exchang를 생성하고, publish/subscribe 모델을 간단하게 작성해본다. (AMQP 관련 내용은 여기를 참고)
+예제로 작성할 pub/sub 모델은 로그이다. publisher가 로그 메시지를 브로커에 보내면, 브로커는 해당 메시지를 모든 subscriber에 송신하고 각 subscriber들은 이 로그를 화면에 뿌려주거나 파일에 기록하는 일을 수행하도록 한다.
+
+
+
+1. Exchange 생성
+
+지금까지는 producer에서 메시지를 보내는 메소드로 channel.basic_publish를 사용할 때, exchange 인자를 ''로 주었다. 이것은 별도의 exchange를 생성하지 않고 기본 exchange를 사용하겠다는 것이고, 여기에 별도의 exchange 명을 써준다면 해당 exchange를 사용할 수 있다. 물론 그 이전에 사용할 exchange를 선언해 주어야 한다.
+exchange를 선언할 때는 exchange의 이름과 type을 인자로 사용하여 생성하면 된다. exchange 선언 및 해당 exchange에 메시지를 송신하기 위한 코드는 다음과 같다.
+
+    channel.exchange_declare(exchange='logs', type='fanout')
+    ...
+    channel.basic_publish(exchange='logs', routing_key='log', body=message)
+
+여기서 routing_key를 log로 지정했는데, exchange의 type이 fanout이기 때문에 사실상 routing_key는 무시된다.
+예제에서는 exchange를 생성하는 코드도 produer와 consumer 양쪽에 모두 넣어줄것인데, 이렇게 하면 queue를 생성할때와 마찬가지로 기존에 같은 이름의 exchange가 존재하면 그것을 사용하고 존재하지 않는다면 신규 exchange를 생성하게 된다.
+
+
+
+2. 임시 큐 생성 및 바인딩
+
+새로 생성한 exchange의 type이 fanout이기 때문에, 이 exchange와 연결되는 모든 큐에는 exchange가 수신한 메시지가 전달된다. 로그 메시지를 수신하여 그것을 여러가지 형태로 기록하는 subscriber 프로세스 여러개를 기동할 것이므로, 이번에는 프로세스가 시작되면 자동으로 큐를 생성하여 exchange에 바인딩하고, 프로세스가 종료되면 큐를 제거하는 방식을 사용해본다.
+먼저 큐를 생성하는 코드는 아래와 같다.
+
+    result = channel.queue_declare()
+
+위와 같이 큐 이름을 주지 않고 큐를 생성하면 브로커가 임의로 이름을 생성하게 되고, 이것은 result.method.queue로 접근하여 알 수 있다. 여기서 프로세스가 종료되면, 즉 subscriber가 연결을 끊으면 큐를 자동으로 제거하려면 큐를 생성할 때 아래와 같이 exclusive 인자를 주면 된다.
+
+    result = channel.queue_declare(exclusive=True)
+
+이렇게 생성한 큐를 exchange에 아래와 같이 binding 해주면 된다.
+
+    channel.queue_bind(exchange='logs', queue=result.method.queue)
+
+
+
+3. 소스코드
+
+전체 publisher.py 소스코드는 아래와 같다.
+
+    import pika
+    import sys
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+
+    channel.exchange_declare(exchange='logs', type='fanout')
+
+    message = ' '.join(sys.argv[1:]) or "Logs..."
+    channel.basic_publish(exchange='logs', routing_key='key', body=message)
+    print "[x] Send %r" % (message,)
+    connection.close()
+
+
+전체 subscriber.py 소스코드는 아래와 같다.
+
+    import pika
+
+    def callback(ch, method, properties, body):
+        print "[x] %r" % (body,)
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+
+    channel.exchange_declare(exchange='logs', type='fanout')
+    result = channel.queue_declare(exclusive=True)
+    channel.queue_bind(exchange='logs', queue=result.method.queue)
+    channel.basic_consume(callback, queue=result.method.queue, no_ack=True)
+
+    print "[*] Waiting for logs. To exit press CTRL+C"
+    channel.start_consuming()
+
+
+4. 테스트
+
+이제 복수개의 subscriber를 기동시키고, publisher로 로그 메시지를 보내보면 모든 subscriber에서 해당 메시지를 출력함을 알 수 있다. 아래와 같이 파일에 기록하도록 하여 테스트해보는것도 좋다.
+
+    python subscriber.py > test.log
+
+
+
+* 출처 : www.rabbitmq.com
+출처:RabbitMQ with Python #3/6
+
+http://killins.egloos.com/3025762
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MQ의 핵심 기능은 여러가지 종류의 메시지를 미리 정의된 룰에 따라 적절한 큐에 보내주는 것이다. AMQP는 이런 역할을 하기 위해 exchange와 type이라는 개념을 정의하고 있고, RabbitMQ도 당연히 해당 기능이 구현되어 있다. 이번에는 앞의 로그 예제를 로그 유형에 따라 각각 다른 큐에 전송하여 처리하도록 변경해본다.
+
+
+1. Direct Exchange 와 binding
+
+AMQP에서는 메시지를 라우팅하는 규칙을 총 4가지 타입으로 정의한다. Direct, topic, header, fanout인데, 앞서 사용한 fanout은 exchange에 연결된 모든 큐에 메시지를 송신하는 규칙이었다. 작성할 예제는 로그 유형에 따라 특정 큐에 메시지를 송신할 것이므로, 특정 메시지를 특정 큐에 전달하는 direct type을 사용하도록 한다.
+direct type은 exchange에서 수신한 메시지의 routing key를 보고 어떤 큐에 송신해야할지를 판단하는 규칙이다. 이 때 각 큐들은 어떤 routing key를 갖는 메시지를 수신할 지 정의할 수 있는데, 이것을 binding이라고 한다. producer가 메시지를 송신할 때 routing key를 특정 값으로 set하면, exchange에서는 해당 routing key에 따라 binding된 적절한 큐로 메시지를 송신하게 된다.
+당연히 하나의 메시지는 여러개의 큐에 라우팅될 수 있고, 하나의 큐는 여러개의 routing key 메시지를 바인딩할 수 있다.
+
+우선 direct type의 exchange를 아래와 같이 선언한다.
+
+    channel.exchange_declare(exchange='logs_direct', type='direct')
+
+그리고 consumer는 특정 routing key에 대한 메시지만 수신하도록 큐를 설정한다. 예제에서 수신할 로그 유형은 커맨드라인의 인자로 입력받도록 한다.
+
+    severities = sys.argv[1:]
+    if not severities:
+        print >> sys.stderr, "Error : input severities"
+        sys.exit(1)
+    channel.exchange_declare(exchange='logs_direct', type='direct')
+    result = channel.queue_declare(exclusive=True)
+    queue_name = result.method.queue
+    for severity in severities:
+        channel.queue_bind(exchange='logs_direct', queue=queue_name, routing_key=severity)
+
+
+
+2. 메시지 송신
+
+특정 메시지를 특정 큐에 송신하고자 하면 exchange에 메시지를 송신할 때 routing key를 set하여 송신하면 된다. 예제에서는 로그 유형이 routing key가 되고, 커맨드라인 인자로 입력받도록 한다. 입력이 없을 경우 기본 유형은 "info"를 사용한다.
+
+    severity = sys.argv[1] if len(sys.argv) > 1 else 'info'
+    ....
+    channel.basic_publish(exchange='logs_direct', routing_key=severity, body=message)
+
+
+3. 소스코드
+
+Consumer인 consumer_direct.py는 아래와 같다.
+
+    import pika
+    import sys
+
+    def callback(ch, method, properties, body):
+        print "[x] %r" % (body,)
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+
+    severities = sys.argv[1:]
+    if not severities:
+        print >> sys.stderr, "Error : input severities"
+        sys.exit(1)
+
+    channel.exchange_declare(exchange='logs_direct', type='direct')
+    result = channel.queue_declare(exclusive=True)
+    queue_name = result.method.queue
+    for severity in severities:
+        channel.queue_bind(exchange='logs_direct', queue=queue_name, routing_key=severity)
+    channel.basic_consume(callback, queue=queue_name, no_ack=True)
+
+    print "[*] Waiting for logs. To exit press CTRL+C"
+    channel.start_consuming()
+
+Producer인 producer_direct.py는 아래와 같다.
+
+    import pika
+    import sys
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+
+    channel.exchange_declare(exchange='logs_direct', type='direct')
+
+    severity = sys.argv[1] if len(sys.argv) > 1 else 'info'
+    message = ' '.join(sys.argv[2:]) or "Logs..."
+    channel.basic_publish(exchange='logs_direct', routing_key=severity, body=message)
+    print "[x] Send %r" % (message,)
+    connection.close()
+
+
+4. 테스트
+
+먼저 두개의 consumer를 기동한다. 하나는 로그유형 info와 error를 모두 수신할 consumer이다
+
+    $ python consumer_direct.py info error
+
+나머지 하나는 로그유형 error만 수신할 consumer이다.
+
+    $ python consumer_direct.py error
+
+
+이제 로그 유형이 info인 메시지를 송신하면 첫번째 프로세스에서만 로그 메시지를 출력하는것을 볼 수 있다.
+
+    $ python producer_direct.py info InfoMessage
+
+로그 유형이 error인 메시지를 송신하면 두개 프로세스 모두에서 로그 메시지를 출력하는것을 확인할 수 있다.
+
+    $ python producer_direct.py error ErrorMessage
+
+
+
+* 출처 : www.rabbitmq.com
+출처:RabbitMQ with Python #4/6
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+RabbitMQ with Python #5/6 by KillinS
+AMQP의 exchange type 중 사실 가장 유용한것은 topic이라고 할 수 있다. direct의 경우 routing_key에 의한 binding이 1:1 매칭이기 때문에 매번 바인딩을 따로 설정해줘야 하는 불편함이 있는 반면, topic은 1:n의 매칭을 가능하게 하므로 좀 더 유연한 binding rule을 사용할 수 있다. RabbitMQ는 AMQP를 따르므로 topic에서 word를 구분하는 기준은 "."이고, 사용하는 특수문자는 "*"과 "#" 두가지이다.
+* : 1개의 word에 대응
+# : 0개 이상의 word에 대응
+Exchange type으로 topic을 사용할 때 바인딩하는 방법은 위의 특수문자를 이용한다는것 이외에는 direct와 동일하므로 바로 아래의 전체 소스를 살펴보면 이해가 될것이다.
+
+
+    # emit_logs_topic.py : producer
+    import pika
+    import sys
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+
+    channel.exchange_declare(exchange='logs_topic', type='topic')
+
+    routing_key = sys.argv[1] if len(sys.argv) > 1 else 'anonymous.info'
+    message = ' '.join(sys.argv[2:]) or "Logs..."
+    channel.basic_publish(exchange='logs_topic', routing_key=routing_key, body=message)
+    print "[x] Send %r:%r" % (routing_key, message)
+    connection.close()
+
+
+    # receive_logs_topic.py : consumer
+    import pika
+    import sys
+
+    def callback(ch, method, properties, body):
+        print "[x] %r:%r" % (method.routing_key, body,)
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+    channel.exchange_declare(exchange='logs_topic', type='topic')
+    result = channel.queue_declare(exclusive=True)
+    queue_name = result.method.queue
+
+    binding_keys = sys.argv[1:]
+    if not binding_keys:
+        print >> sys.stderr, "Error : input binding_keys"
+        sys.exit(1)
+
+    for binding_key in binding_keys:
+        channel.queue_bind(exchange='logs_topic', queue=queue_name, routing_key=binding_key)
+    channel.basic_consume(callback, queue=queue_name, no_ack=True)
+
+    print "[*] Waiting for logs. To exit press CTRL+C"
+    channel.start_consuming()
+
+
+consumer를 실행할 때 아래의 예와 같이 "*"나 "#"을 이용하여 word 단위로 topic에 의한 binding을 구성할 수 있다.
+
+
+    python receive_logs_topic.py "#"
+
+    python receive_logs_topic.py "korn.*"
+
+    python receive_logs_topic.py "*.critical"
+
+
+그리고 producer에서 메시지를 송신할 때도 "*"와 "#"을 이용하여 word 단위로 라우팅 키를 설정하여 송신하면 된다.
+
+    python emit_logs_topic.py bourne BourneMsg
+
+    python emit_logs_topic.py korn.info KornInfoMsg
+
+    python emit_logs_topic.py korn.critical KornCriticalMsg
+
+    python emit_logs_topic.py bourne.critical BourneCriticalMsg
+
+
+* 출처 : RabbitMQ.com
+
+http://killins.egloos.com/3025953
+
+------------------------------------------------------------------------------------------------
+
+RabbitMQ with Python #6/6 by KillinS
+MQ는 동일 시스템에 있는 프로세스들간의 IPC를 위한 수단으로써의 효용가치도 높지만, remote 시스템간의 메시지 교환에 사용될 때 효율성이 더 극대화된다고 할 수 있다. 따라서 Remote 서버에 있는 서비스를 이용하는 형태인 RPC에도 MQ를 사용할 수 있다. RPC에서 MQ가 일반적인 메시지 전달과 다른것은, RPC는 일반적인 메시지 전달이 아닌 프로시저 호출에 따른 결과값이 응답으로 전송되어야 한다는 것이다. 이것은 클라이언트가 응답을 위한 수신용 큐를 생성하고 이 큐에 대한 정보를 프로시즈 요청과 함께 서버에 송신하면, 서버에서 프로시저 호출 결과 응답을 클라이언트에서 생성한 수신용 큐로 송신함으로써 구현할 수 있다. 
+
+RabbitMQ로 구현한 RPC 예제로 클라이언트가 특정 숫자에 대한 피보나치 값을 요청하면, 서버에서 그 응답을 돌려주는 모델을 구현해보도록 한다.
+
+우선 서버 프로세스는 상대적으로 간단하다. 큐를 생성하고 요청 메시지를 수신하여 피보나치 값을 계산한 뒤, 그 응답을 클라이언트가 생성한 큐에 메시지로 송신하면 된다. 클라이언트가 생성한 큐 정보는 클라이언트의 요청시 property 값으로 전달된다.
+
+
+    def on_request(ch, method, props, body):
+        n=int(body)
+        print "[.] fib(%s)" % (n,)
+        response = fib(n)
+        ch.basic_publish(exchange='', routing_key=props.reply_to, body=str(response))
+        ch.basic_ack(delivery_tag=method.delivery_tag)
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+    channel = connection.channel()
+    channel.queue_declare(queue='rpc_queue')
+    channel.basic_consume(on_request, queue='rpc_queue')
+
+    print "[x] Awaiting RPC requests"
+    channel.start_consuming()
+
+
+클라이언트는 다소 복잡해지는데, 요청 메시지를 송신하기 전에 우선 응답을 수신하기 위한 임시 큐를 생성하고 이 큐의 정보를 프로시저 요청 시에 서버에 송신해주어야 한다. 피보나치 수열을 얻는 프로시저를  call로 선언하고, 이 함수를 실행하면 응답 수신큐를 설정한 뒤 요청을 서버로 송신하고 결과를 응답받아 리턴해주도록 한다.
+
+
+    def call(n):
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+        channel = connection.channel()
+        result = channel.queue_declare(exclusive=True)
+        callback_queue = result.method.queue
+        channel.basic_publish(exchange='', routing_key='rpc_queue',
+                            properties=pika.BasicProperties(reply_to = callback_queue,), body=str(n))
+        response = None
+        def on_response(ch, method, props, body):
+            nonlocal response
+            response = body
+        channel.basic_consume(on_response, no_ack=True, queue=callback_queue)
+        while response is None:
+            connection.process_data_events()
+        return int(response)
+
+    print "[x] Requesting fib(30)"
+    response = call(30)
+    print "[.] Got %r " % (response,)
+
+
+하지만 위와 같이 구현하면 클라이언트가 매 RPC때마다 응답을 수신할 임시 큐를 생성하므로 매우 비효율적이다. 하나의 큐를 생성하여 모든 피보나치 프로시저 콜은 이 큐를 이용하도록 하는 방법이 보다 효율적인데, 이 경우 자신이 요청한 요청에 대한 응답이 왔는지 확인하는 절차가 필요하다. 요청과 응답과의 매칭을 위한 id를 correlation_id라 하고, 이 id 정보 역시 요청 시 property에 set하여 송신하고 응답 수신시에 확인하는 절차를 거치면 된다. 이와 같이 수정한 소스코드는 아래와 같다.
+
+
+    # 서버
+    def on_request(ch, method, props, body):
+        n=int(body)
+        print "[.] fib(%s)" % (n,)
+        response = fib(n)
+        ch.basic_publish(exchange='', routing_key=props.reply_to,
+                               properties=pika.BasicProperties(correlation_id=props.correlation_id),
+                               body=str(response))
+        ch.basic_ack(delivery_tag=method.delivery_tag)
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+    channel = connection.channel()
+
+    channel.queue_declare(queue='rpc_queue')
+    channel.basic_qos(prefetch_count=1)
+    channel.basic_consume(on_request, queue='rpc_queue')
+
+    print "[x] Awaiting RPC requests"
+    channel.start_consuming()
+
+
+    # 클라이언트
+    class FibonacciRpcClient(object):
+        def __init__(self):
+            self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+            self.channel = self.connection.channel()
+            result = self.channel.queue_declare(exclusive=True)
+            self.callback_queue = result.method.queue
+            self.channel.basic_consume(self.on_response, no_ack=True, queue=self.callback_queue)
+            def on_response(self, ch, method, props, body):
+                if self.corr_id == props.correlation_id:
+                    self.response = body
+
+        def call(self, n):
+            self.response = None
+            self.corr_id = str(uuid.uuid4())
+            self.channel.basic_publish(exchange='', routing_key='rpc_queue',
+                                    properties=pika.BasicProperties(reply_to = self.callback_queue, correlation_id = self.corr_id,),
+                                    body=str(n))
+            while self.response is None:
+                self.connection.process_data_events()
+            return int(self.response)
+
+    fibonacci_rpc = FibonacciRpcClient()
+
+    print "[x] Requesting fib(30)"
+    response = fibonacci_rpc.call(30)
+    print "[.] Got %r " % (response,)
+
+
+* 출처 : www.rabbitmq.com
+
+http://killins.egloos.com/3026034
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
