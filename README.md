@@ -147,4 +147,5 @@
 5. https://jythonbook-ko.readthedocs.io/en/latest/JythonAndJavaIntegration.html
 
 
-https://user-images.githubusercontent.com/39545613/79848782-7f5cb200-83fc-11ea-8f16-e236a00e049c.png
+
+<img src="https://user-images.githubusercontent.com/39545613/79848782-7f5cb200-83fc-11ea-8f16-e236a00e049c.png" width="90%"></img>
