@@ -3,18 +3,21 @@ version: '3.1'
 # docker-compose up
 # docker start docker_rabbitmq_1 docker_body_db_1 docker_keyboard_db_1 docker_mic_db_1 docker_speaker_db_1 docker_heart_db_1
 services:
-
+# user01 1q2w3e4r
+# sudo chmod 666 /var/run/docker.sock
+# chmod +x ./kubectl
+# docker stop data_mic_db_1 data_keyboard_db_1 data_heart_db_1 data_speaker_db_1 data_body_db_1
   body_db:
     image: mariadb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
     volumes:
-      - D:/dev/volumns/mariadb/1/data:/var/lib/mysql
-      - D:/dev/volumns/mariadb/1/conf.d:/etc/mysql/conf.d
+      - /dev/volumns/mariadb/1/data:/var/lib/mysql
+      - /dev/volumns/mariadb/1/conf.d:/etc/mysql/conf.d
     ports:
       - '33301:3306'
-   
+    privileged: true 
    
   heart_db:
     image: mariadb
@@ -22,22 +25,23 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
     volumes:
-      - D:/dev/volumns/mariadb/2/data:/var/lib/mysql
-      - D:/dev/volumns/mariadb/2/conf.d:/etc/mysql/conf.d
+      - /dev/volumns/mariadb/2/data:/var/lib/mysql
+      - /dev/volumns/mariadb/2/conf.d:/etc/mysql/conf.d
     ports:
       - '33302:3306'
-    
+    privileged: true 
+        
   keyboard_db:
     image: mariadb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
     volumes:
-      - D:/dev/volumns/mariadb/3/data:/var/lib/mysql
-      - D:/dev/volumns/mariadb/3/conf.d:/etc/mysql/conf.d
+      - /dev/volumns/mariadb/3/data:/var/lib/mysql
+      - /dev/volumns/mariadb/3/conf.d:/etc/mysql/conf.d
     ports:
     - '33303:3306'
-    
+    privileged: true 
     
   mic_db:
     image: mariadb
@@ -45,11 +49,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
     volumes:
-      - /Users/aaaa/con_volumes/mariadb/4/data:/var/lib/mysql
-      - /Users/aaaa/con_volumes/mariadb/4/conf.d:/etc/mysql/conf.d
+      - /dev/volumns/mariadb/4/data:/var/lib/mysql
+      - /dev/volumns/mariadb/4/conf.d:/etc/mysql/conf.d
     ports:
       - '33304:3306'
-   
+    privileged: true 
    
   speaker_db:
     image: mariadb
@@ -57,11 +61,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: g@KgUnHhcYUYu7.
     volumes:
-      - /Users/aaaa/con_volumes/mariadb/5/data:/var/lib/mysql
-      - /Users/aaaa/con_volumes/mariadb/5/conf.d:/etc/mysql/conf.d
+      - /dev/volumns/mariadb/5/data:/var/lib/mysql
+      - /dev/volumns/mariadb/5/conf.d:/etc/mysql/conf.d
     ports:
       - '33305:3306'
-
+    privileged: true 
+    
   rabbitmq:
      image: rabbitmq:management
      ports:

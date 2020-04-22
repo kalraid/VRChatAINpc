@@ -4,7 +4,7 @@ EXCHANGE_NAME = "cafe.topic";
 QUEUE_NAME = "coffee.queue";
 ROUTING_KEY = "order.coffee.#";
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'));
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='http://192.168.255.128:15672'));
 channel = connection.channel();
 
 channel.queue_declare(queue = QUEUE_NAME);
@@ -27,4 +27,4 @@ connection.close()
 #     channel.basic_publish(exchange='logs', routing_key='key', body=message)
 #     print "[x] Send %r" % (message,)
 #     connection.close()
-# ÃâÃ³:RabbitMQ with Python #3/6
+# ï¿½ï¿½Ã³:RabbitMQ with Python #3/6
