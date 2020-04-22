@@ -7,7 +7,7 @@ ROUTING_KEY = "order.coffee.#";
 def callback(ch, method, properties, body):
     print(" [x] Received %r" % (body))
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'));
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='http://192.168.255.128:15672'));
 channel = connection.channel();
 channel.queue_declare(queue=QUEUE_NAME);
 channel.basic_consume(callback, queue=QUEUE_NAME, no_ack=True);
@@ -77,7 +77,7 @@ channel.start_consuming();
 # 
 #     print ' [*] Waiting for messages. To exit press CTRL+C'
 #     channel.start_consuming()
-# ÃâÃ³:RabbitMQ with Python #2/6 http://killins.egloos.com/3025575
+# ï¿½ï¿½Ã³:RabbitMQ with Python #2/6 http://killins.egloos.com/3025575
 
 
 #     channel.exchange_declare(exchange='logs', type='fanout')
@@ -88,14 +88,14 @@ channel.start_consuming();
 
 #     result = channel.queue_declare()
 # 
-# À§¿Í °°ÀÌ Å¥ ÀÌ¸§À» ÁÖÁö ¾Ê°í Å¥¸¦ »ý¼ºÇÏ¸é ºê·ÎÄ¿°¡ ÀÓÀÇ·Î ÀÌ¸§À» »ý¼ºÇÏ°Ô µÇ°í, ÀÌ°ÍÀº result.method.queue·Î Á¢±ÙÇÏ¿© ¾Ë ¼ö ÀÖ´Ù. ¿©±â¼­ ÇÁ·Î¼¼½º°¡ Á¾·áµÇ¸é, Áï subscriber°¡ ¿¬°áÀ» ²÷À¸¸é Å¥¸¦ ÀÚµ¿À¸·Î Á¦°ÅÇÏ·Á¸é Å¥¸¦ »ý¼ºÇÒ ¶§ ¾Æ·¡¿Í °°ÀÌ exclusive ÀÎÀÚ¸¦ ÁÖ¸é µÈ´Ù.
+# ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¥ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ç°ï¿½, ï¿½Ì°ï¿½ï¿½ï¿½ result.method.queueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½. ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½, ï¿½ï¿½ subscriberï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¥ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ exclusive ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ö¸ï¿½ ï¿½È´ï¿½.
 # 
 #     result = channel.queue_declare(exclusive=True)
 # 
-# ÀÌ·¸°Ô »ý¼ºÇÑ Å¥¸¦ exchange¿¡ ¾Æ·¡¿Í °°ÀÌ binding ÇØÁÖ¸é µÈ´Ù.
+# ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¥ï¿½ï¿½ exchangeï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ binding ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½È´ï¿½.
 # 
 #     channel.queue_bind(exchange='logs', queue=result.method.queue)
-# ÃâÃ³:RabbitMQ with Python #3/6
+# ï¿½ï¿½Ã³:RabbitMQ with Python #3/6
 
 
 #    import pika
@@ -113,5 +113,5 @@ channel.start_consuming();
 # 
 #     print "[*] Waiting for logs. To exit press CTRL+C"
 #     channel.start_consuming()
-# ÃâÃ³:RabbitMQ with Python #3/6 http://killins.egloos.com/3025762
+# ï¿½ï¿½Ã³:RabbitMQ with Python #3/6 http://killins.egloos.com/3025762
 
