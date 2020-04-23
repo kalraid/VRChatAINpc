@@ -1,0 +1,9 @@
+spring:
+  rabbitmq:
+      host: localhost
+      username: ***REMOVED***   
+      password: ***REMOVED***
+  datasource:
+      url : jdbc:mariadb://192.168.255.128:33301      
+      username : root
+      password : ***REMOVED***
