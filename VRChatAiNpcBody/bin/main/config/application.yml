@@ -2,15 +2,9 @@ spring:
   application:
     name: client-service
   rabbitmq:
-      host: http://192.168.255.128
-      port: 15672
-      username: guest   
-      password: guest
+      port: 5672
   datasource:
       driverClassName : org.mariadb.jdbc.Driver
-      url : jdbc:mariadb://192.168.255.128:33301      
-      username : root
-      password : g@KgUnHhcYUYu7.
 server:  port: ${PORT:8901}
 eureka:
   client:

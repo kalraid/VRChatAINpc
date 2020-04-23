@@ -5,13 +5,11 @@ eureka :
     fetchRegistry: false 
 spring:
    rabbitmq:
-      host: http://192.168.255.128
-      port: 15672
+      port: 5672
       username: guest   
       password: guest
    datasource:
       driverClassName : org.mariadb.jdbc.Driver
-      url : jdbc:mariadb://192.168.255.128:33301      
       username : root
       password : g@KgUnHhcYUYu7.
   
