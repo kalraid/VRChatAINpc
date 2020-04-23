@@ -31,9 +31,6 @@ api.add_resource(CreateUser, '/user')
 
 apiUrl = API.getList('');
 for i in apiUrl:
-    print(i["task"])
-    print(i["url"])
-    print(i["name"])
     api.add_resource(i["task"], i["url"]);
 
 if __name__ == '__main__':
