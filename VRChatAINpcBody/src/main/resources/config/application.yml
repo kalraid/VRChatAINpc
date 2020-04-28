@@ -3,6 +3,8 @@ spring:
     name: client-service
   rabbitmq:
       port: 5672
+      username: guest   
+      password: guest
   datasource:
       driverClassName : org.mariadb.jdbc.Driver
 server:  port: ${PORT:8901}
