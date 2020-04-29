@@ -149,3 +149,13 @@
 
 
 <img src="https://user-images.githubusercontent.com/39545613/79848782-7f5cb200-83fc-11ea-8f16-e236a00e049c.png" width="90%"></img>
+
+
+
+
+
+
+
+휴일동안 할일
+개인 프로젝트 젠킨스, main 웹 화면 구상 및 구현, DB 내용 구상(ERD) 및 구현, 
+VRCHAT 접속, 기본 이동, 화면 촬영, 음성저장, 
