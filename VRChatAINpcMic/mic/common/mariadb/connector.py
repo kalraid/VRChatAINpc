@@ -1,5 +1,5 @@
 import mysql.connector as mysql_connector
-from speaker.common.config.application import mysql_config
+from mic.common.config.application import mysql_config
 # https://blog.naver.com/PostView.nhn?blogId=jwyoon25&logNo=221343770497&categoryNo=40&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
 
 class conn():

@@ -1,6 +1,6 @@
-from speaker.test.apitest import apiTest
-from speaker.test.reintest import reinTest
-from speaker.reinforcement.learning.learning import learning
+from mic.test.apitest import apiTest
+from mic.test.reintest import reinTest
+from mic.reinforcement.learning.learning import learning
 
 class API():
     def getList(self):
