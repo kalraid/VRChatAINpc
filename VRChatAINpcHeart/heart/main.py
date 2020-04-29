@@ -29,9 +29,6 @@ api.add_resource(CreateUser, '/user')
 
 apiUrl = API.getList('');
 for i in apiUrl:
-    print(i["task"])
-    print(i["url"])
-    print(i["name"])
     api.add_resource(i["task"], i["url"]);
 
 
@@ -39,10 +36,11 @@ for i in apiUrl:
 if __name__ == '__main__':
 #     app.run(host='0.0.0.0', port = 8787, debug=True) 
     port = 8754
-    service_name = "Mic"
+    service_name = "Heart"
     eureka_server = "http://localhost:8761/eureka"
     ec = eureka_client_setting();
     ec.client_init(eureka_server, service_name, port) 
+    print("Python Server Start : ",service_name);
     app.run(port=port, debug=True) 
 
     

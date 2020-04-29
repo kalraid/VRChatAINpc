@@ -1,9 +1,0 @@
-spring:
-  rabbitmq:
-      host: 192.168.255.128
-      username: guest   
-      password: guest
-  datasource:
-      url : jdbc:mariadb://192.168.255.128:33301      
-      username : root
-      password : g@KgUnHhcYUYu7.
