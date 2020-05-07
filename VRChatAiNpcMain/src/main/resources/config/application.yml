@@ -1,15 +1,0 @@
-server :
-  port : ${PORT:8761}
-eureka :
-  client:    register-with-eureka: false
-    fetchRegistry: false 
-spring:
-   rabbitmq:
-      port: 5672
-      username: guest   
-      password: guest
-   datasource:
-      driverClassName : org.mariadb.jdbc.Driver
-      username : root
-      password : g@KgUnHhcYUYu7.
-  

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<title>Hello thymeleaf</title>
+</head>
+<body>
+	<span th:text="${message}"></span>
+
+	<div th:each="prod : ${list}">
+		<span th:text="${prod.firstName}"></span>, <span th:text="${prod.lastName}"></span><br />
+	</div>
+
+	<!-- true false -->
+	<span th:text="${bool1} ? 'true' : 'false'">yes</span>
+	<span th:text="${bool2} ? 'true' : 'false'">yes</span>
+
+	<!-- if else -->
+	<span th:unless="${bool1}">bool1 ok</span>
+	<span th:if="${bool2}">bool2 ok</span>
+
+	<!-- attrappend -->
+	<a href="/web/viewTest?id=" th:attrappend="href=${data.id}" th:text="${data.id}"></a>
+	<a href="/web/viewTest?password=" th:attrappend="href=${data.password}" th:text="${data.password}"></a>
+
+	 <div th:include="footer :: copy"></div>
+</body>
+</html>
