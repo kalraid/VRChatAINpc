@@ -111,6 +111,15 @@
 #### VRChat APi 사이트  
 #### - https://vrchatapi.github.io/#/  
 #### - https://github.com/VRChatAPI/vrchatapi.github.io  
+###### 위의 뒤 url에 있는 api로는 안되거같음
+#### - https://docs.vrchat.com/
+#### - https://vrchat.com/
+#### vrchat에 api 직접 제공해주는게 있어서 이걸로 대체
+
+#### - 기 구현된 ai 들 
+#### - https://vrchat-legends.fandom.com/wiki/Category:A.I.
+
+
 
 #### 패턴 관련 사이트 
 #### - https://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries/2707195#2707195 
