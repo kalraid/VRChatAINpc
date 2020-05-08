@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+	
+	<title>Hello thymeleaf</title>
+</head>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<body>
+	<div class="row">
+		<div class="col-lg-12 border border-2 border-dark"><div th:include="act :: top"></div></div>
+		<div class="col-lg-2 border border-2 border-dark" ><div th:include="act :: left"></div></div>
+		<div class="col-lg-8 border border-2 border-dark" ><div th:include="act :: middle"></div></div>
+		<div class="col-lg-2 border border-2 border-dark" ><div th:include="act :: right"></div></div>
+		<div class="col-lg-12 border border-2 border-dark" ><div th:include="act :: bottom"></div></div>
+	</div>
+</body>
+<script>
+</script>
+</html>

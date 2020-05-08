@@ -5,3 +5,7 @@ mysql_config = {
     "database":"data_speaker",
     "port":"33305"
 }
+vrchat_config = {
+    "id":"kalraidai",
+    "password":"tJt!424j=#L27m?",
+}

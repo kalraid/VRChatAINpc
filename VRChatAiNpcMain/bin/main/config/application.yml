@@ -3,6 +3,8 @@ server :
 eureka :
   client:    register-with-eureka: false
     fetchRegistry: false 
+  server:
+    enableSelfPreservation : false
 spring:
    rabbitmq:
       port: 5672
@@ -12,4 +14,8 @@ spring:
       driverClassName : org.mariadb.jdbc.Driver
       username : root
       password : g@KgUnHhcYUYu7.
-  
+   thymeleaf:
+    prefix: classpath:/templates/web/ # 여기는 / 들어가야하고 controller에는 시작 / 빼야함
+   freemarker: # eureka 와 template를 동시에 사용할 경우 반드시 템플릿 패스 지정 필요
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
