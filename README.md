@@ -55,6 +55,9 @@
 #### 행동신경 서버(보고 들은내용으로 뭐할지 정리) <- 바디서버를 통해 받은 정보를 토대로 행해야할 행동 분석후 바디서버로 전달
 #### 감정 서버(바디서버를 통해서 기존에 정리한 내용을 받고 기존감정 + 정리한 내용을 통해 생긴 감정을 정리해서 바디서버로 재전달)
 
+#### 실제 VRCHAT 접속용 UNITY 기반 SDK 러닝서버
+
+
 ## 최종 구조
 
 - 시각 신경 서버 + 청각 신경 서버
@@ -111,6 +114,16 @@
 #### VRChat APi 사이트  
 #### - https://vrchatapi.github.io/#/  
 #### - https://github.com/VRChatAPI/vrchatapi.github.io  
+###### 위의 뒤 url에 있는 api로는 안되거같음
+#### - https://docs.vrchat.com/
+#### - https://vrchat.com/
+#### - https://vrchat.com/home
+#### vrchat에 api 직접 제공해주는게 있어서 이걸로 대체
+
+#### - 기 구현된 ai 들 
+#### - https://vrchat-legends.fandom.com/wiki/Category:A.I.
+
+
 
 #### 패턴 관련 사이트 
 #### - https://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries/2707195#2707195 
