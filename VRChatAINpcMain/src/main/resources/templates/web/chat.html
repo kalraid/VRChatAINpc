@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+	
+	<title>Hello Chat</title>
+</head>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<body>
+<div class="row">
+	<div class="col-12 border-bottom border-dark"><div th:include="act :: top"></div></div>
+	<div class="col-12">
+		<div class="row">
+		
+			<div class="col-2 border-bottom border-dark" style="padding-right: 0px;padding-left: 25px;"><div th:include="act :: left"></div></div>
+			<div class="col-8 border-bottom border-left border-dark" ><div th:include="act :: middle"></div></div>
+			<div class="col-2 border-bottom border-left border-dark" ><div th:include="act :: right"></div></div>
+		</div>
+	</div>
+	<div class="col-12" ><div th:include="act :: bottom"></div></div>
+</div>
+</body>
+<script>
+$(function(){
+	let httpGet = function(url, data, target){
+		$.ajax({
+			url : url,
+			data : data,
+			type : "GET",
+			dataType : "text",
+			beforeSend : function(xhr){
+	            xhr.setRequestHeader("ApiKey", "asdfasxdfasdfasdf");
+	            xhr.setRequestHeader("Access-Control-Allow-Origin","*");
+	        },
+		})
+		.done(function(result){
+			$('#'+target).html(result);
+			console.log(result);
+		})
+		.fail(function(xhr, status, errorThrown) {
+		    console.log(xhr);
+		    console.log(status);
+		    console.log(errorThrown);
+		})
+	}
+	let data = {"id": "kimrie", "password":"123123"};
+	setInterval(function () {
+		httpGet("http://localhost:8901/api/getServer", data, "serverNm");
+		httpGet("http://localhost:8901/api/getId", data, "userId");
+	}, 5000);
+	
+	setInterval(function () {
+		httpGet("http://localhost:8901/api/getServerList", data, "serverList");
+		httpGet("http://localhost:8901/api/getMemberList", data, "memberList");
+		httpGet("http://localhost:8901/api/getImage", data, "mainImage");
+	}, 3000);
+	
+	setInterval(function () {	
+		httpGet("http://localhost:8901/api/getChatList", data, "chatList");
+	}, 500);	
+	
+/* 	// 2초마다 반복
+	let timerId = setInterval(() => alert('tick'), 2000);
+
+	// 5초 후에 정지
+	setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000); */
+	
+/* 	$.ajax({
+	    url: "/examples/media/request_ajax.php", // 클라이언트가 요청을 보낼 서버의 URL 주소
+	    data: { name: "홍길동" },                // HTTP 요청과 함께 서버로 보낼 데이터
+	    type: "GET",                             // HTTP 요청 방식(GET, POST)
+	    dataType: "json"                         // 서버에서 보내줄 데이터의 타입
+	})
+	// HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.
+	.done(function(json) {
+	    $("<h1>").text(json.title).appendTo("body");
+	    $("<div class=\"content\">").html(json.html).appendTo("body");
+	})
+	// HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨.
+	.fail(function(xhr, status, errorThrown) {
+	    $("#text").html("오류가 발생했습니다.<br>")
+	    .append("오류명: " + errorThrown + "<br>")
+	    .append("상태: " + status);
+	})
+	// HTTP 요청이 성공하거나 실패하는 것에 상관없이 언제나 always() 메소드가 실행됨.
+	.always(function(xhr, status) {
+	    $("#text").html("요청이 완료되었습니다!");
+	});
+	 */
+	
+})
+</script>
+</html>
