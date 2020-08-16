@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dnd.party.search.service.SearchService;
 import com.dnd.party.search.service.UserService;
 import com.dnd.party.search.vo.UserVO;
 
