@@ -2,6 +2,7 @@ package com.dnd.party.search.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -157,6 +158,22 @@ public class SearchServiceImpl implements SearchService {
 //			}
 //		}
 
+		
+		// 시너지 리스트 데미지 기준 재정렬(남은 쩔러가 들어갔을경우 데미지순 정렬이 필요했음)
+		synagelist.sort(new Comparator<CharacterVO>() {
+		       @Override
+		       public int compare(CharacterVO arg0, CharacterVO arg1) {
+		              // TODO Auto-generated method stub
+		              int age0 = arg0.getDamage();
+		              int age1 = arg1.getDamage();
+		              
+		              if(age0 == age1) return 0;
+		              else if(age0 < age1) return 1;
+		              else return -1;
+		       }
+		});
+
+		
 		// 버퍼 쩔러 입력 끝
 		for (List<CharacterVO> cvoList : party) {
 			for (CharacterVO cvo : synagelist) {
