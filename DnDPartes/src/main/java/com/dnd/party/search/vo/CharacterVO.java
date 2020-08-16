@@ -27,4 +27,6 @@ public class CharacterVO {
 	private int powerLevel;
 	private int partyIdx;
 	
+	
+	
 }
