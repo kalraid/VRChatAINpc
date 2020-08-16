@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.dnd.party.search.dao.CharacterDAO"><!--namespace를 통해 UserDAO와 연결합니다. -->
+  		
+  <select id="selectCharacters" parameterType="com.dnd.party.search.vo.CharacterVO" resultType="com.dnd.party.search.vo.CharacterVO">
+  	<!-- -->
+  		SELECT * FROM dnd.CHARACTER;
+  	
+  </select>
+  		
+  <select id="getBuffList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
+  	<!-- -->
+  		SELECT * FROM dnd.CHARACTER
+  		WHERE 1=1
+  		AND type = 'B'
+  		
+		<if test="users != null">
+ 		AND user_alias IN
+			<foreach collection="users" item="item" index="index" open="(" close=")" separator=",">
+			 #{item.alias}
+			</foreach>
+		</if>
+		
+  		order by buff asc;
+  	
+  </select>
+  
+  <select id="getPowerDealerList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
+  	<!-- -->
+  		SELECT * FROM dnd.CHARACTER
+  		WHERE 1=1
+  		AND buff = 0
+  		AND damage &gt; 1000
+  		
+		<if test="users != null">
+ 		AND user_alias IN
+			<foreach collection="users" item="item" index="index" open="(" close=")" separator=",">
+			 #{item.alias}
+			</foreach>
+		</if>
+
+  		order by damage desc;
+  </select>
+  
+  <select id="getSynageList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
+   	<!-- -->
+  		SELECT * FROM dnd.CHARACTER
+  		WHERE 1=1
+  		AND type = 'S'
+  		AND damage &lt; 1000
+  		
+		<if test="users != null">
+ 		AND user_alias IN
+			<foreach collection="users" item="item" index="index" open="(" close=")" separator=",">
+			 #{item.alias}
+			</foreach>
+		</if>
+		
+  		order by damage desc;
+  	
+  </select>
+  
+  <select id="getDealarList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
+   	<!-- -->
+  		SELECT * FROM dnd.CHARACTER
+  		WHERE 1=1
+  		AND type = 'D'
+  		AND damage &lt; 1000
+  		
+		<if test="users != null">
+ 		AND user_alias IN
+			<foreach collection="users" item="item" index="index" open="(" close=")" separator=",">
+			 #{item.alias}
+			</foreach>
+		</if>
+		
+  		order by damage desc;
+  	
+  </select>
+
+</mapper>
