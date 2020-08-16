@@ -137,6 +137,10 @@ public class SearchServiceImpl implements SearchService {
 				}
 
 			}
+			
+			
+			// 원래대로 복귀
+			// Collections.reverse(party);
 		}
 
 		if (leftPowerDealerList.size() > 0) { // 일안하는 친구들 재위치에 배치
