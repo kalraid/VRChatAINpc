@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<div th:fragment="top">
+    <div class="row">
+    	<div class="col-8">메뉴</div>
+    	<div class="col-2 border-left">접속 서버 : <span id="serverNm">서버 이름</span> </div>
+    	<div class="col-2 border-left">접속 아이디 : <span id="userId">접속 아이디</span> </div>
+    </div>
+</div>
+<div th:fragment="left">
+    <div class="h20" style="height: 20%; min-height: 100px">
+    	서버 리스트
+    	<div class="border border-1" style="height: 100px; width: 97%;">
+    	 	<div id="serverList">
+    		</div>
+    	</div>
+   	</div>
+    <div class="h80" style="height: 80%; min-height: 800px">
+    	접속 리스트
+    	<div class="border border-1" style="height: 830px; width: 97%;">
+    		<div id="memberList">
+    		</div>
+    	</div>
+   	</div>
+</div>
+<div th:fragment="middle">
+   <img th:src="@{/images/test.png}" id = "mainImage" style="height: 1000px; width: 1400px;"/>
+   <!-- <img th:src="@{~/images/test.png}"/>
+   <img th:src="@{images/Wg_1wgY2_400x400.jpg}"/> -->
+</div>
+<div th:fragment="right">
+    <div class="h90" style="height: 90%; min-height: 800px">
+    	채팅
+    	<div class="border border-1" style="height: 900px; width: 97%;">
+ 	    	<div id="chatList">
+    		</div>
+    	</div>
+   	</div>
+    <div class="h10" style="height: 10%; min-height: 50px">
+    	채팅칸
+    	<div></div>
+    	<input type="text" class="border border-1 cheatInput" style="width: 75%; margin-right: 10px;"/>
+    	<button type="button" class="btn btn-outline-primary">전송</button>
+   	</div>
+</div>
+<div th:fragment="bottom">
+   <div id="test">행동 인식 칸</div>
+</div>
+</html>

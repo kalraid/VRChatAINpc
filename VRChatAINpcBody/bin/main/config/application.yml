@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: body
+  rabbitmq:
+      port: 5672
+      username: guest   
+      password: guest
+  datasource:
+      driverClassName : org.mariadb.jdbc.Driver
+server:  port: ${PORT:8901}
+eureka:
+  client:
+    service-url:      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}  
+
+management:
+   context-path: /manage
+   security:
+      enabled: false
+   shell:
+     ssh:
+         enabled: true
+         port: 18080
+   health:
+      diskspace:
+         enable: false
+      db:
+         enabled: false
+   endpoints:
+      web:
+         exposure:
+            include: "*"
+
+      

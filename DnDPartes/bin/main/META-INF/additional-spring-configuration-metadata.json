@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "dnd.api.key",
+  "type": "java.lang.String",
+  "description": "A description for 'dnd.api.key'"
+}]}
