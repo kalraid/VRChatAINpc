@@ -6,14 +6,13 @@
   		
   <select id="selectCharacters" parameterType="com.dnd.party.search.vo.CharacterVO" resultType="com.dnd.party.search.vo.CharacterVO">
   	<!-- -->
-  		SELECT * FROM dnd.character
-  		ORDER BY user_alias;
+  		SELECT * FROM dnd.CHARACTER;
   	
   </select>
   		
   <select id="getBuffList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
   	<!-- -->
-  		SELECT * FROM dnd.character
+  		SELECT * FROM dnd.CHARACTER
   		WHERE 1=1
   		AND type = 'B'
   		
@@ -30,7 +29,7 @@
   
   <select id="getPowerDealerList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
   	<!-- -->
-  		SELECT * FROM dnd.character
+  		SELECT * FROM dnd.CHARACTER
   		WHERE 1=1
   		AND buff = 0
   		AND damage &gt; 1000
@@ -47,7 +46,7 @@
   
   <select id="getSynageList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
    	<!-- -->
-  		SELECT * FROM dnd.character
+  		SELECT * FROM dnd.CHARACTER
   		WHERE 1=1
   		AND type = 'S'
   		AND damage &lt; 1000
@@ -65,7 +64,7 @@
   
   <select id="getDealarList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
    	<!-- -->
-  		SELECT * FROM dnd.character
+  		SELECT * FROM dnd.CHARACTER
   		WHERE 1=1
   		AND type = 'D'
   		AND damage &lt; 1000
@@ -80,26 +79,5 @@
   		order by damage desc;
   	
   </select>
-
-<update id="saveCharacterApiId"  parameterType="com.dnd.party.search.vo.CharacterVO">
-	UPDATE dnd.character SET API_ID = "${apiId}"
-	where 1=1
-	and name = "${name}"
-	 
-</update>
-
-<update id="saveCharacterDetail"  parameterType="com.dnd.party.search.vo.CharacterVO">
-	UPDATE dnd.character SET damage = #{damage},buff = #{buff} 
-	where 1=1
-	and id = #{id}
-	 
-</update>
-
-<insert id="insertCharacterDetailHist">
-  insert into dnd.character_hist (characterId, damage_sendbag, instDate, buff, damage_siroco, buff_aria)
-  values (#{id}, #{damageSendbag}, now(), #{buff}, #{damageSiroco}, #{buffAria})
-  
-</insert>
-
 
 </mapper>

@@ -28,10 +28,10 @@ public class SearchController {
 	private SearchService searchService;
 
 	@PostMapping("/start")
-	public HttpEntity<List<List<CharacterVO>>> SearchStart(@RequestBody HashMap<String, Object> param) {
+	public HttpEntity<HashMap<String, Object>> SearchStart(@RequestBody HashMap<String, Object> param) {
 		List<List<CharacterVO>> partList = searchService.selectParty(param);
-
-		HttpEntity<List<List<CharacterVO>>> result = new HttpEntity<List<List<CharacterVO>>>(partList);
+		HashMap<String, Object> body = searchService.calculrateParty(partList);
+		HttpEntity<HashMap<String, Object>> result = new HttpEntity<HashMap<String, Object>>(body);
 	
 		return result;
 	}
