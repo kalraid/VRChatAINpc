@@ -12,7 +12,7 @@
       <img style="width: 300px;height: 200px;" src="./assets/162623_5f33999f0744f.jpg">
     </div>
     <router-view/>
-  </div>
+  </div> 
 </template>
 
 <script>

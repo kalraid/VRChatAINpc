@@ -93,7 +93,7 @@ export default {
         this.$http.post('http://121.170.211.213:18080/character/change/otherType',
         {
            character : item  
-        })
+        }) 
       },
   },
 }

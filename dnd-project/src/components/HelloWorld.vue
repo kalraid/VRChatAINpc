@@ -10,7 +10,7 @@
           <select v-model="i.count">
             <option v-for="a in partySize" v-bind:key="a.idx" v-value="a" v-text="a" v-bind:min="1"></option>
           </select>
-        </span>
+        </span> 
     </div>
     <div>
       <select v-show="admin2" v-model="selected">
