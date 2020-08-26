@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.dnd.party.rest.service.ApiService;
+import com.dnd.party.search.vo.CharacterVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,9 +52,9 @@ public class NeopleRest {
 		return entity;
 	}
 	
-	public ResponseEntity<?> getCharacterBaseInfo() {
+	public ResponseEntity<?> getCharacterBaseInfo(String name) {
 		// https://api.neople.co.kr/df/servers/<serverId>/characters/<characterId>?apikey=<apikey>
-		
+		// https://api.neople.co.kr/df/servers/bakal/characters?characterName=에반젤앙갚음&apikey=JNG7yMG1pkxS5OjVYoj73FwfYXTqqAAi
 //		03. 캐릭터 `기본 정보` 조회/df/servers/:serverId/characters/:characterId 
 //		참고 사항
 //		캐릭터 이미지 URL : https://img-api.neople.co.kr/df/servers/<serverId>/characters/<characterId>?zoom=<zoom>
@@ -63,7 +64,7 @@ public class NeopleRest {
 //		serverId	String	서버 아이디	Y	
 //		characterId	String	캐릭터 고유 코드	Y
 		
-		String url = "https://api.neople.co.kr/df/servers?apikey="+key;
+		String url = "https://api.neople.co.kr/df/servers/bakal/characters?characterName="+name+"&apikey="+key;
 		ResponseEntity<?> entity = apiService.get(url);
 		
 		return entity;

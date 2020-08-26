@@ -8,8 +8,9 @@ import lombok.Data;
 public class CharacterVO {
 
 	private String id;
+	private String apiId;
 	private String name;
-	private int damage;
+	private long damage;
 	private double buff;
 	private String job;
 	private String type;
@@ -20,11 +21,26 @@ public class CharacterVO {
 	private String devildomRemainCount;
 	private String findRemainCount;
 	private String freyIsisRemainCount;
+	private String sirocoRemainCount;
+	private String sirocoDate;
+	private String bannerRemainCount;
+	private String bannerDate;
 	private Date oculusDate;
 	private Date devildomDate;
 	private Date findDate;
 	private Date freyIsisDate;
 	private int powerLevel;
 	private int partyIdx;
+
+	private String serverId;
+	private long damageSiroco;
+	private long damageSendbag;
+	private double buffAria;
+	
+	private int raidParticipateType;
+	private int otherParticipateType;
+	
+	private Boolean partcipate = false;
+	
 	
 }

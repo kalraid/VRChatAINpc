@@ -6,7 +6,7 @@
   		
   <select id="selectUsers" parameterType="com.dnd.party.search.vo.UserVO" resultType="com.dnd.party.search.vo.UserVO">
   	<!-- -->
-  		SELECT * FROM dnd.USER;
+  		SELECT * FROM dnd.user;
   	
   </select>
 

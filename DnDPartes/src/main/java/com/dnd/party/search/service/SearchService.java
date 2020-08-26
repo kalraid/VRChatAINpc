@@ -7,8 +7,8 @@ import com.dnd.party.search.vo.CharacterVO;
 
 public interface SearchService {
 
-	public List<CharacterVO> selectUsers();
-	
 	public List<List<CharacterVO>> selectParty(HashMap<String, Object> users);
+
+	public HashMap<String, Object> calculrateParty(List<List<CharacterVO>> partList);
 
 }
