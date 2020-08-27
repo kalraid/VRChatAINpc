@@ -68,7 +68,7 @@ export default {
       }
   },
   created() {
-    this.$http.get('http://121.170.211.213:18080/character/list')
+    this.$http.get('http://31.188.177.31:18080/character/list')
     .then((result) =>{
       result.data.forEach((o,i) =>{
           if(i > 0 && o.userAlias == result.data[i-1].userAlias){
@@ -84,13 +84,13 @@ export default {
   methods: {
       setRaidParticipateType(item){
           
-        this.$http.post('http://121.170.211.213:18080/character/change/raidType',
+        this.$http.post('http://31.188.177.31:18080/character/change/raidType',
         {
             character : item       
         })   
       },
       setOtherParticipateType(item){
-        this.$http.post('http://121.170.211.213:18080/character/change/otherType',
+        this.$http.post('http://31.188.177.31:18080/character/change/otherType',
         {
            character : item  
         }) 

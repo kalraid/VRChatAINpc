@@ -10,7 +10,7 @@
           <select v-model="i.count">
             <option v-for="a in partySize" v-bind:key="a.idx" v-value="a" v-text="a" v-bind:min="1"></option>
           </select>
-        </span> 
+        </span>
     </div>
     <div>
       <select v-show="admin2" v-model="selected">
@@ -63,7 +63,7 @@ export default {
     characterSync(){
       this.$data.syncEnd = true;
 
-      this.$http.get('http://121.170.211.213:18080/api/dndoff/characterInfo')
+      this.$http.get('http://31.188.177.31:18080/api/dndoff/characterInfo')
       .then((result) =>{
         alert("동기화 완료");
         this.$data.syncEnd = false;
@@ -75,7 +75,7 @@ export default {
     },
     getParties(){
       
-       this.$http.post('http://121.170.211.213:18080/search/start',{
+       this.$http.post('http://31.188.177.31:18080/search/start',{
           "users" : this.$data.users.filter((o) => {
                       return o.checked;
                     }),
@@ -90,7 +90,7 @@ export default {
     },
     getParties2(){
       
-       this.$http.post('http://121.170.211.213:18080/search/start',{
+       this.$http.post('http://31.188.177.31:18080/search/start',{
           "users" : this.$data.users.filter((o) => {
                       return o.checked;
                     }),
@@ -106,7 +106,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('http://121.170.211.213:18080/users/list')
+    this.$http.get('http://31.188.177.31:18080/users/list')
     .then((result) =>{
       result.data.forEach((o) =>{
         o.checked = true;
