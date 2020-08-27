@@ -42,6 +42,7 @@ dependencies {
 }
 
 apply plugin: "org.springframework.boot"
+apply plugin: 'io.spring.dependency-management'
 
 test {
 	useJUnitPlatform()
