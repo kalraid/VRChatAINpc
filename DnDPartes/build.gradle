@@ -15,7 +15,11 @@ configurations {
 }
 
 repositories {
+    gradlePluginPortal()
 	mavenCentral()
+	maven {	
+		url "https://plugins.gradle.org/m2/"
+	}
 }
 
 dependencies {
@@ -34,8 +38,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.jsoup/jsoup
 	compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
 	
-compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+	compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
 }
+
+apply plugin: "org.springframework.boot"
 
 test {
 	useJUnitPlatform()
