@@ -48,6 +48,7 @@ jar{
    from('src/main/java') {
       include '**/*.xml'
    }
+}
 
 test {
 	useJUnitPlatform()
