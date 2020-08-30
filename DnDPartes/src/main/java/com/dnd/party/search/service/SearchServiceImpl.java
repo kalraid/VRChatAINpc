@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,7 @@ public class SearchServiceImpl implements SearchService {
 
 	final int superPowerLevel = 1;
 	final int powerLevel = 2;
+	
 
 	@Override
 	public List<List<CharacterVO>> selectParty(HashMap<String, Object> param) {
@@ -43,6 +43,8 @@ public class SearchServiceImpl implements SearchService {
 		List<UserVO> users = (List<UserVO>) param.get("users");
 		String selected = (String) param.get("selected");
 
+		boolean synergyConvert = (boolean) param.get("synergyConvert");
+		
 		if (users.size() < 4) { // 4명 미만 검색시 null값으로 리턴
 			return party;
 		}
@@ -91,7 +93,9 @@ public class SearchServiceImpl implements SearchService {
 			}
 			
 			// party를 반대로 뒤집음 시너지 입력 용도
-			Collections.reverse(party);
+			if(!synergyConvert) {
+				Collections.reverse(party);
+			}
 		} else { // 딜러가 적은 경우
 
 			for (CharacterVO cvo : powerDealerList) {
@@ -115,8 +119,9 @@ public class SearchServiceImpl implements SearchService {
 				;
 			}
 
-			// 원래대로 복귀
-			// Collections.reverse(party);
+			if(!synergyConvert) {
+				Collections.reverse(party);
+			}
 		}
 
 		if (searchType.equals("DSB")) {

@@ -79,7 +79,7 @@ public class DnDOffCrawlerImpl implements DnDOffCrawler {
 			String name = characterVO.getName();
 			String id = characterVO.getApiId();
 
-			ResponseEntity<?> response = neopleRest.getCharacterBaseInfo(name);
+			ResponseEntity<?> response = neopleRest.getCharacterBaseInfo(characterVO);
 			HashMap<String, Object> body = (HashMap<String, Object>) response.getBody();
 
 			List list1 = (List) body.get("rows");
@@ -94,7 +94,7 @@ public class DnDOffCrawlerImpl implements DnDOffCrawler {
 
 			if (!StringUtils.isEmpty(name) && !StringUtils.isEmpty(id)) {
 
-				String url = "https://dundam.xyz/view.jsp?server=bakal&name=" + name + "&image=" + id;
+				String url = "https://dundam.xyz/view.jsp?server="+characterVO.getServerId()+"&name=" + name + "&image=" + id;
 				Document doc = Jsoup.connect(url).timeout(10000).validateTLSCertificates(false).get();
 
 				if ("B".equals(characterVO.getType())) {
