@@ -63,7 +63,7 @@ export default {
     characterSync(){
       this.$data.syncEnd = true;
 
-      this.$http.get('http://31.188.177.31:18080/api/dndoff/characterInfo')
+      this.$http.get('${BACK_URL}/api/dndoff/characterInfo')
       .then((result) =>{
         alert("동기화 완료");
         this.$data.syncEnd = false;
@@ -75,7 +75,7 @@ export default {
     },
     getParties(){
       
-       this.$http.post('http://31.188.177.31:18080/search/start',{
+       this.$http.post('${BACK_URL}/search/start',{
           "users" : this.$data.users.filter((o) => {
                       return o.checked;
                     }),
@@ -90,7 +90,7 @@ export default {
     },
     getParties2(){
       
-       this.$http.post('http://31.188.177.31:18080/search/start',{
+       this.$http.post('${BACK_URL}/search/start',{
           "users" : this.$data.users.filter((o) => {
                       return o.checked;
                     }),
@@ -106,7 +106,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('http://31.188.177.31:18080/users/list')
+    this.$http.get('${BACK_URL}/users/list')
     .then((result) =>{
       result.data.forEach((o) =>{
         o.checked = true;

@@ -11,7 +11,9 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit",
     "build": "node build/build.js",
-    "background": "npm run start-watch & npm run wp-server"
+    "startgcp": "npm run dev --env.production --env.NODE_ENV=production",
+    "startch": "npm run dev --env.local_ch --env.NODE_ENV=ch",
+    "startchno": "npm run dev --env.local_ch_note --env.NODE_ENV=ch_note"
   },
   "dependencies": {
     "axios": "^0.19.2",
