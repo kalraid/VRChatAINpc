@@ -68,7 +68,7 @@ export default {
       }
   },
   created() {
-    this.$http.get(process.env.API_URL+'/character/list')
+    this.$http.get('${BACK_URL}/character/list')
     .then((result) =>{
       result.data.forEach((o,i) =>{
           if(i > 0 && o.userAlias == result.data[i-1].userAlias){
