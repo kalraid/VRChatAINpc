@@ -18,7 +18,8 @@
       </select>
       <button v-show="admin" v-bind:disabled="syncEnd"  @click="characterSync">정보 최신화</button>
       <button v-bind:disabled="syncEnd" @click="getParties2">벞+딜 조합</button>
-      <button v-bind:disabled="syncEnd" @click="getParties">벞+딜+시 조합</button>
+      <button v-bind:disabled="syncEnd" @click="getParties3">벞+딜+시 조합</button>
+      <button v-bind:disabled="syncEnd" @click="getParties">벞+딜+시(역순) 조합</button>
       <div> 총 {{partySize}}개 파티</div>
       <ul v-for="(i, idx) in party" v-bind:key="i">
         <div><span v-text="(idx+1)"></span> <span>번 팟</span></div>
@@ -63,7 +64,7 @@ export default {
     characterSync(){
       this.$data.syncEnd = true;
 
-      this.$http.get('http://31.188.177.31:18080/api/dndoff/characterInfo')
+      this.$http.get(process.env.API_URL+'/api/dndoff/characterInfo')
       .then((result) =>{
         alert("동기화 완료");
         this.$data.syncEnd = false;
@@ -75,12 +76,29 @@ export default {
     },
     getParties(){
       
-       this.$http.post('http://31.188.177.31:18080/search/start',{
+       this.$http.post(process.env.API_URL+'/search/start',{
           "users" : this.$data.users.filter((o) => {
                       return o.checked;
                     }),
           "selected" : this.$data.selected,
           "type" : "DSB",
+          "synergyConvert" : true,
+       })
+      .then((result) =>{
+        this.$data.party = result.data.partList;
+        this.$data.partySize = result.data.partList.length;
+        this.$data.partyDamage = result.data.partDamageList;
+      })
+    },
+     getParties3(){
+      
+       this.$http.post(process.env.API_URL+'/search/start',{
+          "users" : this.$data.users.filter((o) => {
+                      return o.checked;
+                    }),
+          "selected" : this.$data.selected,
+          "type" : "DSB",
+          "synergyConvert" : false,
        })
       .then((result) =>{
         this.$data.party = result.data.partList;
@@ -90,12 +108,13 @@ export default {
     },
     getParties2(){
       
-       this.$http.post('http://31.188.177.31:18080/search/start',{
+       this.$http.post(process.env.API_URL+'/search/start',{
           "users" : this.$data.users.filter((o) => {
                       return o.checked;
                     }),
           "selected" : this.$data.selected,
           "type" : "DB",
+          "synergyConvert" : false,
        })
       .then((result) =>{
         console.log(result);
@@ -106,7 +125,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('http://31.188.177.31:18080/users/list')
+    this.$http.get(process.env.API_URL+'/users/list')
     .then((result) =>{
       result.data.forEach((o) =>{
         o.checked = true;
@@ -114,6 +133,11 @@ export default {
       })
       this.$data.users = result.data;
     })
+    
+    
+    console.log(process.env.API_URL+'/character/change/otherType');
+
+
   }
 }
 </script>

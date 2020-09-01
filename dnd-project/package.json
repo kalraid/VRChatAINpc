@@ -6,16 +6,18 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "ch_no": "set NODE_ENV=local_ch_no&& webpack-dev-server --inline --progress --colors --config build/webpack.dev.conf.js",
+    "ch": "set NODE_ENV=local_ch&& webpack-dev-server --inline --progress --colors --config build/webpack.dev.conf.js",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit",
-    "build": "node build/build.js",
-    "background": "npm run start-watch & npm run wp-server"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^2.0.0",
     "vue": "^2.5.2",
     "vue-axios-cors": "^1.0.1",
     "vue-router": "^3.0.1"
