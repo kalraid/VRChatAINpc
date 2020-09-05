@@ -63,8 +63,11 @@ export default {
   methods:{
     characterSync(){
       this.$data.syncEnd = true;
-
+      this.$http.get(process.env.API_URL+'/api/dndoff/characterInfo')
       .then((result) =>{
+        alert("동기화 완료");
+        this.$data.syncEnd = false;
+      })
       .error((error) =>{
         alert("동기화 실패 error : "+error);
         this.$data.syncEnd = false;        

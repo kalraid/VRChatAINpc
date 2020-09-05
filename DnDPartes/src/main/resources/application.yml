@@ -1,0 +1,19 @@
+dnd:
+  api:
+    key: JNG7yMG1pkxS5OjVYoj73FwfYXTqqAAi
+server:
+  port: 18080
+  ssl:
+    enabled: true
+    key-alias: dndkeys
+    key-store: src/main/resources/keystore.p12
+    key-store-password: 1q2w3e4r
+    key-store-type: 'PKCS12'
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 1q2w3e4r!
+    url: jdbc:mysql://35.188.117.31:3306/dnd?serverTimezone=UTC&characterEncoding=UTF-8
+    username: dndadmin
+  profiles:
+    active: local

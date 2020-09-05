@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dnd.party.search.service.CharacterService;
 import com.dnd.party.search.vo.CharacterVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/character")
 @CrossOrigin
