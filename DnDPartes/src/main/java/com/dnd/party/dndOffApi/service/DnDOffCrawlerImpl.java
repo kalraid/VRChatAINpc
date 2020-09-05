@@ -73,86 +73,95 @@ public class DnDOffCrawlerImpl implements DnDOffCrawler {
 
 		List<CharacterVO> list = characterService.selectCharacters(param);
 		List<HashMap<String, String>> characterList = new ArrayList<>();
-
+		List<String> errorLog = new ArrayList<>();
 		for (CharacterVO characterVO : list) {
-			HashMap<String, String> charaterInfo = new HashMap<>();
-			String name = characterVO.getName();
-			String id = characterVO.getApiId();
+			try {
 
-			ResponseEntity<?> response = neopleRest.getCharacterBaseInfo(name);
-			HashMap<String, Object> body = (HashMap<String, Object>) response.getBody();
+				HashMap<String, String> charaterInfo = new HashMap<>();
+				String name = characterVO.getName();
+				String id = characterVO.getApiId();
+				String server = characterVO.getServerId();
+				ResponseEntity<?> response = neopleRest.getCharacterBaseInfo(name, server);
+				HashMap<String, Object> body = (HashMap<String, Object>) response.getBody();
 
-			List list1 = (List) body.get("rows");
-			HashMap<String, String> listBody = (HashMap<String, String>) list1.get(0);
-			param.setApiId(listBody.get("characterId"));
-			param.setName(name);
-			characterDAO.saveCharacterApiId(param);
+				List list1 = (List) body.get("rows");
+				HashMap<String, String> listBody = (HashMap<String, String>) list1.get(0);
+				param.setApiId(listBody.get("characterId"));
+				param.setName(name);
+				characterDAO.saveCharacterApiId(param);
 
-			charaterInfo.put("characterId", characterVO.getId());
-			charaterInfo.put("name", name);
-			charaterInfo.put("type", characterVO.getType());
+				charaterInfo.put("characterId", characterVO.getId());
+				charaterInfo.put("name", name);
+				charaterInfo.put("type", characterVO.getType());
 
-			if (!StringUtils.isEmpty(name) && !StringUtils.isEmpty(id)) {
+				if (!StringUtils.isEmpty(name) && !StringUtils.isEmpty(id)) {
+					
+					String url = "https://dundam.xyz/view.jsp?server="+server+"&name=" + name + "&image=" + id;
+					log.info("search url : "+url);
+					Document doc = Jsoup.connect(url).timeout(5000).validateTLSCertificates(false).get();
 
-				String url = "https://dundam.xyz/view.jsp?server=bakal&name=" + name + "&image=" + id;
-				Document doc = Jsoup.connect(url).timeout(10000).validateTLSCertificates(false).get();
+					if ("B".equals(characterVO.getType())) {
+						try {
 
-				if ("B".equals(characterVO.getType())) {
-					try {
+							int trCount = 0;
+							if (characterVO.getJob().equals("헤카테") || characterVO.getJob().equals("홀리")) {
+								trCount = 5;
+							} else {
+								trCount = 4;
+							}
 
-						int trCount = 0;
-						if (characterVO.getJob().equals("헤카테") || characterVO.getJob().equals("홀리")) {
-							trCount = 5;
-						} else {
-							trCount = 4;
+							Elements buffRows = doc.select("#buffTable");
+							Element buffRow = buffRows.select("table").select("tr").get(trCount).select("td").get(0);
+							String buff = buffRow.html();
+							String buffAria = "";
+							if (buff.contains("(") && buff.contains(")")) {
+								int startIdx = buff.indexOf("(");
+								int endIdx = buff.indexOf(")");
+
+								buffAria = buff.substring(startIdx + 1, endIdx).replace(",", "");
+								log.info(name + "의 버퍼력(괄호안) " + buffAria);
+
+								buff = buff.substring(0, startIdx - 1).replace(",", "");
+								log.info(name + "의 바퍼력 " + buff);
+							}
+
+							charaterInfo.put("buff", buff);
+							charaterInfo.put("buffAria", buffAria);
+						} catch (Exception e) {
+							log.info("홀리가 딜세팅이면 버프력 세팅을 찾을수 없어서 buffRow 단계에서 에러 발생하므로 해당 케릭은 최신화 스킵");
+							charaterInfo.put("buff", "" + characterVO.getBuff());
+							charaterInfo.put("buffAria", "" + characterVO.getBuff());
 						}
 
-						Elements buffRows = doc.select("#buffTable");
-						Element buffRow = buffRows.select("table").select("tr").get(trCount).select("td").get(0);
-						String buff = buffRow.html();
-						String buffAria = "";
-						if (buff.contains("(") && buff.contains(")")) {
-							int startIdx = buff.indexOf("(");
-							int endIdx = buff.indexOf(")");
+					} else {
 
-							buffAria = buff.substring(startIdx + 1, endIdx).replace(",", "");
-							log.info(name + "의 버퍼력(괄호안) " + buffAria);
+						Elements damage1 = doc.select("#sendbag").select("table").select("tr");
+						Element damage0 = damage1.get(damage1.size() - 3).select("td").get(0);
+						long sendbagDamage = Long.parseLong(damage0.html().replace(",", ""));
+						charaterInfo.put("damageSendBag", sendbagDamage + "");
+						log.info(name + "의 샌드백 데미지는 " + sendbagDamage);
 
-							buff = buff.substring(0, startIdx - 1).replace(",", "");
-							log.info(name + "의 바퍼력 " + buff);
-						}
+						Elements damage4 = doc.select("#siroco").select("table").select("tr");
+						Element damage3 = damage4.get(damage1.size() - 3).select("td").get(1);
 
-						charaterInfo.put("buff", buff);
-						charaterInfo.put("buffAria", buffAria);
-					} catch (Exception e) {
-						log.info("홀리가 딜세팅이면 버프력 세팅을 찾을수 없어서 buffRow 단계에서 에러 발생하므로 해당 케릭은 최신화 스킵");
-						charaterInfo.put("buff", ""+characterVO.getBuff());
-						charaterInfo.put("buffAria", ""+characterVO.getBuff());
+						long sirocoDamage = Long.parseLong(damage3.html().replace(",", ""));
+						charaterInfo.put("damageSiroco", sirocoDamage + "");
+						log.info(name + "의 시로코 데미지는 " + sirocoDamage);
+
 					}
 
-				} else {
-
-					Elements damage1 = doc.select("#sendbag").select("table").select("tr");
-					Element damage0 = damage1.get(damage1.size() - 3).select("td").get(0);
-					long sendbagDamage = Long.parseLong(damage0.html().replace(",", ""));
-					charaterInfo.put("damageSendBag", sendbagDamage + "");
-					log.info(name + "의 샌드백 데미지는 " + sendbagDamage);
-
-					Elements damage4 = doc.select("#siroco").select("table").select("tr");
-					Element damage3 = damage4.get(damage1.size() - 3).select("td").get(1);
-
-					long sirocoDamage = Long.parseLong(damage3.html().replace(",", ""));
-					charaterInfo.put("damageSiroco", sirocoDamage + "");
-					log.info(name + "의 시로코 데미지는 " + sirocoDamage);
-
+					characterList.add(charaterInfo);
 				}
-
-				characterList.add(charaterInfo);
+			} catch (Exception e) {
+				log.info("에러 대상자 : "+characterVO.getName()+" : " +e);
+				errorLog.add(characterVO.toString());
 			}
 		}
 
 		SaveData(characterList);
 
+		
+		log.info("error : "+errorLog.toString());
 		return characterList;
 	}
 
