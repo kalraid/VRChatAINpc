@@ -3,6 +3,7 @@
     <div id="menu">
       <router-link class="menuLink" to="/Character/list">케릭터 목록</router-link>
       <router-link class="menuLink" to="/">파티 계산기</router-link>
+      <router-link class="menuLink" to="/partyFrame">파티 프레임</router-link>
     </div>
     <div>
       <img style="width: 300px;height: 200px;" src="./assets/162622_5f33999ee5807.jpg">
