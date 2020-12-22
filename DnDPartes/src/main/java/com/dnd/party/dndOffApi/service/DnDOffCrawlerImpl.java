@@ -24,6 +24,7 @@ import com.dnd.party.dndapi.api.NeopleRest;
 import com.dnd.party.search.dao.CharacterDAO;
 import com.dnd.party.search.service.CharacterService;
 import com.dnd.party.search.vo.CharacterVO;
+import com.dnd.party.utils.NeopleCode;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -75,29 +76,35 @@ public class DnDOffCrawlerImpl implements DnDOffCrawler {
 		List<HashMap<String, String>> characterList = new ArrayList<>();
 		List<String> errorLog = new ArrayList<>();
 		for (CharacterVO characterVO : list) {
+			String name = characterVO.getName();
 			try {
 
 				HashMap<String, String> charaterInfo = new HashMap<>();
-				String name = characterVO.getName();
 				String id = characterVO.getApiId();
 				String server = characterVO.getServerId();
-				ResponseEntity<?> response = neopleRest.getCharacterBaseInfo(name, server);
-				HashMap<String, Object> body = (HashMap<String, Object>) response.getBody();
+				if (StringUtils.isEmpty(id)) {
+					ResponseEntity<?> response = neopleRest.getCharacterBaseInfo(name, server);
+					HashMap<String, Object> body = (HashMap<String, Object>) response.getBody();
 
-				List list1 = (List) body.get("rows");
-				HashMap<String, String> listBody = (HashMap<String, String>) list1.get(0);
-				param.setApiId(listBody.get("characterId"));
-				param.setName(name);
-				characterDAO.saveCharacterApiId(param);
+					List list1 = (List) body.get("rows");
+					HashMap<String, String> listBody = (HashMap<String, String>) list1.get(0);
+					param.setApiId(listBody.get("characterId"));
+					param.setName(name);
+					characterDAO.saveCharacterApiId(param);
+				}else {
+					// 작업은 했는데 오큘마대산맥은 정보가 없음
+					
+					// ResponseEntity<?> response = neopleRest.getCharacterTimeLineInfo(id, name, server, NeopleCode.WEEK.getType());
+				}
 
 				charaterInfo.put("characterId", characterVO.getId());
 				charaterInfo.put("name", name);
 				charaterInfo.put("type", characterVO.getType());
 
 				if (!StringUtils.isEmpty(name) && !StringUtils.isEmpty(id)) {
-					
-					String url = "https://dundam.xyz/view.jsp?server="+server+"&name=" + name + "&image=" + id;
-					log.info("search url : "+url);
+
+					String url = "https://dundam.xyz/view.jsp?server=" + server + "&name=" + name + "&image=" + id;
+					log.info("search url : " + url);
 					Document doc = Jsoup.connect(url).timeout(5000).validateTLSCertificates(false).get();
 
 					if ("B".equals(characterVO.getType())) {
@@ -153,15 +160,14 @@ public class DnDOffCrawlerImpl implements DnDOffCrawler {
 					characterList.add(charaterInfo);
 				}
 			} catch (Exception e) {
-				log.info("에러 대상자 : "+characterVO.getName()+" : " +e);
+				log.info("에러 대상자 : " + characterVO.getName() + " : " + e);
 				errorLog.add(characterVO.toString());
 			}
 		}
 
 		SaveData(characterList);
 
-		
-		log.info("error : "+errorLog.toString());
+		log.info("error : " + errorLog.toString());
 		return characterList;
 	}
 

@@ -10,5 +10,10 @@ spring:
     password: 1q2w3e4r!
     url: jdbc:mysql://35.188.117.31:3306/dnd?serverTimezone=UTC&characterEncoding=UTF-8
     username: dndadmin
+  datasource2:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 1q2w3e4r!
+    url: jdbc:mysql://localhost:3306/dnd?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
   profiles:
     active: ch

@@ -9,6 +9,10 @@ server:
     key-store: src/main/resources/keystore.p12
     key-store-password: 1q2w3e4r
     key-store-type: 'PKCS12'
+  error:
+    whitelabel:
+      enabled: false
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

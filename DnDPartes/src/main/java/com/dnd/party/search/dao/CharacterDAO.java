@@ -23,4 +23,5 @@ public interface CharacterDAO {
 	public int setRaidType(CharacterVO param);
 	public int setOtherType(CharacterVO param);
 	
+	public int updateCharacterHist(CharacterVO param);
 }

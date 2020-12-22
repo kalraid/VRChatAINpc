@@ -7,6 +7,10 @@
   <select id="selectCharacters" parameterType="com.dnd.party.search.vo.CharacterVO" resultType="com.dnd.party.search.vo.CharacterVO">
   	<!-- -->
   		SELECT * FROM dnd.character
+  		WHERE 1=1
+ 		<if test="apiId != null and apiId != ''">
+			AND api_id = #{apiId}
+		</if>
   		ORDER BY user_alias;
   	
   </select>
@@ -95,11 +99,55 @@
 	 
 </update>
 
+<update id="updateCharacterHist"  parameterType="com.dnd.party.search.vo.CharacterVO">
+	UPDATE dnd.character SET
+		update_date = NOW() 
+		<if test="oculusRemainCount != null and oculusRemainCount != ''">
+		,oculusRemainCount = #{oculusRemainCount}
+		</if>
+		<if test="devildomRemainCount != null and devildomRemainCount != ''">
+		,devildomRemainCount = #{devildomRemainCount}
+		</if>
+		<if test="findRemainCount != null and findRemainCount != ''"> 
+		,findRemainCount = #{findRemainCount}
+		</if>
+		<if test="freyIsisRemainCount != null and freyIsisRemainCount != ''"> 
+		,freyIsisRemainCount = #{freyIsisRemainCount}
+		</if>
+		<if test="sirocoRemainCount != null and sirocoRemainCount != ''"> 
+		,sirocoRemainCount = #{sirocoRemainCount}
+		</if>
+		<if test="bannerRemainCount != null and bannerRemainCount != ''"> 
+		,bannerRemainCount = #{bannerRemainCount}
+		</if>
+		<if test="bannerDate != null and bannerDate != ''"> 
+		,bannerDate = #{bannerDate}
+		</if> 
+		<if test="oculusDate != null and oculusDate != ''">
+		,oculusDate = #{oculusDate}
+		</if>
+		<if test="devildomDate != null and devildomDate != ''"> 
+		,devildomDate = #{devildomDate}
+		</if>
+		<if test="findDate != null and findDate != ''"> 
+		,findDate = #{findDate}
+		</if>
+		<if test="freyIsisDate != null and freyIsisDate != ''"> 
+		,freyIsisDate = #{freyIsisDate}
+		</if> 
+	
+
+	where 1=1
+	and appId = #{appId}
+	 
+</update>
+
 <insert id="insertCharacterDetailHist">
   insert into dnd.character_hist (characterId, damage_sendbag, instDate, buff, damage_siroco, buff_aria)
   values (#{id}, #{damageSendbag}, now(), #{buff}, #{damageSiroco}, #{buffAria})
   
 </insert>
+
 
 
 </mapper>

@@ -1,0 +1,471 @@
+<div class="contantsView" id="skill_damage" style="background: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px 0px, rgba(0, 0, 0, 0) 0px 0px 1px 0px !important;">
+    
+    	<ul class="nav nav-tabs" style="height: 51px; padding-right: 0px; align-items: flex-end;">
+		  <li class="nav-item">
+		    <a class="nav-link" data-id="0">샌드백</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" data-id="1">로젠</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" data-id="2">프레이</a>
+		  </li>
+		  <li class="nav-item">
+		  	<a class="nav-link active" data-id="4">시로코</a>
+		  </li>
+		</ul>
+     	<div class="awk_radio_div" style="position: absolute; z-index: 30; top: 0px; float: right; text-align: right; padding: 5px; right: 0px; height: 52px;">
+      		<input class="gak_switch" type="checkbox" style="right: 0px; width: 84px; height: 42px; background-image: url(&quot;https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/687.png&quot;);">
+     	</div>
+    	<div class="sinergeView row" style="background-color: white; min-height: 46px; display: block; border-left: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); padding: 5px !important;">
+   			<div class="preyView col-6" style="display: none; width:50%; padding: 0px;">
+	   			<div class="btn-group" style="font-weight: bold; width:100%;" data-toggle="buttons">
+	   				<label class="btn btn-success btn-holy active" style="width: 100%; font-size: 14px;"><input type="radio" name="preyRadio" id="preyRadio1" value="입장" data-mobidx="2" data-id="2" data-preydmg="1" checked=""> 입장</label>
+	   				<label class="btn btn-success btn-holy " style="width: 100%; font-size: 14px;"><input type="radio" name="preyRadio" id="preyRadio2" value="생존" data-mobidx="3" data-id="1" data-preydmg="1"> 생존</label>
+	   				<label class="btn btn-success btn-holy " style="width: 100%; font-size: 14px;"><input type="radio" name="preyRadio" id="preyRadio3" value="그로기" data-mobidx="2" data-id="0" data-preydmg="3.3"> 그로기</label>
+	   			</div>
+   			</div>
+   			<div class="sinergeViewWrap col-6" style="text-align: right; float: right; display: inline-block; padding:0px; padding-left: 5px;">
+   				<div class="btn-group" style="font-weight: bold; width:100%;" data-toggle="buttons">
+	   				<label style="width: 100%; font-size: 14px; margin: 0px; padding-top: 9px; padding-bottom: 8px;padding-right: 5px;padding-left: 5px;text-align: center;white-space: nowrap;">시너지</label>
+	   				<label class="btn btn-info" style="padding: 7px; width:100%;max-height: 35px;"><input type="radio" name="sinergeRadio" id="sinergeRadio1" value="val0" checked="">0</label>
+	   				<label class="btn btn-info active" style="padding: 7px; width:100%;max-height: 35px;"><input type="radio" name="sinergeRadio" id="sinergeRadio2" value="val1">1</label>
+
+	   			</div>
+
+   			</div>
+    	</div>
+
+    	<!-- 딜표 -->
+    	
+    	
+    	
+    	
+    	
+    	<div class="dmgContainer">
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="1">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/687.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">천제극섬</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray; display: none;">(1회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">177,282,187,269</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">237,558,130,940</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">277,003,417,608</b>
+                        
+                        <div class="dmgCustomView" data-idx="0" data-id="0" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">1</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="1">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/444.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">이기어검술</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray; display: none;">(1회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">69,862,604,163</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">93,615,889,578</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">109,160,319,005</b>
+                        
+                        <div class="dmgCustomView" data-idx="1" data-id="1" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">1</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="1">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/424.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">극 귀검술 : 심검</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray; display: none;">(1회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">50,747,316,158</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">68,001,403,652</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">79,292,681,497</b>
+                        
+                        <div class="dmgCustomView" data-idx="2" data-id="2" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">1</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="1">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/156.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">환영검무</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray; display: none;">(1회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">48,354,807,512</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">64,795,442,066</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">75,554,386,738</b>
+                        
+                        <div class="dmgCustomView" data-idx="3" data-id="3" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">1</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="2">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/162.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">맹룡단공참</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray;">(2회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">44,705,218,052</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">59,904,992,190</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">69,851,903,206</b>
+                        
+                        <div class="dmgCustomView" data-idx="4" data-id="4" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">2</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="1">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/522.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">극 발검술 : 섬단</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray; display: none;">(1회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">43,213,842,606</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">57,906,549,092</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">67,521,629,072</b>
+                        
+                        <div class="dmgCustomView" data-idx="5" data-id="5" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">1</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="2">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/216.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">차지 버스트</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray;">(2회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">43,146,257,616</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">57,815,985,205</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">67,416,027,525</b>
+                        
+                        <div class="dmgCustomView" data-idx="6" data-id="6" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">2</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="1">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/212.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">극초발도</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray; display: none;">(1회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">38,048,096,537</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">50,984,449,360</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">59,450,150,839</b>
+                        
+                        <div class="dmgCustomView" data-idx="7" data-id="7" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">1</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="1">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/685.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">극 발검술 : 무형참</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray; display: none;">(1회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">37,881,386,895</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">50,761,058,439</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">59,189,667,023</b>
+                        
+                        <div class="dmgCustomView" data-idx="8" data-id="8" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">1</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="2">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/008.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">발도</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray;">(2회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">30,462,807,826</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">40,820,162,487</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">47,598,137,228</b>
+                        
+                        <div class="dmgCustomView" data-idx="9" data-id="9" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">2</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="3">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/258.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">류심 승</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray;">(3회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">30,386,211,504</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">40,717,523,415</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">47,478,455,475</b>
+                        
+                        <div class="dmgCustomView" data-idx="10" data-id="10" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">3</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="1">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/416.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">극 귀검술 : 유성락</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray; display: none;">(1회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">7,648,368,035</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">10,248,813,167</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">11,950,575,055</b>
+                        
+                        <div class="dmgCustomView" data-idx="11" data-id="11" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">1</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="4">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/254.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">류심 충</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray;">(4회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">6,109,683,096</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">8,186,975,349</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">9,546,379,838</b>
+                        
+                        <div class="dmgCustomView" data-idx="12" data-id="12" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">4</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="3">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/256.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">류심 쾌</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray;">(3회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">5,886,652,629</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">7,888,114,523</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">9,197,894,733</b>
+                        
+                        <div class="dmgCustomView" data-idx="13" data-id="13" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">3</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top:3px;padding:5px; background-color: white; display: inline-flex; width: 100%; border-bottom: 1px solid #eaeaea;" data-count="3">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/150.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">차지 크래시</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray;">(3회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">4,534,952,829</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">6,076,836,791</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">7,085,863,795</b>
+                        
+                        <div class="dmgCustomView" data-idx="14" data-id="14" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">3</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="dmgTable" data-idx="" data-id="" style="margin-top: 3px; padding: 5px; background-color: white; display: none; width: 100%; border-bottom: 1px solid rgb(234, 234, 234);" data-count="1">
+                    <div style="display: inline-block; width: 100%; margin-top: auto; margin-bottom: auto;">
+                        <img class="skillIcon" width="35px" height="35px" style="margin-top: auto; margin-bottom: auto;" src="https://d-fighter.dn.nexoncdn.co.kr/samsungdnf/neople/swf/2019/skill/0/icon/192.png">
+                        <span style="font-weight: 400; margin-top: auto; margin-bottom: auto; padding: 5px; vertical-align: middle; width: 100%;">
+                            <a class="skillName">극 귀검술 : 폭풍식</a>
+                            <a class="dmgHit" data-hit="1" style="color: gray; display: none;">(1회)</a>
+                        </span>
+                    </div>
+                    <div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; padding-right: 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.3px;">
+                        <b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">0</b>
+                        <b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">0</b>
+                        <b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">0</b>
+                        
+                        <div class="dmgCustomView" data-idx="15" data-id="15" style="display: none; margin-top: 5px;">
+                            <button type="button" class="btn btn-success dmgCountMinus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-minus-circle"></i></button>
+                            <span class="dmgCount" data-idx="" style="text-align: center; font-size: 18px; color: black; padding-left: 5px; padding-right: 5px; margin-top: auto; margin-bottom: auto; min-width: 30px; cursor: pointer;">1</span>
+                            <button type="button" class="btn btn-success dmgCountPlus" style="font-size: 16px; width: 30px; height: 30px; padding: 0px;"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+    	</div>
+   		<div class="dmgTable" data-count="1" data-id="" style="border-bottom: 1px solid #eaeaea;padding:10px; background-color: white; display: inline-flex; width: 100%; background: antiquewhite;">
+      		<div style="display: inline-flex; width: 100%;">
+    			<b style="margin-top: auto; margin-bottom: auto; padding-left: 5px; padding-right: 5px; width: 100%;">총 데미지</b>
+   			</div>
+      		<div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; font-variant-numeric: tabular-nums; tabular-nums; letter-spacing: -0.3px;">
+	      		<b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">638,270,392,727</b>
+	      		<b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">855,282,326,254</b>
+	      		<b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">997,297,488,636</b>
+	      		
+      		</div>
+      	</div>
+
+      	<div class="dmgTable" id="totalDmg2" data-count="1" data-id="" style="border-bottom: 1px solid #eaeaea; margin-top: 5px; padding:10px; background-color: moccasin; display: none; width: 100%;background: lightblu;">
+      		<div style="display: inline-flex; width: 100%;">
+    			<b style="margin-top: auto; margin-bottom: auto; padding-left: 5px; padding-right: 5px; width: 100%;">총 합 데미지</b>
+   			</div>
+      		<div class="dmgRow" style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto; font-variant-numeric: tabular-nums; tabular-nums; letter-spacing: -0.3px;">
+	      		<b class="sinergeDmg0" style="margin-top: auto; margin-bottom: auto; display: none;">638,270,392,727</b>
+	      		<b class="sinergeDmg1" style="margin-top: auto; margin-bottom: auto;">855,282,326,254</b>
+	      		<b class="sinergeDmg2" style="margin-top: auto; margin-bottom: auto; display: none;">997,297,488,636</b>
+	      		
+      		</div>
+      	</div>
+
+      	<div style="border-bottom: 1px solid #eaeaea;padding:10px; background-color: white; display: inline-flex; width: 100%;">
+      		<div style="display: inline-flex; width: 100%;">
+    			<b style="margin-top: auto; margin-bottom: auto; padding-left: 5px; padding-right: 5px; width: 100%;">딜표 커스텀</b>
+   			</div>
+      		<div style="display: inline-block;text-align: right; margin-top: auto; margin-bottom: auto;">
+	      		<div class="toggle btn btn-secondary off" data-toggle="toggle" style="width: 61.0781px; height: 38px;"><input id="customDmgTable" type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary"><div class="toggle-group"><label class="btn btn-primary toggle-on">On</label><label class="btn btn-secondary toggle-off">Off</label><span class="toggle-handle btn btn-light"></span></div></div>
+      		</div>
+      	</div>
+
+    	
+
+    	
+
+    	<div style="background-color: white; border-top: 5px solid #eaeaea; padding: 10px;">
+    		<div style="width: 100%; display: inline-block;">
+    			<b style="padding: 10px; justify-content: center; display: inline-block;">데미지 조건표</b>
+    			<label id="customBuff" class="btn btn-primary" style="float:right; margin:0; ">버프 커스텀</label>
+    			
+    		</div>
+    		<hr style="margin-bottom: 0px;">
+    		<table style="width: 100%;">
+    			<tbody><tr>
+    				<th style="text-align: center; white-space: nowrap;">샌드백</th>
+    				<td>기본</td>
+    			</tr>
+    			<tr>
+    				<th style="text-align: center; white-space: nowrap;">루크</th>
+    				<td>버프 스탯 +8,000, 공격력 +800</td>
+    			</tr>
+    			<tr>
+    				<th style="text-align: center; white-space: nowrap;">로젠</th>
+    				<td>
+    					
+    					
+    						버프 스탯 +12,000, 공격력 +1,000
+    					
+    					<br>레이더+포탑+그로기<br>루프송 가호
+    				</td>
+    			</tr>
+    			<tr>
+    				<th style="text-align: center; white-space: nowrap;">프레이</th>
+    				<td>
+    					
+    					
+    						영축 스탯 +6,500, 아포 스탯 +10,000, 공격력 +1,300
+    					
+    					<br>입장  = 정원 + 영축 + 아포<br>생존  = 정원 + 영축  (딜표 커스텀 권장)<br>그로기 = 격전지 + 관측 + 정원<br>루프송 가호
+    				</td>
+    			</tr>
+    			<tr>
+    				<th style="text-align: center; white-space: nowrap;">시로코</th>
+    				<td>
+    					버프 스탯 +30,000, 공격력 +1850 (버프력 81250)
+    					<br>그로기<br>루프송 가호
+    					<br>비 진각성 : 찬란한 빛의 형상 적용 (데미지 증가율 +15%, (버퍼) 50Lv 액티브 스킬 힘, 지능 증가율 15%)
+    				</td>
+    			</tr>
+    			<tr>
+    				<th style="text-align: center; white-space: nowrap;">공통</th>
+    				<td>노 카운터<br>투신의 함성 포션<br>고농축<br>무큐계</td>
+    			</tr>
+    		</tbody></table>
+    	</div>
+   </div>

@@ -1,33 +1,20 @@
-spring:
-  application:
-    name: body
-  rabbitmq:
-      port: 5672
-      username: guest   
-      password: guest
-  datasource:
-      driverClassName : org.mariadb.jdbc.Driver
-server:  port: ${PORT:8901}
-eureka:
-  client:
-    service-url:      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}  
-
-management:
-   context-path: /manage
-   security:
+server:
+  port: 8080
+#  ssl:
+#    enabled: true
+#    key-alias: dndkeys
+#    key-store: src/main/resources/keystore.p12
+#    key-store-password: 1q2w3e4r
+#    key-store-type: 'PKCS12'
+  error:
+    whitelabel:
       enabled: false
-   shell:
-     ssh:
-         enabled: true
-         port: 18080
-   health:
-      diskspace:
-         enable: false
-      db:
-         enabled: false
-   endpoints:
-      web:
-         exposure:
-            include: "*"
 
-      
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://35.188.117.31:3306/dnd?serverTimezone=UTC&characterEncoding=UTF-8
+    username: dndadmin
+    password: 1q2w3e4r!
+  profiles:
+    active: local

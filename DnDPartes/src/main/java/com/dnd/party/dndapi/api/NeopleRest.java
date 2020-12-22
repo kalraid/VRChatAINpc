@@ -1,12 +1,23 @@
 package com.dnd.party.dndapi.api;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.dnd.party.dndapi.service.TimeLineConvertService;
+import com.dnd.party.dndapi.vo.dndResponse;
 import com.dnd.party.rest.service.ApiService;
-import com.dnd.party.search.vo.CharacterVO;
+import com.dnd.party.utils.DateUtils;
+import com.dnd.party.utils.NeopleCode;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,6 +25,12 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class NeopleRest {
 
+	@Autowired
+    private RestTemplate restTemplate;
+	
+	@Autowired
+	private TimeLineConvertService timeLineConvertService;
+    
 	@Autowired
 	public ApiService<?> apiService;
 
@@ -70,7 +87,7 @@ public class NeopleRest {
 		return entity;
 	}
 	
-	public ResponseEntity<?> getCharacterTimeLineInfo() {
+	public ResponseEntity<?> getCharacterTimeLineInfo(String characterId, String name, String serverId, String type) {
 //		https://api.neople.co.kr/df/servers/<serverId>/characters/<characterId>/timeline?limit=<limit>&code=<code>&startDate=<startDate>&endDate=<endDate>&next=<next>&apikey=<apikey>
 		
 //		참고 사항
@@ -96,10 +113,27 @@ public class NeopleRest {
 //		limit	Integer	반환 Row 수		10	100
 //		code	String	타임라인 코드			
 //		next	String	다음 데이터 조회			
-		
-		String url = "https://api.neople.co.kr/df/servers?apikey="+key;
-		ResponseEntity<?> entity = apiService.get(url);
-		
+		// &code=<code> &next=<next>
+		String startDate = DateUtils.getBeforeThursDay(); 
+		String url = "";
+		if(NeopleCode.WEEK.getType().equals(type)) {
+			url = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?limit=100&startDate="+startDate+"&endDate="+new SimpleDateFormat("yyyy-MM-dd").format(new Date())+"&apikey="+key;
+			
+		}else if(NeopleCode.EPIC.getType().equals(type)) {
+			url = "https://api.neople.co.kr/df/servers/"+serverId+"/characters/"+characterId+"/timeline?code="+NeopleCode.GET_ITEM_HELL+","+NeopleCode.GET_ITEM_DUNGEN+","+NeopleCode.FIND_WAR+","+NeopleCode.RAID+"limit=100&startDate="+startDate+"&endDate="+new SimpleDateFormat("yyyy-MM-dd").format(new Date())+"&apikey="+key;
+		}
+		dndResponse response = new dndResponse();
+		HttpHeaders httpHeaders = new HttpHeaders();
+    	httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+    	
+    	ResponseEntity<? extends dndResponse> entity  = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(response, httpHeaders), response.getClass());
+    	
+    	if(NeopleCode.WEEK.getType().equals(type)) {
+    		timeLineConvertService.updateTimeLineToCharacter(entity, characterId);
+    		
+    	}else if(NeopleCode.EPIC.getType().equals(type)) {
+    	}
+    	
 		return entity;
 	}
 	

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dnd.party.dndOffApi.service.DnDOffCrawler;
+import com.dnd.party.dndOffApi.service.DnDOffSeleniumCrawler;
 
 @RestController
 @RequestMapping("/api/dndoff")
@@ -23,8 +24,9 @@ public class DnDOffController {
 
 	@Autowired
 	public DnDOffCrawler dnDOffCrawler;
-
 	
+	@Autowired
+	public DnDOffSeleniumCrawler DnDOffSeleniumCrawler;
 		
 	@GetMapping("/characterInfo")
 	public HttpEntity<?> getData() throws ParseException {
@@ -40,4 +42,14 @@ public class DnDOffController {
 			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@GetMapping("/characterInfoDetail")
+	public HttpEntity<?> getDataDetail() throws ParseException, InterruptedException {
+		List<HashMap<String, String>> body;
+		body = DnDOffSeleniumCrawler.getData();
+		ResponseEntity<?> response = new ResponseEntity(body,  HttpStatus.OK);
+		
+		return response;
+	}
+	
 }

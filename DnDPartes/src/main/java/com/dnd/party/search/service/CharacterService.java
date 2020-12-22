@@ -11,4 +11,6 @@ public interface CharacterService {
 	public int setRaidType(CharacterVO param);
 	
 	public int setOtherType(CharacterVO param);
+	
+	
 }

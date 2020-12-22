@@ -9,5 +9,6 @@ public class UserVO {
 	private String name; 
 	private String adv_name;
 	private String alias;
+	private int count;
 	
 }

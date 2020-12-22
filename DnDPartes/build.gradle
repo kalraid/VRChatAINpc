@@ -37,8 +37,27 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/org.jsoup/jsoup
 	compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
 	
 	compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+	
+	// https://mvnrepository.com/artifact/org.tensorflow/libtensorflow
+	compile group: 'org.tensorflow', name: 'libtensorflow', version: '1.15.0'
+	
+	
+	// https://mvnrepository.com/artifact/org.tensorflow/libtensorflow_jni_gpu
+	compile group: 'org.tensorflow', name: 'libtensorflow_jni_gpu', version: '1.15.0'
+
+
+	//java용 ocr 라이브러리
+	//https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j
+	compile group: 'net.sourceforge.tess4j', name: 'tess4j', version: '4.5.4'
+	
+	// 스웨거 세팅
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	
+	
 }
 
 apply plugin: "org.springframework.boot"

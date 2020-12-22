@@ -1,0 +1,14 @@
+dnd:
+  api:
+    key: JNG7yMG1pkxS5OjVYoj73FwfYXTqqAAi
+server:
+  address: 172.30.1.33
+  port: 18443
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 1q2w3e4r!
+    url: jdbc:mysql://35.188.117.31:3306/dnd?serverTimezone=UTC&characterEncoding=UTF-8
+    username: dndadmin
+  profiles:
+    active: chno

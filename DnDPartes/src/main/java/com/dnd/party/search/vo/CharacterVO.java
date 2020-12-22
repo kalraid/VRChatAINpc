@@ -22,9 +22,9 @@ public class CharacterVO {
 	private String findRemainCount;
 	private String freyIsisRemainCount;
 	private String sirocoRemainCount;
-	private String sirocoDate;
 	private String bannerRemainCount;
-	private String bannerDate;
+	private Date sirocoDate;
+	private Date bannerDate;
 	private Date oculusDate;
 	private Date devildomDate;
 	private Date findDate;
