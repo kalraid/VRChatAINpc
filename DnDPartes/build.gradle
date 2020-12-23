@@ -34,6 +34,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+  	compile 'org.springframework.boot:spring-boot-starter-data-jpa'	
 	
 	// https://mvnrepository.com/artifact/org.jsoup/jsoup
 	compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
