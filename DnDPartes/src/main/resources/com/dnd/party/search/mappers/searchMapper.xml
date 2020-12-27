@@ -2,9 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="com.dnd.party.search.dao.CharacterDAO"><!--namespace를 통해 UserDAO와 연결합니다. -->
-  		
-  <select id="selectCharacters" parameterType="com.dnd.party.search.vo.CharacterVO" resultType="com.dnd.party.search.vo.CharacterVO">
+ <mapper namespace="com.dnd.project.party.search.dao.CharacterDAO"><!--namespace를 통해 UserDAO와 연결합니다. -->
+  <select id="selectCharacters" parameterType="com.dnd.project.party.search.vo.CharacterVO" resultType="com.dnd.project.party.search.vo.CharacterVO">
   	<!-- -->
   		SELECT * FROM dnd.character
   		WHERE 1=1
@@ -15,7 +14,7 @@
   	
   </select>
   		
-  <select id="getBuffList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
+  <select id="getBuffList" parameterType="com.dnd.project.party.search.vo.SearchCheckVO" resultType="com.dnd.project.party.search.vo.CharacterVO">
   	<!-- -->
   		SELECT * FROM dnd.character
   		WHERE 1=1
@@ -32,7 +31,7 @@
   	
   </select>
   
-  <select id="getPowerDealerList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
+  <select id="getPowerDealerList" parameterType="com.dnd.project.party.search.vo.SearchCheckVO" resultType="com.dnd.project.party.search.vo.CharacterVO">
   	<!-- -->
   		SELECT * FROM dnd.character
   		WHERE 1=1
@@ -49,7 +48,7 @@
   		order by damage desc;
   </select>
   
-  <select id="getSynageList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
+  <select id="getSynageList" parameterType="com.dnd.project.party.search.vo.SearchCheckVO" resultType="com.dnd.project.party.search.vo.CharacterVO">
    	<!-- -->
   		SELECT * FROM dnd.character
   		WHERE 1=1
@@ -67,7 +66,7 @@
   	
   </select>
   
-  <select id="getDealarList" parameterType="com.dnd.party.search.vo.SearchCheckVO" resultType="com.dnd.party.search.vo.CharacterVO">
+  <select id="getDealarList" parameterType="com.dnd.project.party.search.vo.SearchCheckVO" resultType="com.dnd.project.party.search.vo.CharacterVO">
    	<!-- -->
   		SELECT * FROM dnd.character
   		WHERE 1=1
@@ -85,21 +84,21 @@
   	
   </select>
 
-<update id="saveCharacterApiId"  parameterType="com.dnd.party.search.vo.CharacterVO">
+<update id="saveCharacterApiId"  parameterType="com.dnd.project.party.search.vo.CharacterVO">
 	UPDATE dnd.character SET API_ID = "${apiId}"
 	where 1=1
 	and name = "${name}"
 	 
 </update>
 
-<update id="saveCharacterDetail"  parameterType="com.dnd.party.search.vo.CharacterVO">
+<update id="saveCharacterDetail"  parameterType="com.dnd.project.party.search.vo.CharacterVO">
 	UPDATE dnd.character SET damage = #{damage},buff = #{buff} 
 	where 1=1
 	and id = #{id}
 	 
 </update>
 
-<update id="updateCharacterHist"  parameterType="com.dnd.party.search.vo.CharacterVO">
+<update id="updateCharacterHist"  parameterType="com.dnd.project.party.search.vo.CharacterVO">
 	UPDATE dnd.character SET
 		update_date = NOW() 
 		<if test="oculusRemainCount != null and oculusRemainCount != ''">

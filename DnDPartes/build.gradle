@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.dnd.party.search'
+group = 'com.dnd.project'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -31,9 +31,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
   	compile 'org.springframework.boot:spring-boot-starter-data-jpa'	
 	
 	// https://mvnrepository.com/artifact/org.jsoup/jsoup
@@ -62,7 +60,3 @@ dependencies {
 }
 
 apply plugin: "org.springframework.boot"
-
-test {
-	useJUnitPlatform()
-}

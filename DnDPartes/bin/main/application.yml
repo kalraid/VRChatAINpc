@@ -17,7 +17,12 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: 1q2w3e4r!
-    url: jdbc:mysql://35.188.117.31:3306/dnd?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://35.188.117.31:3306/dnd_mb?serverTimezone=UTC&characterEncoding=UTF-8
     username: dndadmin
   profiles:
     active: local
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

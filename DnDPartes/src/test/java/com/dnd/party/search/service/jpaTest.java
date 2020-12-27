@@ -1,0 +1,50 @@
+package com.dnd.party.search.service;
+
+import java.util.Date;
+
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.dnd.project.common.user.repository.CmUserRepository;
+import com.dnd.project.common.user.vo.CmUserVo;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RunWith(SpringRunner.class) 
+@SpringBootTest              
+@Transactional
+public class jpaTest {
+
+	@Autowired 
+	CmUserRepository repo;
+	
+    @Autowired
+    EntityManager em;
+		
+	@Test
+	public void test() {
+
+		CmUserVo cmUser = new CmUserVo();
+		cmUser.setId("kimire");
+		cmUser.setAlias("kim");
+		cmUser.setEmail("1123@1232");
+		cmUser.setName("1234");
+		cmUser.setPhone("010-1111-1111");
+		cmUser.setPassword("1212321");
+		cmUser.setInstDt(new Date());
+		cmUser.setUpdDt(new Date());
+		log.info(cmUser.toString());
+		repo.save(cmUser);
+		repo.findAll().forEach( o -> log.info(o.toString()));
+//		log.info(repo.findById(1).toString());
+		log.info("123");
+	}
+}

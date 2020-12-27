@@ -4,11 +4,6 @@ dnd:
 server:
   address: 35.188.117.31
   port: 18080
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 1q2w3e4r!
-    url: jdbc:mysql://35.188.117.31:3306/dnd?serverTimezone=UTC&characterEncoding=UTF-8
-    username: dndadmin
-  profiles:
+spring: 
+  profiles: 
     active: gcp
