@@ -129,11 +129,11 @@ export default {
     }
   },
   created() {
-    this.$data.tf = require('@tensorflow/tfjs');
+    //this.$data.tf = require('@tensorflow/tfjs');
     
     // Optional Load the binding:
     // Use '@tensorflow/tfjs-node-gpu' if running with GPU.
-    require('@tensorflow/tfjs-node');
+    //require('@tensorflow/tfjs-node');
 
   },
 

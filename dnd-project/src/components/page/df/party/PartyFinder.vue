@@ -1,5 +1,5 @@
  <template>
-  <div class="hello">
+  <div class="partyfinder">
     <div> 4명 이하는 안짜여짐</div>
     <div> 최신화버튼 누르면 대충 10초정도 걸린뒤에 알림창 뜸</div>
     <div>
@@ -36,7 +36,7 @@
 <script>
 /* eslint-disable */
 export default {
-  name: 'HelloWorld',
+  name: 'PartyFinder',
   data () {
     return {
       msg: 'UI 따윈 안꾸민다',
