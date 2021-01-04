@@ -27,3 +27,8 @@ hs_err_pid*
 */site-packages/*
 */Scripts/*
 /vrchat_env2/
+dnd-project/.settings/.jsdtscope
+dnd-project/.settings/org.eclipse.wst.jsdt.ui.superType.container
+dnd-project/.settings/org.eclipse.wst.jsdt.ui.superType.name
+dnd-project/.project
+dnd-project/package-lock.json
