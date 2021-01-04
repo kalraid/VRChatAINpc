@@ -6,6 +6,13 @@ import router from './router'
 import axios from 'axios'
 import https from 'https'
 
+// Polyfills
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+
+// Imports
+import vuetify from './plugins/vuetify'
+
 Vue.config.productionTip = false
 const instance = axios.create({
   timeout: 120000,
@@ -21,5 +28,6 @@ new Vue({
   el: '#app',
   router,
   components: { App },
+  vuetify,
   template: '<App/>'
 })

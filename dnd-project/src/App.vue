@@ -1,40 +1,59 @@
 <template>
-  <div id="app">
-    <div id="menu">
-      <router-link class="menuLink" to="/Character/list">케릭터 목록</router-link>
-      <router-link class="menuLink" to="/">파티 계산기</router-link>
-      <router-link class="menuLink" to="/partyFrame">파티 프레임</router-link>
-    </div>
-    <div>
-      <img style="width: 300px;height: 200px;" src="./assets/162622_5f33999ee5807.jpg">
-      <img style="width: 300px;height: 200px;" src="./assets/162623_5f33999f18e0f.jpg">
-      <img style="width: 300px;height: 200px;" src="./assets/162623_5f33999f50fd3.jpg">
-      <img style="width: 300px;height: 200px;" src="./assets/162623_5f33999f599a6.jpg">
-      <img style="width: 300px;height: 200px;" src="./assets/162623_5f33999f0744f.jpg">
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+      <v-spacer></v-spacer>
+      <v-btn target="/">메인으로</v-btn>
+      <v-btn target="/login">로그인</v-btn>
+      <v-btn target="/Character/list">케릭터 목록</v-btn>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+
+  components: {
+  },
+
+  data: () => ({
+    //
+  })
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 20px;
-}
-#menu{
-  margin-bottom: 40px
-}
-.menuLink{
-  padding-right: 40px;
-}
-</style>
