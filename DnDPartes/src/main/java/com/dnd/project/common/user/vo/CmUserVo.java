@@ -1,6 +1,7 @@
 package com.dnd.project.common.user.vo;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
+import com.dnd.project.common.baseUtill.CommonVo;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,7 +23,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class CmUserVo {
+@Builder
+public class CmUserVo extends CommonVo{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,12 +49,26 @@ public class CmUserVo {
 	@Column(name = "PHONE")
 	private String phone;
 
-	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "INST_DT")
-	private Date instDt;
+	@Transient
+	private String token;
+	
+	@Override
+	public HashMap<String, Object> getLikeKeys(){
+		HashMap<String, Object> map = new HashMap<String, Object>();
 
-	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "UPD_DT")
-	private Date updDt;
-
+		super.likeKeys = map;
+		return super.likeKeys;
+	}
+	
+	@Override
+	public HashMap<String, Object> getEqualKeys(){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		super.equalKeys = map;
+		return super.equalKeys;
+	}
+	
+	@Override
+	public Long getPkId() {
+		return this.userKey;
+	}
 }

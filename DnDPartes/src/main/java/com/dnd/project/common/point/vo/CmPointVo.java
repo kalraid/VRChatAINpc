@@ -1,6 +1,7 @@
 package com.dnd.project.common.point.vo;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.dnd.project.common.baseUtill.CommonVo;
 import com.dnd.project.common.user.vo.CmUserVo;
 
 import lombok.Getter;
@@ -22,7 +24,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class CmPointVo {
+public class CmPointVo extends CommonVo{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,13 +34,31 @@ public class CmPointVo {
 	
 	private Boolean pointSign;
 	
+	private String pointReason;
+	
+	 
     @ManyToOne
     @JoinColumn
     private CmUserVo cmUser;
 	
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date instDt;
+    
+	@Override
+	public HashMap<String, Object> getLikeKeys(){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		super.likeKeys = map;
+		return super.likeKeys;
+	}
 	
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date updDt;
+	@Override
+	public HashMap<String, Object> getEqualKeys(){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		super.equalKeys = map;
+		return super.equalKeys;
+	}
+	
+	@Override
+	public Long getPkId() {
+		return this.pointKey;
+	}
 }

@@ -3,7 +3,10 @@ package com.dnd.project.common.user.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dnd.project.common.token.JwtAuthenticationToken;
+import com.dnd.project.common.token.JwtAuthenticationTokenProvider;
 import com.dnd.project.common.user.repository.CmUserRepositoryImpl;
+import com.dnd.project.common.user.vo.CmUserVo;
 
 @Service
 public class LoginService {
@@ -11,18 +14,23 @@ public class LoginService {
 	@Autowired
 	CmUserRepositoryImpl cmUserRepositoryImpl;
 	
+	@Autowired
+	JwtAuthenticationTokenProvider jwtAuthenticationTokenProvider;
 	
-	public String login() {
-		cmUserRepositoryImpl.selectUser();
-		return "";
-	}
-	public String logout() {
+	
+	public CmUserVo login(CmUserVo vo) {
 		
-		return "";
+		CmUserVo cmUserVo = cmUserRepositoryImpl.selectUser(vo);
+		JwtAuthenticationToken token = jwtAuthenticationTokenProvider.issue(cmUserVo.getUserKey());
+		cmUserVo.setToken(token.getToken());
+		return cmUserVo;
 	}
-	public String sign() {
-		
-		return "";
+	public CmUserVo logout(CmUserVo vo) {
+		return null;
+	}
+	public CmUserVo sign(CmUserVo vo) {
+		CmUserVo cmUserVo = cmUserRepositoryImpl.insertUser(vo);
+		return cmUserVo;
 	}
 	
 }
