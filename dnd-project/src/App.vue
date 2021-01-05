@@ -1,47 +1,14 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <core-app-bar />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-      <v-spacer></v-spacer>
-      <v-btn target="/">메인으로</v-btn>
-      <v-btn target="/login">로그인</v-btn>
-      <v-btn target="/Character/list">케릭터 목록</v-btn>
+    <core-drawer />
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+    <core-view />
 
-    <v-main>
-      <router-view/>
-    </v-main>
+    <core-footer />
+
+    <core-cta />
   </v-app>
 </template>
 
@@ -50,10 +17,11 @@ export default {
   name: 'App',
 
   components: {
-  },
-
-  data: () => ({
-    //
-  })
+    CoreCta: () => import('@/components/core/Cta'),
+    CoreDrawer: () => import('@/components/core/Drawer'),
+    CoreFooter: () => import('@/components/core/Footer'),
+    CoreAppBar: () => import('@/components/core/AppBar'),
+    CoreView: () => import('@/components/core/View')
+  }
 }
 </script>

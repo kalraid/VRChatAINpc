@@ -1,23 +1,11 @@
 <template>
-    <div class="Main">
-        {{ msg }}
-    </div>
+  <v-container class="pa-0">
+   1234
+  </v-container>
 </template>
+
 <script>
-/* eslint-disable */
 export default {
-  name: 'Main',
-  data() {
-    return {
-        msg : "Main"
-    }
-  },
-  methods : {
-
-  },
-  created() {
-      
-  },
-
+  name: 'Main'
 }
 </script>

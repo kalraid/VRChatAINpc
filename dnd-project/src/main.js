@@ -9,9 +9,11 @@ import https from 'https'
 // Polyfills
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
+import store from '../store/index'
 
 // Imports
 import vuetify from './plugins/vuetify'
+import '@/plugins/base'
 
 Vue.config.productionTip = false
 const instance = axios.create({
@@ -27,6 +29,7 @@ Vue.prototype.$http = instance
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   vuetify,
   template: '<App/>'
