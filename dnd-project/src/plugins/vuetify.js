@@ -13,7 +13,12 @@ const opts = {
         secondary: '#083759'
       }
     }
+  },
+  rtl: false, // 우측 읽기 모드
+  icons: {
+    iconfont: 'mdiSvg' // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
   }
 }
 
+Vuetify.config.silent = true
 export default new Vuetify(opts)
