@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="home">
     <articles>
       <banner />
     </articles>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: 'Home',
 
   components: {
     About: () => import('@/components/home/About'),

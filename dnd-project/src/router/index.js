@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Main from '@/components/Main'
+import Home from '@/components/Home'
 import HelloVueity from '@/components/HelloVueity'
 
 import BoardList from '@/components/page/cm/board/BoardList'
@@ -20,8 +20,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Main',
-      component: Main
+      name: 'Home',
+      component: Home
     },
     {
       path: '/login',

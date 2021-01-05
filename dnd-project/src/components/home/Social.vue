@@ -33,9 +33,9 @@ export default {
   name: 'HomeSocial',
 
   components: {
-    NewestPosts: () => import('@/components/NewestPosts'),
-    Instagram: () => import('@/components/Instagram'),
-    Tags: () => import('@/components/Tags')
+    NewestPosts: () => import('@/components/social/NewestPosts'),
+    Instagram: () => import('@/components/social/Instagram'),
+    Tags: () => import('@/components/social/Tags')
   }
 }
 </script>

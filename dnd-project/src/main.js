@@ -28,9 +28,9 @@ Vue.prototype.$http = instance
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  vuetify,
   router,
   store,
   components: { App },
-  vuetify,
   template: '<App/>'
 })

@@ -11,7 +11,7 @@ export default {
   name: 'HomeAbout',
 
   components: {
-    Feed: () => import('@/components/Feed')
+    Feed: () => import('@/components/social/Feed')
   }
 }
 </script>
