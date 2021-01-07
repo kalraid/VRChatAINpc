@@ -1,6 +1,9 @@
 dnd:
   api:
     key: JNG7yMG1pkxS5OjVYoj73FwfYXTqqAAi
+  secret:
+    key: ZG5kcHJvamVjdGtleV9pbl9maXJzdA==
+    names: dndprojectkey_in_first
 server:
   port: 18080
   ssl:

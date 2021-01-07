@@ -18,14 +18,14 @@ import com.dnd.project.common.board.service.BoardService;
 import com.dnd.project.common.board.vo.CmBoardVo;
 import com.dnd.project.common.user.vo.CmUserVo;
 
-@RestController("/api/board")
+@RestController("/api/v1/bd/")
 @CrossOrigin
 public class BoardController {
 
 	@Autowired
 	BoardService boardService;
 	
-	@GetMapping("/list")
+	@GetMapping("/board/list")
 	public HttpEntity<Page<CmBoardVo>> list(CmBoardVo vo, Pageable pageable) {
 		Page<CmBoardVo> pages = boardService.listBoard(vo, pageable);
 		
@@ -34,7 +34,7 @@ public class BoardController {
 		return HttpEntity;
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/board/{id}")
 	public HttpEntity<CmBoardVo> get(@PathVariable("id") long boardId) {
 		CmBoardVo vo = CmBoardVo.builder().boardKey(boardId).build();
 		vo = boardService.readBoard(vo); 
@@ -44,7 +44,7 @@ public class BoardController {
 		return HttpEntity;
 	}
 	
-	@PostMapping
+	@PostMapping("/board")
 	public HttpEntity<CmBoardVo> insert(CmBoardVo vo) {
 		vo = boardService.writeBoard(vo);
 		
@@ -53,7 +53,7 @@ public class BoardController {
 		return HttpEntity;
 	}
 	
-	@PutMapping
+	@PutMapping("/board")
 	public HttpEntity<CmBoardVo> update(CmBoardVo vo) {
 		vo = boardService.modifyBoard(vo);
 		
@@ -62,7 +62,7 @@ public class BoardController {
 		return HttpEntity;
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/board")
 	public HttpEntity<CmBoardVo> delete(CmBoardVo vo) {
 		boardService.deleteBoard(vo);
 		

@@ -18,7 +18,7 @@ import com.dnd.project.party.dndOffApi.service.DnDOffCrawler;
 import com.dnd.project.party.dndOffApi.service.DnDOffSeleniumCrawler;
 
 @RestController
-@RequestMapping("/api/dndoff")
+@RequestMapping("/api/v1/dnd")
 @CrossOrigin
 public class DnDOffController {
 
@@ -28,7 +28,7 @@ public class DnDOffController {
 	@Autowired
 	public DnDOffSeleniumCrawler DnDOffSeleniumCrawler;
 		
-	@GetMapping("/characterInfo")
+	@GetMapping("/dndoff/characterInfo")
 	public HttpEntity<?> getData() throws ParseException {
 		List<HashMap<String, String>> body;
 		try {
@@ -43,7 +43,7 @@ public class DnDOffController {
 		}
 	}
 	
-	@GetMapping("/characterInfoDetail")
+	@GetMapping("/dndoff/characterInfoDetail")
 	public HttpEntity<?> getDataDetail() throws ParseException, InterruptedException {
 		List<HashMap<String, String>> body;
 		body = DnDOffSeleniumCrawler.getData();

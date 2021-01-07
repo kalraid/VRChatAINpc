@@ -17,14 +17,14 @@ import com.dnd.project.common.board.service.CommentService;
 import com.dnd.project.common.board.vo.CmBoardVo;
 import com.dnd.project.common.board.vo.CmCommentVo;
 
-@RestController("/api/comment")
+@RestController("/api/v1/cm/")
 @CrossOrigin
 public class CommentController {
 
 	@Autowired
 	CommentService commentService;
 	
-	@GetMapping("/list")
+	@GetMapping("/comment/list")
 	public HttpEntity<Page<CmCommentVo>> list(CmBoardVo vo, Pageable pageable) {
 		Page<CmCommentVo> pages = commentService.listComment(vo, pageable);
 		
@@ -33,7 +33,7 @@ public class CommentController {
 		return HttpEntity;
 	}
 	
-	@PostMapping
+	@PostMapping("/comment")
 	public HttpEntity<CmCommentVo> insert(CmCommentVo vo) {
 		vo = commentService.writeComment(vo);
 		
@@ -42,7 +42,7 @@ public class CommentController {
 		return HttpEntity;
 	}
 	
-	@PutMapping
+	@PutMapping("/comment")
 	public HttpEntity<CmCommentVo> update(CmCommentVo vo) {
 		vo = commentService.modifyComment(vo);
 		
@@ -51,7 +51,7 @@ public class CommentController {
 		return HttpEntity;
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/comment")
 	public HttpEntity<CmCommentVo> delete(CmCommentVo vo) {
 		commentService.deleteComment(vo);
 		

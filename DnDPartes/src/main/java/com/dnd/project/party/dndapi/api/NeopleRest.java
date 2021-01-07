@@ -13,9 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.dnd.common.rest.service.ApiService;
 import com.dnd.project.party.dndapi.service.TimeLineConvertService;
 import com.dnd.project.party.dndapi.vo.dndResponse;
-import com.dnd.project.party.rest.service.ApiService;
 import com.dnd.project.party.utils.DateUtils;
 import com.dnd.project.party.utils.NeopleCode;
 

@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dnd.project.common.board.service.GalleryService;
 import com.dnd.project.common.board.vo.CmGalleryVo;
 
-@RestController("/api/gallery")
+@RestController("/api/v1/ga/")
 @CrossOrigin
 public class GalleryController {
 
 	@Autowired
 	GalleryService galleryService;
 	
-	@GetMapping("/list")
+	@GetMapping("/gallery/list")
 	public HttpEntity<Page<CmGalleryVo>> list(CmGalleryVo vo, Pageable pageable) {
 		Page<CmGalleryVo> pages = galleryService.listGallery(vo, pageable);
 		
@@ -32,7 +32,7 @@ public class GalleryController {
 		return HttpEntity;
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/gallery/{id}")
 	public HttpEntity<CmGalleryVo> get(@PathVariable("id") long GalleryId) {
 		CmGalleryVo vo = new CmGalleryVo();
 		vo.setGalleryKey(GalleryId);
@@ -43,7 +43,7 @@ public class GalleryController {
 		return HttpEntity;
 	}
 	
-	@PostMapping
+	@PostMapping("/gallery")
 	public HttpEntity<CmGalleryVo> insert(CmGalleryVo vo) {
 		vo = galleryService.writeGallery(vo);
 		
@@ -52,7 +52,7 @@ public class GalleryController {
 		return HttpEntity;
 	}
 	
-	@PutMapping
+	@PutMapping("/gallery")
 	public HttpEntity<CmGalleryVo> update(CmGalleryVo vo) {
 		vo = galleryService.modifyGallery(vo);
 		
@@ -61,7 +61,7 @@ public class GalleryController {
 		return HttpEntity;
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/gallery")
 	public HttpEntity<CmGalleryVo> delete(CmGalleryVo vo) {
 		galleryService.deleteGallery(vo);
 		

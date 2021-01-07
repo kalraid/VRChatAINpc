@@ -26,12 +26,12 @@ import net.sourceforge.tess4j.TesseractException;
 
 @Slf4j
 @RestController
-@RequestMapping("/tensorflow/image")
+@RequestMapping("/api/v1")
 @CrossOrigin
 public class imageController {
 
 	
-	@PostMapping("/getCharacterSpec")
+	@PostMapping("/image/getCharacterSpec")
 	public HttpEntity<List<String>> SearchSync(@RequestBody(required=true) imageVo file) {
 		ArrayList<String> list = new ArrayList<String>();
 		

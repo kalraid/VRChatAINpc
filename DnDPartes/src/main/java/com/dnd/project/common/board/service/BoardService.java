@@ -3,10 +3,12 @@ package com.dnd.project.common.board.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.dnd.project.common.board.repository.CmBoardRepositoryImpl;
 import com.dnd.project.common.board.vo.CmBoardVo;
 
+@Service
 public class BoardService {
 	@Autowired
 	CmBoardRepositoryImpl cmBoardRepositoryImpl;

@@ -1,4 +1,4 @@
-package com.dnd.project.party.rest.service;
+package com.dnd.common.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

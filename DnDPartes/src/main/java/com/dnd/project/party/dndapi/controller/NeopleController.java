@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dnd.project.party.dndapi.api.NeopleRest;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/neople/")
 @CrossOrigin
 public class NeopleController {
 

@@ -12,14 +12,14 @@ import com.dnd.project.party.search.service.UserService;
 import com.dnd.project.party.search.vo.UserVO;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/df/us")
 @CrossOrigin
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/list")
+	@GetMapping("/users/list")
 	public List<UserVO> users() { 
 		UserVO param = new UserVO();
 		param.setId("1");

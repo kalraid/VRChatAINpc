@@ -17,7 +17,7 @@ import com.dnd.project.party.search.service.UserService;
 import com.dnd.project.party.search.vo.CharacterVO;
 
 @RestController
-@RequestMapping("/search")
+@RequestMapping("/api/v1/df/se")
 @CrossOrigin
 public class SearchController {
 
@@ -27,7 +27,7 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 
-	@PostMapping("/start")
+	@PostMapping("/search/start")
 	public HttpEntity<HashMap<String, Object>> SearchStart(@RequestBody HashMap<String, Object> param) {
 		List<List<CharacterVO>> partList = searchService.selectParty(param);
 		HashMap<String, Object> body = searchService.calculrateParty(partList);
@@ -36,7 +36,7 @@ public class SearchController {
 		return result;
 	}
 	
-	@GetMapping("/sync")
+	@GetMapping("/search/sync")
 	public HttpEntity<List<List<CharacterVO>>> SearchSync() {
 		List<List<CharacterVO>> partList = null;
 		

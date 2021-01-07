@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/character")
+@RequestMapping("/api/v1/df/ch")
 @CrossOrigin
 public class CharacterController {
 
@@ -29,7 +29,7 @@ public class CharacterController {
 	public CharacterService characterService;
 
 	
-	@GetMapping("/list")
+	@GetMapping("/character/list")
 	public HttpEntity<List<CharacterVO>> SearchSync() {
 		List<List<CharacterVO>> partList = null;
 		List<CharacterVO> clist = characterService.selectCharacters(new CharacterVO());
@@ -39,7 +39,7 @@ public class CharacterController {
 	}
 	
 	
-	@PostMapping("/change/raidType")
+	@PostMapping("/character/change/raidType")
 	public HttpEntity<List<CharacterVO>> changeRaidType(@RequestBody CharacterVO cvo) {
 		
 		int result = characterService.setRaidType(cvo);
@@ -48,7 +48,7 @@ public class CharacterController {
 		return response;
 	}	
 	
-	@PostMapping("/change/otherType")
+	@PostMapping("/character/change/otherType")
 	public HttpEntity<List<CharacterVO>> changeOtherType(@RequestBody CharacterVO cvo) {
 		
 		int result = characterService.setOtherType(cvo);
