@@ -36,7 +36,6 @@ public class jpaTest {
 		cmUser.setAlias("kim");
 		cmUser.setEmail("1123@1232");
 		cmUser.setName("1234");
-		cmUser.setPhone("010-1111-1111");
 		cmUser.setPassword("1212321");
 		log.info(cmUser.toString());
 		repo.save(cmUser);

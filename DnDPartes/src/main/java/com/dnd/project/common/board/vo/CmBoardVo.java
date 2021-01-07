@@ -47,7 +47,7 @@ public class CmBoardVo extends CommonVo{
     @OneToMany(mappedBy = "parentBoard", fetch = FetchType.LAZY)
     private List<CmBoardVo> childrenBoard;
     
-	private String name;
+	private String title;
 
 	private String content;
 
@@ -55,7 +55,7 @@ public class CmBoardVo extends CommonVo{
 	@Override
 	public HashMap<String, Object> getLikeKeys(){
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("name", this.name);
+		map.put("title", this.title);
 		map.put("content", this.content);
 		
 		super.likeKeys = map;

@@ -46,9 +46,6 @@ public class CmUserVo extends CommonVo{
 	@Column(name = "EMAIL")
 	private String email;
 
-	@Column(name = "PHONE")
-	private String phone;
-
 	@Transient
 	private String token;
 	
