@@ -3,9 +3,13 @@ import Router from 'vue-router'
 
 import Home from '@/components/Home'
 import HelloVueity from '@/components/HelloVueity'
+import ExvuetifyForm from '@/components/ExvuetifyForm'
 
 import BoardList from '@/components/page/cm/board/BoardList'
 import BoardDetail from '@/components/page/cm/board/BoardDetail'
+import BoardView from '@/components/page/cm/board/BoardView'
+import BoardWriter from '@/components/page/cm/board/BoardWriter'
+
 import Login from '@/components/page/cm/login/Login'
 import Logout from '@/components/page/cm/login/Logout'
 import Sign from '@/components/page/cm/login/Sign'
@@ -54,6 +58,16 @@ export default new Router({
       component: BoardDetail
     },
     {
+      path: '/board/view/:seq',
+      name: 'BoardView',
+      component: BoardView
+    },
+    {
+      path: '/board/writer',
+      name: 'BoardWriter',
+      component: BoardWriter
+    },
+    {
       path: '/df/party/character/list',
       name: 'CharacterList',
       component: CharacterList
@@ -67,6 +81,11 @@ export default new Router({
       path: '/df/party/finder',
       name: 'PartyFinder',
       component: PartyFinder
+    },
+    {
+      path: '/test/ex',
+      name: 'ExvuetifyForm',
+      component: ExvuetifyForm
     }
   ]
 })

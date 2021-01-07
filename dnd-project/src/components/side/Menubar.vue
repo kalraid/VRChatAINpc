@@ -244,7 +244,6 @@
 <script>
 export default {
   el: '#menubar',
-  vuetify: new Vuetify(),
   props: {
     source: String,
   },
