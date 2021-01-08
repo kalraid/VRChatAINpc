@@ -2,8 +2,9 @@
 <template>
   <v-form>
     <v-container>
-      <v-row> 제목 </v-row>
-      <v-row>
+      <v-row
+        class="order-2 pa-2"
+      >
         <v-text-field
           :counter="50"
           label="제목"
@@ -13,8 +14,9 @@
           maxlength="50"
         ></v-text-field>
       </v-row>
-      <v-row> 내용 </v-row>
-      <v-row>
+      <v-row
+        class="order-2 pa-2"
+      >
         <v-textarea
           filled
           name="context"
@@ -22,6 +24,7 @@
           v-model="context"
           :counter="1000"
           maxlength="1000"
+          height="400"
         ></v-textarea>
       </v-row>
       <v-row>

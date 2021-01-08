@@ -11,9 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.dnd.project.common.user.vo.CmUserVo;
 import com.dnd.project.mabinogi.stuff.character.vo.MbCharacterVo;
-import com.dnd.project.mabinogi.stuff.training.vo.MbCharacterJobVo;
 
 import lombok.Getter;
 import lombok.Setter;

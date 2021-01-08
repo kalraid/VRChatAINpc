@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.dnd.project.common.user.vo.CmUserVo;
+import com.dnd.project.gallery.user.vo.CmUserVo;
 
 import lombok.Getter;
 import lombok.Setter;

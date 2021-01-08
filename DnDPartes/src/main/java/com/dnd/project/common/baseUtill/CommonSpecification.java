@@ -33,7 +33,7 @@ public class CommonSpecification {
         
         for (String key : vo.getEqualKeys().keySet()) {
         	if(!StringUtils.isEmpty(vo.getLikeKeys().get(key))) {
-        		predicate.add(builder.equal(root.get(key), vo.getLikeKeys().get(key)));
+        		predicate.add(builder.equal(root.get(key), vo.getEqualKeys().get(key)));
         	}
         }
         return predicate;

@@ -16,8 +16,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.dnd.project.common.exception.ForbiddenException;
 import com.dnd.project.common.token.AuthenticationTokenProvider;
-import com.dnd.project.common.user.repository.CmUserRepositoryImpl;
-import com.dnd.project.common.user.vo.CmUserVo;
+import com.dnd.project.gallery.user.repository.CmUserRepositoryImpl;
+import com.dnd.project.gallery.user.vo.CmUserVo;
 
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Autowired

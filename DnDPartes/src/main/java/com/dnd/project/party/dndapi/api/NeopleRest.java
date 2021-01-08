@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.dnd.common.rest.service.ApiService;
+import com.dnd.project.common.baseUtill.CommonApiService;
 import com.dnd.project.party.dndapi.service.TimeLineConvertService;
 import com.dnd.project.party.dndapi.vo.dndResponse;
 import com.dnd.project.party.utils.DateUtils;
@@ -32,7 +32,7 @@ public class NeopleRest {
 	private TimeLineConvertService timeLineConvertService;
     
 	@Autowired
-	public ApiService<?> apiService;
+	public CommonApiService<?> apiService;
 
 	@Value("${dnd.api.key}")
 	private String key;

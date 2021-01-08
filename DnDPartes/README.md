@@ -1,0 +1,1 @@
+https://pravusid.kr/java/2018/10/10/spring-database-initialization.html
