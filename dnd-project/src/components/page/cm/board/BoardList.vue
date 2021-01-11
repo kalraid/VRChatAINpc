@@ -25,7 +25,7 @@ export default {
     fetch() {
       console.log("fetch list");
       axios
-        .get("http://localhost:8000/api/board/list")
+        .post(process.env.API_URL + '/board/list', this.$data.gallery)
         .then((response) => {
           console.log(response);
         })
@@ -40,14 +40,18 @@ export default {
       this.$router.push("/view/" + item.seq);
     },
   },
-  data() {
+  data() { 
     return {
       headers: [
         { text: "Number", align: "left", sortable: false, value: "number" },
         { text: "Title", value: "title" },
         { text: "Reg Date", value: "regDt" }
       ],
-      desserts: []
+      desserts: [],
+      gallery: {
+        galleryKey: "1",
+
+      }
     }
   }
 }
