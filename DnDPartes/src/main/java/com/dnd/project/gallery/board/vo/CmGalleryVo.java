@@ -1,18 +1,16 @@
 package com.dnd.project.gallery.board.vo;
 
-import java.util.Date;
 import java.util.HashMap;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.dnd.project.common.baseUtill.CommonVo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,6 +19,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
+@Builder
+@JsonDeserialize(builder = CmGalleryVo.class)
 public class CmGalleryVo extends CommonVo{
 
 	@Id
@@ -53,4 +53,5 @@ public class CmGalleryVo extends CommonVo{
 	public Long getPkId() {
 		return this.galleryKey;
 	}
+	
 }

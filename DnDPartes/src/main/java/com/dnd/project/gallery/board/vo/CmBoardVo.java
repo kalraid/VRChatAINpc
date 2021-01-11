@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import com.dnd.project.common.baseUtill.CommonVo;
 import com.dnd.project.gallery.user.vo.CmUserVo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -21,10 +22,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
 @ToString
 @Entity
 @Builder
+@JsonDeserialize(builder = CmBoardVo.class)
 public class CmBoardVo extends CommonVo{
 
 	@Id
@@ -72,4 +73,6 @@ public class CmBoardVo extends CommonVo{
 	public Long getPkId() {
 		return this.boardKey;
 	}
+	
+	
 }

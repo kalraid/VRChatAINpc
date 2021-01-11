@@ -26,7 +26,7 @@ public class CmGalleryRepositoryImpl{
 		
 		public CmGalleryVo selectGallery(CmGalleryVo vo) {
 //			return cmGalleryRepository.getOne(vo.getGalleryKey());  // key값 오버인경우 에러발생
-			return cmGalleryRepository.findById(vo.getGalleryKey()).orElse(new CmGalleryVo()); // key값이 없는경우 null 리턴
+			return cmGalleryRepository.findById(vo.getGalleryKey()).orElse(CmGalleryVo.builder().build()); // key값이 없는경우 null 리턴
 		}
 		
 		@SuppressWarnings("unchecked")

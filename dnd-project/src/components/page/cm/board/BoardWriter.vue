@@ -37,13 +37,13 @@
 export default {
   name: "BoardWriter",
   data() {
-    return { boardKey: "", title: "", context: "", updDt: "", instDt: "" }
+    return { boardKey: "", title: "", context: "", updDt: "", instDt: "", userKey: "", galleryKey: "1" }
   },
   methods: {
     writeClick() {
       if (this.$route.params.seq) {
         this.$http
-          .put("http://localhost:8000/api/board", this.$data)
+          .put(process.env.API_URL + '/character/list', this.$data)
           .then((response) => {
             console.log(response);
             this.$router.push("/");
@@ -55,7 +55,7 @@ export default {
         this.$data.regDt = this.getNowDate();
         this.$data.uptDt = this.getNowDate();
         this.$http
-          .get("http://localhost:8000/api/board/list", this.$data)
+          .get(process.env.API_URL + '/character/list', this.$data)
           .then((response) => {
             console.log(response);
             this.$router.push("/");
