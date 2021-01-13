@@ -10,17 +10,22 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import com.dnd.project.common.baseUtill.CommonVo;
+import com.dnd.project.gallery.board.vo.CmGalleryVo;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Builder
 @Getter
 @Setter
-@ToString
 @Entity
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class CmUserVo extends CommonVo{
 
 	@Id

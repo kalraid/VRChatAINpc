@@ -3,7 +3,7 @@ package com.dnd.project.gallery.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dnd.project.common.baseUtill.CommonPageVo;
 import com.dnd.project.gallery.board.service.BoardService;
 import com.dnd.project.gallery.board.vo.CmBoardVo;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
-@RestController("/api/v1/bd/")
+@RestController
 @CrossOrigin
 @Api( tags = {"게시판 API"}, description = "게시판 API")
 public class BoardController {
@@ -30,16 +30,17 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	@PostMapping(value = "/board/list", consumes = "application/json")
-	public HttpEntity<Page<CmBoardVo>> list(@RequestBody CmBoardVo vo, @RequestAttribute CommonPageVo pageVo) {
-		Page<CmBoardVo> pages = boardService.listBoard(vo, pageVo.init());
+	@ApiOperation("게시판 목록 조회")
+	@PostMapping(value = "/api/v1/board/list")
+	public HttpEntity<Page<CmBoardVo>> list(CmBoardVo vo, Pageable page) {
+		Page<CmBoardVo> pages = boardService.listBoard(vo, page);
 		
 		HttpHeaders header = new HttpHeaders();
 		HttpEntity<Page<CmBoardVo>> HttpEntity = new HttpEntity<Page<CmBoardVo>>(pages, header);
 		return HttpEntity;
 	}
 	
-	@GetMapping("/board/{id}")
+	@GetMapping("/api/v1/board/{id}")
 	public HttpEntity<CmBoardVo> get(@PathVariable("id") long boardId) {
 		CmBoardVo vo = CmBoardVo.builder().boardKey(boardId).build();
 		vo = boardService.readBoard(vo); 
@@ -49,7 +50,7 @@ public class BoardController {
 		return HttpEntity;
 	}
 	
-	@PutMapping("/board")
+	@PutMapping("/api/v1/board")
 	public HttpEntity<CmBoardVo> insert(CmBoardVo vo) {
 		vo = boardService.writeBoard(vo);
 		
@@ -58,7 +59,7 @@ public class BoardController {
 		return HttpEntity;
 	}
 	
-	@PostMapping("/board")
+	@PostMapping("/api/v1/board")
 	public HttpEntity<CmBoardVo> update(CmBoardVo vo) {
 		vo = boardService.modifyBoard(vo);
 		
@@ -67,7 +68,7 @@ public class BoardController {
 		return HttpEntity;
 	}
 	
-	@DeleteMapping("/board")
+	@DeleteMapping("/api/v1/board")
 	public HttpEntity<CmBoardVo> delete(CmBoardVo vo) {
 		boardService.deleteBoard(vo);
 		

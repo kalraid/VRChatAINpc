@@ -10,16 +10,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.dnd.project.common.baseUtill.CommonVo;
+import com.dnd.project.gallery.board.vo.CmGalleryVo;
 import com.dnd.project.gallery.user.vo.CmUserVo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Builder
 @Getter
 @Setter
-@ToString
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class CmPointVo extends CommonVo{
 
 	@Id

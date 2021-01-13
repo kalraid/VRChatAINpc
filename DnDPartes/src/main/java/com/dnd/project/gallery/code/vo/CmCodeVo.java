@@ -10,14 +10,22 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.dnd.project.gallery.board.vo.CmGalleryVo;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Builder
 @Getter
 @Setter
-@ToString
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class CmCodeVo {
 
 	@Id

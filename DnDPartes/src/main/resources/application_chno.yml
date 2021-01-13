@@ -1,9 +1,6 @@
-dnd:
-  api:
-    key: JNG7yMG1pkxS5OjVYoj73FwfYXTqqAAi
 server:
-  address: 172.30.1.33
-  port: 18443
+  address: 192.168.1.29
+  port: 18080
 spring:
   profiles:
     active: chno

@@ -14,18 +14,24 @@ import javax.persistence.OneToMany;
 
 import com.dnd.project.common.baseUtill.CommonVo;
 import com.dnd.project.gallery.user.vo.CmUserVo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@ToString
-@Entity
 @Builder
-@JsonDeserialize(builder = CmBoardVo.class)
+@Getter
+@Setter
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class CmBoardVo extends CommonVo{
 
 	@Id

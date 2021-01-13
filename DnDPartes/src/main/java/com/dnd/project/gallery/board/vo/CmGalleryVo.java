@@ -8,19 +8,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.dnd.project.common.baseUtill.CommonVo;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Builder
 @Getter
 @Setter
-@ToString
 @Entity
-@Builder
-@JsonDeserialize(builder = CmGalleryVo.class)
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class CmGalleryVo extends CommonVo{
 
 	@Id

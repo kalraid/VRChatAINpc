@@ -14,18 +14,22 @@ import javax.persistence.OneToMany;
 
 import com.dnd.project.common.baseUtill.CommonVo;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Builder
 @Getter
 @Setter
-@ToString
 @Entity
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class CmCommentVo extends CommonVo{
-
+ 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long commentKey;

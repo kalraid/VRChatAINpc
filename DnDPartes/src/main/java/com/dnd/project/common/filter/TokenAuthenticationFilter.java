@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.dnd.project.common.exception.ForbiddenException;
@@ -19,6 +21,11 @@ import com.dnd.project.common.token.AuthenticationTokenProvider;
 import com.dnd.project.gallery.user.repository.CmUserRepositoryImpl;
 import com.dnd.project.gallery.user.vo.CmUserVo;
 
+import lombok.extern.log4j.Log4j;
+
+//@Component
+//@Log4j
+//@Order
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private AuthenticationTokenProvider authenticationTokenProvider;

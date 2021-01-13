@@ -26,6 +26,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
             .csrf()
                 .disable()
             // HTTP 기본 인증 비활성화
+            .cors()
+            	.disable()
             .httpBasic()
                 .disable()
             // 폼 기반 인증 비활성화  

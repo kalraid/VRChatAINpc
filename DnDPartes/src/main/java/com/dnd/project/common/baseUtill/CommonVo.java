@@ -15,16 +15,17 @@ import javax.persistence.Transient;
 
 import org.springframework.data.domain.Pageable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
 @MappedSuperclass
 @Setter
 @Getter
+@ToString
 public abstract class CommonVo {
 
 	@Transient
@@ -33,10 +34,12 @@ public abstract class CommonVo {
 	@Transient
 	protected HashMap<String, Object> equalKeys;
 	
+	@JsonIgnore
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "INST_DT")
 	private Date instDt;
 
+	@JsonIgnore
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "UPD_DT")
 	private Date updDt;
