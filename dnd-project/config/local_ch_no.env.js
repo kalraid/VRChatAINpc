@@ -7,6 +7,6 @@ module.exports = merge(prodEnv, {
   PORT: 8081,
   HOST: '"127.0.0.1"',
   BACK_URL: '"12323"',
-  API_URL: ' "http://172.24.16.1:18080/api/v1"'
+  API_URL: ' "https://192.168.1.29:18080/api/"'
   //API_URL: ' "http://18.216.170.52:18080"'
 })

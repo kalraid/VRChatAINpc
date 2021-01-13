@@ -25,7 +25,7 @@ export default {
     fetch() {
       console.log("fetch list");
       axios
-        .post(process.env.API_URL + '/board/list', this.$data.gallery)
+        .post(process.env.API_URL + 'v1/board/list', this.$data.gallery)
         .then((response) => {
           console.log(response);
         })
@@ -50,7 +50,7 @@ export default {
       desserts: [],
       gallery: {
         galleryKey: "1",
-
+        name: "",
       }
     }
   }

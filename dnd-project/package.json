@@ -8,7 +8,7 @@
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src test/unit",
     "ch": "set NODE_ENV=local_ch&& webpack-dev-server --inline --progress --colors --config build/webpack.dev.conf.js",
-    "ch_no": "set NODE_ENV=local_ch_no&&set HOST=172.30.1.33&& webpack-dev-server --inline --progress --colors --config build/webpack.dev.conf.js",
+    "ch_no": "set NODE_ENV=local_ch_no&& webpack-dev-server --inline --progress --colors --config build/webpack.dev.conf.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "test": "npm run unit",
     "unit": "jest --config test/unit/jest.conf.js --coverage"

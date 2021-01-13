@@ -1,7 +1,7 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  API_URL : '"https://18.216.170.52:18080/api/v1"'
+  API_URL : '"https://18.216.170.52:18080/api/"'
   
   
 }
