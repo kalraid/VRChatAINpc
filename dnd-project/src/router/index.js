@@ -68,6 +68,11 @@ export default new Router({
       component: BoardWriter
     },
     {
+      path: '/board/writer/:seq',
+      name: 'BoardWriter',
+      component: BoardWriter
+    },
+    {
       path: '/df/party/character/list',
       name: 'CharacterList',
       component: CharacterList

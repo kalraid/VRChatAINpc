@@ -1,51 +1,34 @@
 /* ## BoardList.vue 내용 */ 
 <template>
   <v-container>
-    <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :items-per-page="5"
-      class="elevation-1"
-      @click:row="rowClick"
-    >
-    </v-data-table>
-    <v-row>
-      <v-btn outlined color="blue" @click="writeClick"> 작성 </v-btn>
-    </v-row>
+    <v-col>
+      <v-data-table
+        :headers="headers"
+        :items="desserts"
+        :items-per-page="5"
+        class="elevation-1"
+        @click:row="rowClick"
+      >
+      </v-data-table>
+    </v-col>
+    <v-col >
+      <v-row>
+        <v-btn outlined color="blue" class="ms-3" @click="writeClick"> 작성 </v-btn>
+      </v-row>
+    </v-col>
   </v-container>
 </template> 
 <script>
 import axios from "axios";
 export default {
   name: "BoardList",
-  created() {
-    this.fetch();
-  },
-  methods: {
-    fetch() {
-      console.log("fetch list");
-      axios
-        .post(process.env.API_URL + 'v1/board/list', this.$data.gallery)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    writeClick() {
-      this.$router.push("/writer");
-    },
-    rowClick(item) {
-      this.$router.push("/view/" + item.seq);
-    },
-  },
   data() { 
     return {
       headers: [
-        { text: "Number", align: "left", sortable: false, value: "number" },
-        { text: "Title", value: "title" },
-        { text: "Reg Date", value: "regDt" }
+        { text: "글번호", align: "left", sortable: false, value: "number" },
+        { text: "제목", value: "title" },
+        { text: "작성자", value: "user" },
+        { text: "작성시간", value: "instDt" }
       ],
       desserts: [],
       gallery: {
@@ -53,6 +36,36 @@ export default {
         name: "",
       }
     }
-  }
+  },
+  methods: {
+    fetch() {
+      console.log("fetch list");
+      axios
+        .post(process.env.API_URL + 'v1/board/list', this.$data.gallery)
+        .then((response) => {
+          this.desserts = []
+          response.data.content.forEach(element => {
+            let content = {}
+            content.number = element.boardKey;
+            content.title = element.title;
+            content.user = element.cmUserVo.alias;
+            content.instDt = element.instDt;
+            this.desserts.push(content);
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    writeClick() {
+      this.$router.push("/board/writer");
+    },
+    rowClick(item) {
+      this.$router.push("/board/view/" + item.number);
+    },
+  },
+  created() {
+    this.fetch();
+  },
 }
 </script>
