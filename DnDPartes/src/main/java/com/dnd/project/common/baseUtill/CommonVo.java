@@ -34,12 +34,12 @@ public abstract class CommonVo {
 	@Transient
 	protected HashMap<String, Object> equalKeys;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "INST_DT")
 	private Date instDt;
 
-	@JsonIgnore
+//	@JsonIgnore
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "UPD_DT")
 	private Date updDt;

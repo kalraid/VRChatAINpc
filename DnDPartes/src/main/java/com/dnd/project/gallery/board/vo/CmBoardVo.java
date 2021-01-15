@@ -12,14 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.BatchSize;
+
 import com.dnd.project.common.baseUtill.CommonVo;
 import com.dnd.project.gallery.user.vo.CmUserVo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,16 +37,18 @@ public class CmBoardVo extends CommonVo{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long boardKey;
 
-    @ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
+    @BatchSize(size=10)
 	private CmGalleryVo cmGalleryVo;
 	
-    @ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
 	private CmUserVo cmUserVo;
 	
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
+    @BatchSize(size=10)
     private CmBoardVo parentBoard;
 
     @OneToMany(mappedBy = "parentBoard", fetch = FetchType.LAZY)

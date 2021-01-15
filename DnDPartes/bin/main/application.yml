@@ -31,3 +31,6 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
+  jackson:
+    serialization:
+      fail-on-empty-beans: false

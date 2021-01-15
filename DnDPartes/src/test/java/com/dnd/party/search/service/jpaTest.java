@@ -1,7 +1,5 @@
 package com.dnd.party.search.service;
 
-import java.util.Date;
-
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -11,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.dnd.project.common.user.repository.CmUserRepository;
-import com.dnd.project.common.user.vo.CmUserVo;
+import com.dnd.project.gallery.user.repository.CmUserRepository;
+import com.dnd.project.gallery.user.vo.CmUserVo;
 
 import lombok.extern.slf4j.Slf4j;
 
