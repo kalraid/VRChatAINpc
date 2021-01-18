@@ -31,6 +31,10 @@
               </v-row>
               <v-spacer></v-spacer>
               <v-list rounded outlined v-show="dialog" class="mr-10 mt-2">
+                <v-list-item link :to="'/board/list'">
+                  <v-list-item-title>목록으로</v-list-item-title>
+                  <v-list-item-action></v-list-item-action>
+                </v-list-item>
                 <v-list-item link :to="'/board/writer/'">
                   <v-list-item-title>새글쓰기</v-list-item-title>
                   <v-list-item-action></v-list-item-action>
@@ -46,14 +50,46 @@
               </v-list>
             </v-app-bar>
           </v-img>
+          <v-card min-height="600">
+            <v-card-text class="ma-2 pa-4" >
+                {{ context }}
+            </v-card-text>
+          </v-card>
+          <v-card class="pl-4 pt-4 pr-4 pm-0">
+            <v-list>
+                <v-item-group
+                  v-model="replys"
+                  mandatory
+                  color="indigo"
+                >
+                  <v-list-item
+                    v-for="(item, i) in items"
+                    :key="i"
+                  > 
+                      <v-list-item-icon>
+                        <!-- <v-icon v-text="item.icon"></v-icon> -->
+                        <v-icon v-text="1"></v-icon>
+                      </v-list-item-icon>
 
-          <v-card-text>
-            <v-card class="ma-2 pa-4">
-              {{ context }}
-            </v-card>
-          </v-card-text>
-          <v-card>
-            <v-btn block outlined color="blue" @click="listClick"> 목록 </v-btn>
+                      <v-list-item-content>
+                        <!-- <v-list-item-title v-text="item.text"></v-list-item-title> -->
+                        <v-list-item-title v-text="2"></v-list-item-title>
+                      </v-list-item-content>
+                  </v-list-item>
+                </v-item-group>
+            </v-list>
+            <v-text-field
+              v-model="reply"
+              append-outer-icon="mdi-send"
+              prepend-icon="mdi-emoticon-happy"
+              filled
+              clear-icon="mdi-close-circle"
+              clearable
+              label="Message"
+              type="text"
+              @click:append-outer="sendReply"
+              @click:prepend="setEmoticon"
+            ></v-text-field>
           </v-card>
         </v-card>
       </v-row>
@@ -69,27 +105,9 @@ export default {
       title: "",
       context: "",
       user: "",
-      dialog: false,
-      messages: [
-        {
-          from: "You",
-          message: `Sure, I'll see you later.`,
-          time: "10:42am",
-          color: "deep-purple lighten-1",
-        },
-        {
-          from: "John Doe",
-          message: "Yeah, sure. Does 1:00pm work?",
-          time: "10:37am",
-          color: "green",
-        },
-        {
-          from: "You",
-          message: "Did you still want to grab lunch today?",
-          time: "9:47am",
-          color: "deep-purple lighten-1",
-        },
-      ],
+      reply: "",
+      replys: [],
+      dialog: false
     };
   },
   methods: {
@@ -103,6 +121,21 @@ export default {
           this.$data.context = response.data.content;
           this.$data.instDt = response.data.instDt;
           this.$data.updDt = response.data.updDt;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    fetchReply() {
+      let params = {
+        boardKey: this.$route.params.seq
+      }
+      
+      this.$http
+        .post(process.env.API_URL + "v1/comment/list/", params)
+        .then((response) => {
+          debugger
+          this.$data.replys = response.data.content;
         })
         .catch((error) => {
           console.log(error);
@@ -126,10 +159,17 @@ export default {
     },
     convertDialog() {
       this.$data.dialog = !this.$data.dialog;
+    },
+    sendReply() {
+
+    },
+    setEmoticon() {
+
     }
   },
   created() {
     this.fetch();
+    this.fetchReply();
   },
 };
 </script>

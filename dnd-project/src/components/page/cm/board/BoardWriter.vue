@@ -40,7 +40,7 @@ export default {
       updDt: "",
       instDt: "",
       user: "",
-      userKey: "",
+      userKey: "1",
       galleryKey: "1",
       writeType: "등록",
     };
@@ -64,24 +64,24 @@ export default {
         });
     },
     writeClick() {
-      if (this.$route.params.seq) {
+      if (!this.$route.params.seq) {
         this.$http
-          .put(process.env.API_URL + "/character/list", this.$data)
+          .put(process.env.API_URL + "v1/board", this.$data)
           .then((response) => {
             console.log(response);
-            this.$router.push("/");
+            this.$router.push("/board/list");
           })
           .catch((error) => {
             console.log(error);
           });
       } else {
-        this.$data.regDt = this.getNowDate();
-        this.$data.uptDt = this.getNowDate();
+        this.$data.instDt = this.getNowDate();
+        this.$data.updDt = this.getNowDate();
         this.$http
-          .get(process.env.API_URL + "/character/list", this.$data)
+          .post(process.env.API_URL + "v1/board", this.$data)
           .then((response) => {
             console.log(response);
-            this.$router.push("/");
+            this.$router.push("/board/list/" + this.$route.params.seq);
           })
           .catch((error) => {
             console.log(error);

@@ -1,11 +1,18 @@
 package com.dnd.project.gallery.board.vo;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.BatchSize;
 
 import com.dnd.project.common.baseUtill.CommonVo;
 
@@ -33,6 +40,14 @@ public class CmGalleryVo extends CommonVo{
 
 	private String type;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    @BatchSize(size=10)
+    private CmGalleryVo parentGallery;
+
+    @OneToMany(mappedBy = "parentGallery", fetch = FetchType.LAZY)
+    private List<CmGalleryVo> childrenGallery;
+	
 	@Override
 	public HashMap<String, Object> getLikeKeys(){
 		HashMap<String, Object> map = new HashMap<String, Object>();

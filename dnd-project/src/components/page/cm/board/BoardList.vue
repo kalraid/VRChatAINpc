@@ -34,14 +34,26 @@ export default {
       gallery: {
         galleryKey: "1",
         name: "",
+      },
+      board: {
+        t: "123"
+      },
+      pageable: {
+        a: "1234"
       }
     }
   },
   methods: {
     fetch() {
       console.log("fetch list");
+      let params = {
+        gallery: this.$data.gallery,
+        vo: this.$data.board,
+        pageable: this.$data.pageable
+      }
+      
       axios
-        .post(process.env.API_URL + 'v1/board/list', this.$data.gallery)
+        .post(process.env.API_URL + 'v1/board/list', params)
         .then((response) => {
           this.desserts = []
           response.data.content.forEach(element => {
