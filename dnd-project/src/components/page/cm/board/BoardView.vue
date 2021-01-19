@@ -66,14 +66,10 @@
                     v-for="(item, i) in replys"
                     :key="i"
                   > 
-                      <v-list-item-icon>
-                        <!-- <v-icon v-text="item.icon"></v-icon> -->
-                        <v-icon v-text="item.content"></v-icon>
-                      </v-list-item-icon>
-
                       <v-list-item-content>
                         <!-- <v-list-item-title v-text="item.text"></v-list-item-title> -->
-                        <v-list-item-title v-text="item.name"></v-list-item-title>
+                        <v-list-item-title v-text="item.cmUserVo.alias"></v-list-item-title>
+                        <v-list-item-content v-text="item.content"></v-list-item-content>
                       </v-list-item-content>
                   </v-list-item>
                 </v-item-group>
@@ -166,7 +162,9 @@ export default {
         cmBoardVo: {
           boardKey: this.$route.params.seq,
         },
-        user: this.$data.userKey,
+        cmUserVo: {
+          userKey: this.$data.userKey,
+        },
         content: this.$data.reply
       }
 
