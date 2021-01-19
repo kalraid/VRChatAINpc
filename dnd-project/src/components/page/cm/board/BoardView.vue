@@ -16,7 +16,7 @@
                     src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
                   />
                 </v-avatar>
-                <p class="ml-3">{{ user }}</p>
+                <p class="ml-3">{{ userName }}</p>
               </v-card-title>
               <v-spacer></v-spacer>
               <v-btn color="white" icon @click="convertDialog">
@@ -63,17 +63,17 @@
                   color="indigo"
                 >
                   <v-list-item
-                    v-for="(item, i) in items"
+                    v-for="(item, i) in replys"
                     :key="i"
                   > 
                       <v-list-item-icon>
                         <!-- <v-icon v-text="item.icon"></v-icon> -->
-                        <v-icon v-text="1"></v-icon>
+                        <v-icon v-text="item.content"></v-icon>
                       </v-list-item-icon>
 
                       <v-list-item-content>
                         <!-- <v-list-item-title v-text="item.text"></v-list-item-title> -->
-                        <v-list-item-title v-text="2"></v-list-item-title>
+                        <v-list-item-title v-text="item.name"></v-list-item-title>
                       </v-list-item-content>
                   </v-list-item>
                 </v-item-group>
@@ -104,9 +104,10 @@ export default {
       boardKey: "",
       title: "",
       context: "",
-      user: "",
+      userName: "kimrie",
+      userKey: "1",
       reply: "",
-      replys: [],
+      replys: [{}],
       dialog: false
     };
   },
@@ -116,7 +117,8 @@ export default {
         .get(process.env.API_URL + "v1/board/" + this.$route.params.seq)
         .then((response) => {
           this.$data.boardKey = response.data.boardKey;
-          this.$data.user = response.data.cmUserVo.alias;
+          this.$data.userName = response.data.cmUserVo.alias;
+          this.$data.userKey = response.data.cmUserVo.userKey;
           this.$data.title = response.data.title;
           this.$data.context = response.data.content;
           this.$data.instDt = response.data.instDt;
@@ -134,7 +136,6 @@ export default {
       this.$http
         .post(process.env.API_URL + "v1/comment/list/", params)
         .then((response) => {
-          debugger
           this.$data.replys = response.data.content;
         })
         .catch((error) => {
@@ -161,7 +162,23 @@ export default {
       this.$data.dialog = !this.$data.dialog;
     },
     sendReply() {
+      let params = {
+        cmBoardVo: {
+          boardKey: this.$route.params.seq,
+        },
+        user: this.$data.userKey,
+        content: this.$data.reply
+      }
 
+      this.$http
+        .put(process.env.API_URL + "v1/comment", params)
+        .then((response) => {
+          this.fetchReply();
+          // this.$data.replys = response.data.content;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     setEmoticon() {
 

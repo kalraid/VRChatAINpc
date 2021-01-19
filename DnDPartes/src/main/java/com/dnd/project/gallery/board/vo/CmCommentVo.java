@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.dnd.project.common.baseUtill.CommonVo;
+import com.dnd.project.gallery.user.vo.CmUserVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,9 +39,11 @@ public class CmCommentVo extends CommonVo{
     @JoinColumn
 	private CmBoardVo cmBoardVo;
 	
-	private String name;
-
 	private String content;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+	private CmUserVo cmUserVo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
@@ -52,7 +55,6 @@ public class CmCommentVo extends CommonVo{
 	@Override
 	public HashMap<String, Object> getLikeKeys(){
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("name", this.name);
 		map.put("content", this.content);
 		
 		super.likeKeys = map;

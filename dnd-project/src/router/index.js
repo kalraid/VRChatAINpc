@@ -69,7 +69,7 @@ export default new Router({
     },
     {
       path: '/board/writer/:seq',
-      name: 'BoardWriter',
+      name: 'BoardModified',
       component: BoardWriter
     },
     {

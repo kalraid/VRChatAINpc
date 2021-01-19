@@ -19,7 +19,6 @@
   </v-container>
 </template> 
 <script>
-import axios from "axios";
 export default {
   name: "BoardList",
   data() { 
@@ -31,29 +30,28 @@ export default {
         { text: "작성시간", value: "instDt" }
       ],
       desserts: [],
-      gallery: {
-        galleryKey: "1",
-        name: "",
-      },
-      board: {
-        t: "123"
-      },
-      pageable: {
-        a: "1234"
+      vo: { // API 쪽에 전달할 객체
+        cmGalleryVo: {
+          galleryKey: "1",
+        },
+        cmUserVo: {
+
+        },
+        boardKey: "",
+        title: "",
+        content: "",
+        page: "0",
+        size: "10",
+        orderColumns: "",
+        order: "ASC"
       }
     }
   },
   methods: {
     fetch() {
       console.log("fetch list");
-      let params = {
-        gallery: this.$data.gallery,
-        vo: this.$data.board,
-        pageable: this.$data.pageable
-      }
-      
-      axios
-        .post(process.env.API_URL + 'v1/board/list', params)
+      this.$http
+        .post(process.env.API_URL + 'v1/board/list', this.$data.vo)
         .then((response) => {
           this.desserts = []
           response.data.content.forEach(element => {

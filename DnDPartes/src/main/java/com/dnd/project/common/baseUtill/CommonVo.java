@@ -26,7 +26,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public abstract class CommonVo {
+public abstract class CommonVo extends CommonPageVo{
 
 	@Transient
 	protected HashMap<String, Object> likeKeys;
@@ -64,5 +64,14 @@ public abstract class CommonVo {
 	
 	public Long getPkId() {
 		return null;
+	}
+	
+	public CommonPageVo getPageVo() {
+		CommonPageVo pageVo = new CommonPageVo();
+		pageVo.setPage(this.page);
+		pageVo.setSize(this.size);
+		pageVo.setOrder(this.order);
+		pageVo.setOrderColumns(this.orderColumns);
+		return pageVo;
 	}
 }

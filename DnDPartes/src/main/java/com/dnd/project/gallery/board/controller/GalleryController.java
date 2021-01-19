@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dnd.project.common.baseUtill.CommPageService;
 import com.dnd.project.gallery.board.service.GalleryService;
 import com.dnd.project.gallery.board.vo.CmGalleryVo;
 
@@ -27,10 +29,13 @@ public class GalleryController {
 	@Autowired
 	GalleryService galleryService;
 	
+	@Autowired
+	CommPageService commPageService;
+	
 	@ApiOperation("갤러리 목록 조회")
 	@PostMapping(value ="/api/v1/gallery/list")
-	public HttpEntity<Page<CmGalleryVo>> list(CmGalleryVo vo, Pageable page) {
-		Page<CmGalleryVo> pages = galleryService.listGallery(vo, page);
+	public HttpEntity<Page<CmGalleryVo>> list(@RequestBody CmGalleryVo vo) {
+		Page<CmGalleryVo> pages = galleryService.listGallery(vo, commPageService.paramsToPageable(vo.getPageVo()));
 		
 		HttpHeaders header = new HttpHeaders();
 		HttpEntity<Page<CmGalleryVo>> HttpEntity = new HttpEntity<Page<CmGalleryVo>>(pages, header);
@@ -47,7 +52,7 @@ public class GalleryController {
 	}
 	
 	@PutMapping("/api/v1/gallery")
-	public HttpEntity<CmGalleryVo> insert(CmGalleryVo vo) {
+	public HttpEntity<CmGalleryVo> insert(@RequestBody CmGalleryVo vo) {
 		vo = galleryService.writeGallery(vo);
 		
 		HttpHeaders header = new HttpHeaders();
@@ -56,7 +61,7 @@ public class GalleryController {
 	}
 	
 	@PostMapping("/api/v1/gallery")
-	public HttpEntity<CmGalleryVo> update(CmGalleryVo vo) {
+	public HttpEntity<CmGalleryVo> update(@RequestBody CmGalleryVo vo) {
 		vo = galleryService.modifyGallery(vo);
 		
 		HttpHeaders header = new HttpHeaders();
@@ -65,7 +70,7 @@ public class GalleryController {
 	}
 	
 	@DeleteMapping("/api/v1/gallery")
-	public HttpEntity<CmGalleryVo> delete(CmGalleryVo vo) {
+	public HttpEntity<CmGalleryVo> delete(@RequestBody CmGalleryVo vo) {
 		galleryService.deleteGallery(vo);
 		
 		HttpHeaders header = new HttpHeaders();
