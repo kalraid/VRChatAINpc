@@ -1,11 +1,10 @@
 package com.dnd.project.common.baseUtill;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -23,7 +22,7 @@ public class CommonSpecification {
         });
     }
 
-    private static List<Predicate> getPredicateWithKeyword(CommonVo vo, Root<?> root, CriteriaBuilder builder) {
+	private static List<Predicate> getPredicateWithKeyword(CommonVo vo, Root<?> root, CriteriaBuilder builder) {
         List<Predicate> predicate = new ArrayList<>();
         for (String key : vo.getLikeKeys().keySet()) {
         	if(!StringUtils.isEmpty(vo.getLikeKeys().get(key))) {
@@ -32,10 +31,19 @@ public class CommonSpecification {
         }
         
         for (String key : vo.getEqualKeys().keySet()) {
-        	if(!StringUtils.isEmpty(vo.getLikeKeys().get(key))) {
+        	if(!StringUtils.isEmpty(vo.getEqualKeys().get(key))) {
         		predicate.add(builder.equal(root.get(key), vo.getEqualKeys().get(key)));
         	}
         }
+        
+        for(String key : vo.getJoinKeys().keySet()) {
+        	if(!StringUtils.isEmpty(vo.getJoinKeys().get(key))) {
+        		String clazz = key.split("-")[0];
+        		String type = key.split("-")[1];
+        		predicate.add(builder.equal(((Path<Object>) root.fetch(clazz)).get(type), vo.getJoinKeys().get(key)));
+        	}
+        }
+    
         return predicate;
     }
     

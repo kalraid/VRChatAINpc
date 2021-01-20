@@ -30,7 +30,7 @@ public class CommentController {
 	CommPageService commPageService;
 	
 	@PostMapping("/api/v1/comment/list")
-	public HttpEntity<Page<CmCommentVo>> list(@RequestBody CmBoardVo vo) {
+	public HttpEntity<Page<CmCommentVo>> list(@RequestBody CmCommentVo vo) {
 		Page<CmCommentVo> pages = commentService.listComment(vo, commPageService.paramsToPageable(vo.getPageVo()));
 		
 		HttpHeaders header = new HttpHeaders();

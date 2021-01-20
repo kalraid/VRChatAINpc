@@ -35,7 +35,7 @@ public class CmCommentVo extends CommonVo{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long commentKey;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
 	private CmBoardVo cmBoardVo;
 	
@@ -64,8 +64,18 @@ public class CmCommentVo extends CommonVo{
 	@Override
 	public HashMap<String, Object> getEqualKeys(){
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		
 		super.equalKeys = map;
 		return super.equalKeys;
+	}
+	
+	@Override
+	public HashMap<String, Object> getJoinKeys(){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("cmBoardVo-boardKey", this.cmBoardVo.getBoardKey());
+		
+		super.joinKeys = map;
+		return super.joinKeys;
 	}
 	
 	@Override
