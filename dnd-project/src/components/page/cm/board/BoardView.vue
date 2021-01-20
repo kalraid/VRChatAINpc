@@ -1,5 +1,7 @@
 /* ## BoardView.vue 파일 내용 */ 
 <template>
+<v-row>
+  <lefttoolbar />
   <v-form>
     <v-container>
       <v-row justify="space-around" class="mt-4 mb-4">
@@ -55,42 +57,37 @@
                 {{ context }}
             </v-card-text>
           </v-card>
-          <v-card class="pl-4 pt-4 pr-4 pm-0">
-            <v-list>
-                <v-item-group
-                  v-model="replys"
-                  mandatory
-                  color="indigo"
-                >
-                  <v-list-item
-                    v-for="(item, i) in replys"
-                    :key="i"
-                  > 
-                      <v-list-item-content>
-                        <!-- <v-list-item-title v-text="item.text"></v-list-item-title> -->
-                        <v-list-item-title v-text="item.cmUserVo.alias"></v-list-item-title>
-                        <v-list-item-content v-text="item.content"></v-list-item-content>
-                      </v-list-item-content>
-                  </v-list-item>
-                </v-item-group>
-            </v-list>
-            <v-text-field
-              v-model="reply"
-              append-outer-icon="mdi-send"
-              prepend-icon="mdi-emoticon-happy"
-              filled
-              clear-icon="mdi-close-circle"
-              clearable
-              label="Message"
-              type="text"
-              @click:append-outer="sendReply"
-              @click:prepend="setEmoticon"
-            ></v-text-field>
-          </v-card>
+          <v-container class="pa-0 ma-0">
+            <v-card class="pa-0 ma-0">
+              <v-row text-center class="ml-4 mr-4 mb-1"
+                v-show="replys[0].content"
+                v-for="(item, i) in replys"
+                :key="i"
+              >
+                <v-col cols="3" class="border_style" v-text="item.alias"></v-col>
+                <v-col cols="8" class="border_style" v-text="item.content"></v-col>
+                <v-col cols="1" class="border_style">buttons</v-col>
+              </v-row>
+              <v-text-field
+                v-model="reply"
+                append-outer-icon="mdi-send"
+                prepend-icon="mdi-emoticon-happy"
+                filled
+                clear-icon="mdi-close-circle"
+                clearable
+                label="댓글"
+                type="text"
+                class="ml-4 mt-6 mr-4"
+                @click:append-outer="sendReply"
+                @click:prepend="setEmoticon"
+              ></v-text-field>
+            </v-card>
+          </v-container>
         </v-card>
       </v-row>
     </v-container>
   </v-form>
+</v-row>
 </template> 
 <script>
 export default {
@@ -126,13 +123,19 @@ export default {
     },
     fetchReply() {
       let params = {
-        boardKey: this.$route.params.seq
+        cmBoardVo: {
+          boardKey: this.$route.params.seq
+        } 
       }
       
       this.$http
         .post(process.env.API_URL + "v1/comment/list/", params)
         .then((response) => {
-          this.$data.replys = response.data.content;
+          this.$data.replys = [];
+          response.data.content.forEach(element => {
+            element.alias = element.cmUserVo.alias; // 빈데이터 2단계 들어가지 않게 앞단으로 끌고옴
+            this.$data.replys.push(element);
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -186,6 +189,9 @@ export default {
     this.fetch();
     this.fetchReply();
   },
+  components: {
+    lefttoolbar: () => import('@/components/core/LeftToolBar'),
+  }
 };
 </script>
 

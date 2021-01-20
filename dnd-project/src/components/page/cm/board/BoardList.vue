@@ -1,61 +1,70 @@
 /* ## BoardList.vue 내용 */ 
 <template>
-  <v-container>
-    <v-col>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-        :items-per-page="5"
-        class="elevation-1"
-        @click:row="rowClick"
-      >
-      </v-data-table>
-    </v-col>
-    <v-col >
-      <v-row>
-        <v-btn outlined color="blue" class="ms-3" @click="writeClick"> 작성 </v-btn>
-      </v-row>
-    </v-col>
-  </v-container>
+  <v-row>
+    <lefttoolbar />
+    <v-container>
+      <v-col>
+        <v-card class="pa-4" dark> 배너 겸 채팅창 </v-card>
+      </v-col>
+      <v-col>
+        <v-data-table
+          :headers="headers"
+          :items="desserts"
+          :items-per-page="5"
+          class="elevation-1"
+          @click:row="rowClick"
+        >
+        </v-data-table>
+      </v-col>
+      <v-col>
+        <v-row>
+          <v-btn outlined color="blue" class="ms-3" @click="writeClick">
+            작성
+          </v-btn>
+        </v-row>
+      </v-col>
+    </v-container>
+  </v-row>
 </template> 
 <script>
+
+
 export default {
   name: "BoardList",
-  data() { 
+  data() {
     return {
       headers: [
         { text: "글번호", align: "left", sortable: false, value: "number" },
         { text: "제목", value: "title" },
         { text: "작성자", value: "user" },
-        { text: "작성시간", value: "instDt" }
+        { text: "작성시간", value: "instDt" },
       ],
       desserts: [],
-      vo: { // API 쪽에 전달할 객체
+      vo: {
+        // API 쪽에 전달할 객체
         cmGalleryVo: {
           galleryKey: "1",
         },
-        cmUserVo: {
-
-        },
+        cmUserVo: {},
         boardKey: "",
         title: "",
         content: "",
         page: "0",
         size: "10",
         orderColumns: "",
-        order: "ASC"
-      }
-    }
+        order: "ASC",
+      },
+    };
   },
   methods: {
     fetch() {
       console.log("fetch list");
       this.$http
-        .post(process.env.API_URL + 'v1/board/list', this.$data.vo)
+        .post(process.env.API_URL + "v1/board/list", this.$data.vo)
         .then((response) => {
-          this.desserts = []
-          response.data.content.forEach(element => {
-            let content = {}
+          this.desserts = [];
+          response.data.content.forEach((element) => {
+            let content = {};
             content.number = element.boardKey;
             content.title = element.title;
             content.user = element.cmUserVo.alias;
@@ -77,5 +86,8 @@ export default {
   created() {
     this.fetch();
   },
-}
+  components: {
+    lefttoolbar: () => import('@/components/core/LeftToolBar'),
+  }
+};
 </script>

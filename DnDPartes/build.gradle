@@ -60,6 +60,8 @@ dependencies {
 	// jwt
 	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.5.1'
 	
+	// jpa query logging 관련
+	implementation "com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.3"
 	
 }
 

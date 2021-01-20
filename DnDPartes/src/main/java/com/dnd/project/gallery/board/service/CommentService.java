@@ -1,5 +1,7 @@
 package com.dnd.project.gallery.board.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,9 +16,8 @@ public class CommentService {
 	@Autowired
 	CmCommentRepositoryImpl cmCommentRepositoryImpl;
 	
-	public Page<CmCommentVo> listComment(CmBoardVo vo, Pageable pageable) {
-		CmCommentVo cvo = CmCommentVo.builder().cmBoardVo(vo).build();
-		return cmCommentRepositoryImpl.selectComments(cvo, pageable);
+	public Page<CmCommentVo> listComment(CmCommentVo vo, Pageable pageable) {
+		return cmCommentRepositoryImpl.selectComments(vo, pageable);
 	}
 	
 	public CmCommentVo writeComment(CmCommentVo vo) {

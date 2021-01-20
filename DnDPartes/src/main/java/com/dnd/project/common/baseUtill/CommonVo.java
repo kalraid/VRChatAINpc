@@ -34,6 +34,9 @@ public abstract class CommonVo extends CommonPageVo{
 	@Transient
 	protected HashMap<String, Object> equalKeys;
 	
+	@Transient
+	protected HashMap<String, Object> joinKeys;
+	
 //	@JsonIgnore
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "INST_DT")
@@ -60,6 +63,10 @@ public abstract class CommonVo extends CommonPageVo{
 	
 	public HashMap<String, Object> getEqualKeys() {
 		return this.equalKeys;
+	}
+	
+	public HashMap<String, Object> getJoinKeys() {
+		return this.joinKeys;
 	}
 	
 	public Long getPkId() {

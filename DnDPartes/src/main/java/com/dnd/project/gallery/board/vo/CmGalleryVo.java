@@ -67,6 +67,14 @@ public class CmGalleryVo extends CommonVo{
 	}
 	
 	@Override
+	public HashMap<String, Object> getJoinKeys(){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		super.joinKeys = map;
+		return super.joinKeys;
+	}
+	
+	@Override
 	public Long getPkId() {
 		return this.galleryKey;
 	}

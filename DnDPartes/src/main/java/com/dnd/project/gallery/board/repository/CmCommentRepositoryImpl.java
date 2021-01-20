@@ -27,6 +27,7 @@ public class CmCommentRepositoryImpl{
 		return cmCommentRepository.getOne(vo.getCommentKey());
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Page<CmCommentVo> selectComments(CmCommentVo vo, Pageable pageable) {
 		return cmCommentRepository.findAll((Specification<CmCommentVo>) CommonSpecification.searchWith(vo), pageable);
 	}
