@@ -1,8 +1,8 @@
 /* ## BoardList.vue 내용 */ 
 <template>
-  <v-row>
+  <v-container>
     <lefttoolbar />
-    <v-container>
+    <div>
       <v-col>
         <v-card class="pa-4" dark> 배너 겸 채팅창 </v-card>
       </v-col>
@@ -23,12 +23,10 @@
           </v-btn>
         </v-row>
       </v-col>
-    </v-container>
-  </v-row>
+    </div>
+  </v-container>
 </template> 
 <script>
-
-
 export default {
   name: "BoardList",
   data() {
@@ -87,7 +85,7 @@ export default {
     this.fetch();
   },
   components: {
-    lefttoolbar: () => import('@/components/core/LeftToolBar'),
-  }
+    lefttoolbar: () => import("@/components/core/LeftToolBar"),
+  },
 };
 </script>

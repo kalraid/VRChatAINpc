@@ -19,6 +19,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^2.0.0",
+    "lodash": "^4.17.20",
     "regenerator-runtime": "^0.13.7",
     "vue": "^2.6.12",
     "vue-axios-cors": "^1.0.1",

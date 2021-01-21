@@ -1,108 +1,102 @@
 <template>
-  <v-toolbar rounded tile>
-    <v-app-bar-nav-icon> </v-app-bar-nav-icon>
-    <v-app-bar-title>
-      <div link :to="'//'" tag style="cursor: pointer">ProjectName</div>
-    </v-app-bar-title>
-    <v-spacer></v-spacer>
-    <!-- <v-toolbar-items>
-      <v-btn flat to="/"> Home </v-btn>
-      <v-menu
-        :rounded="rounded"
-        open-on-hover
-        offset-y
-        transition="slide-x-transition"
-        bottom
-        right
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn flat v-bind="attrs" v-on="on"> Services </v-btn>
-        </template>
-        <v-list dense>
-          <v-list-item
-            v-for="(item, index) in services"
-            :key="index"
-            router
-            :to="item.link"
-          >
-            <v-list-item-action>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-action>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-btn to="/about" flat> About Us </v-btn>
-      <v-btn to="/contact" flat> Contact Us </v-btn>
-    </v-toolbar-items> -->
-    <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn to="/signup" flat>Sign Up </v-btn>
-      <v-btn to="/login" flat>login</v-btn>
-    </v-toolbar-items>
-    <v-menu open-on-hover transition="slide-x-transition" bottom right offset-y>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn icon v-bind="attrs" v-on="on">
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-      </template>
-      <v-card class="mx-auto" max-width="300" tile>
-        <v-list dense>
-          <v-subheader>THEMES</v-subheader>
-          <v-list-item-group v-model="theme" color="primary">
-            <v-list-item
-              v-for="(item, i) in themes"
-              :key="i"
-              router
-              :to="item.link"
-            >
-              <v-list-item-action>
-                <v-icon v-text="item.icon"></v-icon>
-              </v-list-item-action>
-              <v-list-item-action>
-                <v-list-item-title v-text="item.text"></v-list-item-title>
-              </v-list-item-action>
+  <div>
+    <v-navigation-drawer
+      id="app-drawer"
+      v-model="drawer"
+      dark
+      :color="colors.menu_background_color"
+      floating
+      persistent
+      mobile-break-point="960"
+      width="280"
+    >
+      <div>
+        <v-layout class="fill-height" tag="v-list" column>
+          <v-list>
+            <v-list-item @click="movePage('')">
+              <v-toolbar-title
+                ><v-icon class="mr-2">home</v-icon>JoBlog</v-toolbar-title
+              >
             </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-card>
-    </v-menu>
-  </v-toolbar>
+            <hr class="mt-2 mb-2" />
+            <v-list-item-group active-class="white--text">
+              <template v-for="menu in menus">
+                <template v-if="menu.childrens">
+                  <!-- 자식 메뉴가 있는경우 -->
+                  <v-list-group :prepend-icon="menu.icon" :key="menu.id">
+                    <template v-slot:activator>
+                      <v-list-item-title>{{ menu.title }}</v-list-item-title>
+                    </template>
+                    <template v-for="children in menu.childrens">
+                      <v-list-item
+                        @click="movePage(children.target)"
+                        :key="children.id"
+                        class="ml-2"
+                        :active-class="`${colors.menu_selected_color} accent-4 white--text`"
+                      >
+                        <v-list-item-icon
+                          :active-class="`${colors.menu_selected_color} accent-4`"
+                        >
+                          <v-icon>{{ children.icon }}</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>
+                          {{ children.title }}
+                        </v-list-item-title>
+                      </v-list-item>
+                    </template>
+                  </v-list-group>
+                </template>
+                <template v-else>
+                  <!-- 단일 메뉴일 경우 -->
+                  <v-list-item
+                    @click="movePage(menu.target)"
+                    :key="menu.id"
+                    :active-class="`${colors.menu_selected_color} accent-4 white--text`"
+                  >
+                    <v-list-item-icon>
+                      <v-icon>{{ menu.icon }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>{{ menu.title }}</v-list-item-title>
+                  </v-list-item>
+                </template>
+              </template>
+            </v-list-item-group>
+          </v-list>
+        </v-layout>
+      </div>
+    </v-navigation-drawer>
+  </div>
 </template>
+
 <script>
+// Utilities
+import { mapState } from "vuex";
+import _ from "lodash";
+
 export default {
   name: "LeftToolBar",
-  data() {
-    return {
-      activate: true,
-      theme: 1,
-      themes: [
-        {
-          text: "Dark",
-          icon: "mdi-clock",
-        },
-        {
-          text: "Light",
-          icon: "mdi-account",
-        },
-      ],
-      mini: true,
-      services: [
-        {
-          icon: "mdi-domain",
-          title: "Media Monitoring",
-          link: "/mmrservices",
-        },
-        {
-          icon: "mdi-message-text",
-          title: "Audience Measurement",
-          link: "/amrservices",
-        },
-        {
-          icon: "mdi-flag",
-          title: "Integration Analysis",
-        },
-      ],
-    };
+  components: {},
+  data: () => ({
+    drawer: null,
+    color: "success",
+    responsive: false,
+  }),
+  computed: _.extend(mapState(["menus", "colors"])),
+  mounted() {
+    this.onResponsiveInverted();
+    window.addEventListener("resize", this.onResponsiveInverted);
+  },
+  methods: {
+    movePage(target) {
+      //   this.$router.push({ name: target });
+    },
+    onResponsiveInverted() {
+      if (window.innerWidth < 1000) {
+        this.responsive = true;
+      } else {
+        this.responsive = false;
+      }
+    },
   },
 };
 </script>
