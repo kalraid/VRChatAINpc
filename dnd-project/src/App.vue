@@ -6,7 +6,7 @@
 
     <core-view />
 
-    <core-footer />
+    <!-- <core-footer /> -->
 
     <!-- <core-cta /> -->
   </v-app>

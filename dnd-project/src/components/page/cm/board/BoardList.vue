@@ -1,8 +1,8 @@
 /* ## BoardList.vue 내용 */ 
 <template>
-  <v-container>
+  <div>
     <lefttoolbar />
-    <div>
+    <v-container fluid style="padding-left:400px">
       <v-col>
         <v-card class="pa-4" dark> 배너 겸 채팅창 </v-card>
       </v-col>
@@ -23,8 +23,8 @@
           </v-btn>
         </v-row>
       </v-col>
-    </div>
-  </v-container>
+    </v-container>
+  </div>
 </template> 
 <script>
 export default {

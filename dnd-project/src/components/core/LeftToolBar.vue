@@ -7,8 +7,9 @@
       :color="colors.menu_background_color"
       floating
       persistent
+      absolute
       mobile-break-point="960"
-      width="280"
+      width="350"
     >
       <div>
         <v-layout class="fill-height" tag="v-list" column>
