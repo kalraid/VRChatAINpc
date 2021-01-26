@@ -8,10 +8,12 @@ server:
   port: 18080
   ssl:
     enabled: true
-    key-alias: dndkeys
-    key-store: src/main/resources/keystore.p12
-    key-store-password: 1q2w3e4r
-    key-store-type: 'PKCS12'
+    key-store: src/main/resources/keys/dndproject.keystore # 1번에서 생성한 Key store 경로와 파일명을 적어줍니다. 
+    key-store-password: chpark  # 1번에서 생성한 Key store의 비밀번호를 적어줍니다.
+    key-password: chpark # 1번에서 생성한 키스토어의 마지막의 키 비밀번호
+    key-alias: tomcat # 키 스토어 별칭
+    trust-store: src/main/resources/keys/dndproject.ts # 2번에서 생성한 Trust-Store 경로
+    trust-store-password: chpark # Trust-Store 비밀번호
   error:
     whitelabel:
       enabled: false
