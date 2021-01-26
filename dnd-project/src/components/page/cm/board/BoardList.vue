@@ -2,7 +2,7 @@
 <template>
   <div>
     <lefttoolbar />
-    <v-container fluid style="padding-left:400px">
+    <v-container fluid style="padding-left:350px">
       <v-col>
         <v-card class="pa-4" dark> 배너 겸 채팅창 </v-card>
       </v-col>
@@ -17,8 +17,9 @@
         </v-data-table>
       </v-col>
       <v-col>
-        <v-row>
-          <v-btn outlined color="blue" class="ms-3" @click="writeClick">
+        <v-row> 
+          <v-spacer></v-spacer>
+          <v-btn  outlined color="blue" class="ms-3" @click="writeClick">
             작성
           </v-btn>
         </v-row>

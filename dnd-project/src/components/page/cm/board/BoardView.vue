@@ -2,7 +2,7 @@
 <template>
   <div>
     <lefttoolbar />
-    <div>
+    <div style="padding-left:350px">
       <v-form>
         <v-container>
           <v-row justify="space-around" class="mt-4 mb-4">

@@ -9,12 +9,12 @@ export default new Vuex.Store({
     drawer: false,
     items: [
       {
-        text: 'Home',
-        href: '#!',
+        text: '메인',
+        href: '#/',
       },
       {
-        text: 'About',
-        href: '#about',
+        text: '갤러리',
+        href: '#/board/list',
       },
     ],
     menus: [

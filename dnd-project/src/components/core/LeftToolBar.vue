@@ -15,9 +15,7 @@
         <v-layout class="fill-height" tag="v-list" column>
           <v-list>
             <v-list-item @click="movePage('')">
-              <v-toolbar-title
-                ><v-icon class="mr-2">home</v-icon>JoBlog</v-toolbar-title
-              >
+              <v-toolbar-title>갤러리</v-toolbar-title>
             </v-list-item>
             <hr class="mt-2 mb-2" />
             <v-list-item-group active-class="white--text">
