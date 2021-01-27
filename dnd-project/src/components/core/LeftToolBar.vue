@@ -14,7 +14,7 @@
       <div>
         <v-layout class="fill-height" tag="v-list" column>
           <v-list>
-            <v-list-item @click="movePage('')">
+            <v-list-item>
               <v-toolbar-title>갤러리</v-toolbar-title>
             </v-list-item>
             <hr class="mt-2 mb-2" />
@@ -28,10 +28,10 @@
                     </template>
                     <template v-for="children in menu.childrens">
                       <v-list-item
-                        @click="movePage(children.target)"
                         :key="children.id"
                         class="ml-2"
                         :active-class="`${colors.menu_selected_color} accent-4 white--text`"
+                        :href="children.href"
                       >
                         <v-list-item-icon
                           :active-class="`${colors.menu_selected_color} accent-4`"
@@ -48,10 +48,10 @@
                 <template v-else>
                   <!-- 단일 메뉴일 경우 -->
                   <v-list-item
-                    @click="movePage(menu.target)"
+                    :href="menu.href"
                     :key="menu.id"
                     :active-class="`${colors.menu_selected_color} accent-4 white--text`"
-                  >
+                  > 
                     <v-list-item-icon>
                       <v-icon>{{ menu.icon }}</v-icon>
                     </v-list-item-icon>
@@ -79,6 +79,7 @@ export default {
     drawer: null,
     color: "success",
     responsive: false,
+    target: "",
   }),
   computed: _.extend(mapState(["menus", "colors"])),
   mounted() {
@@ -86,8 +87,9 @@ export default {
     window.addEventListener("resize", this.onResponsiveInverted);
   },
   methods: {
-    movePage(target) {
-      //   this.$router.push({ name: target });
+    onClick (e, item) {
+      e.stopPropagation()
+      this.$vuetify.goTo(item.href)
     },
     onResponsiveInverted() {
       if (window.innerWidth < 1000) {

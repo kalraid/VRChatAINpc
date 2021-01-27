@@ -79,6 +79,7 @@ public class CmBoardVo extends CommonVo{
 	@Override
 	public HashMap<String, Object> getJoinKeys(){
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("cmGalleryVo-alias", this.cmGalleryVo.getAlias());
 		
 		super.joinKeys = map;
 		return super.joinKeys;

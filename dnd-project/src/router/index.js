@@ -6,7 +6,6 @@ import HelloVueity from '@/components/HelloVueity'
 import ExvuetifyForm from '@/components/ExvuetifyForm'
 
 import BoardList from '@/components/page/cm/board/BoardList'
-import BoardDetail from '@/components/page/cm/board/BoardDetail'
 import BoardView from '@/components/page/cm/board/BoardView'
 import BoardWriter from '@/components/page/cm/board/BoardWriter'
 
@@ -21,6 +20,7 @@ import PartyFrame from '@/components/page/df/party/PartyFrame'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -48,14 +48,14 @@ export default new Router({
       component: Sign
     },
     {
-      path: '/board/list',
-      name: 'BoardList',
+      path: '/board/list/:alias',
+      name: 'BoardListAlias',
       component: BoardList
     },
     {
-      path: '/board/detail',
-      name: 'BoardDetail',
-      component: BoardDetail
+      path: '/board/list',
+      name: 'BoardList',
+      component: BoardList
     },
     {
       path: '/board/view/:seq',

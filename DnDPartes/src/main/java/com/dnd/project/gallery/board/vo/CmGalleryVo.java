@@ -3,6 +3,7 @@ package com.dnd.project.gallery.board.vo;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,6 +41,9 @@ public class CmGalleryVo extends CommonVo{
 
 	private String type;
 
+	@Column(name="alias", unique = true)
+	private String alias;
+	
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     @BatchSize(size=10)
@@ -61,6 +65,7 @@ public class CmGalleryVo extends CommonVo{
 	public HashMap<String, Object> getEqualKeys(){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("type", this.type);
+		map.put("alias", this.alias);
 		
 		super.equalKeys = map;
 		return super.equalKeys;

@@ -2,7 +2,7 @@
 <template>
   <div>
     <lefttoolbar />
-    <v-container fluid style="padding-left:350px">
+    <v-container fluid style="padding-left: 350px">
       <v-col>
         <v-card class="pa-4" dark> 배너 겸 채팅창 </v-card>
       </v-col>
@@ -17,9 +17,9 @@
         </v-data-table>
       </v-col>
       <v-col>
-        <v-row> 
+        <v-row>
           <v-spacer></v-spacer>
-          <v-btn  outlined color="blue" class="ms-3" @click="writeClick">
+          <v-btn outlined color="blue" class="ms-3" @click="writeClick">
             작성
           </v-btn>
         </v-row>
@@ -42,7 +42,7 @@ export default {
       vo: {
         // API 쪽에 전달할 객체
         cmGalleryVo: {
-          galleryKey: "1",
+          alias: "",
         },
         cmUserVo: {},
         boardKey: "",
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     fetch() {
-      console.log("fetch list");
+      this.$data.vo.cmGalleryVo.alias = this.$route.params.alias;
       this.$http
         .post(process.env.API_URL + "v1/board/list", this.$data.vo)
         .then((response) => {
@@ -82,8 +82,14 @@ export default {
       this.$router.push("/board/view/" + item.number);
     },
   },
+  computed: {
+
+  },
   created() {
     this.fetch();
+  },
+  mounted() {
+    
   },
   components: {
     lefttoolbar: () => import("@/components/core/LeftToolBar"),

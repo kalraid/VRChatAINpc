@@ -17,7 +17,6 @@
           height="48"
           width="48"
           max-width="48"
-          @click="$vuetify.goTo(0)"
         />
 
         <v-btn
@@ -26,7 +25,6 @@
           v-bind="link"
           class="hidden-sm-and-down"
           text
-          @click="onClick($event, link)"
         >
           {{ link.text }}
         </v-btn>
@@ -61,13 +59,6 @@ export default {
 
   methods: {
     ...mapMutations(['toggleDrawer']),
-    onClick (e, item) {
-      e.stopPropagation()
-
-      if (item.to || !item.href) return
-
-      this.$vuetify.goTo(item.href.endsWith('!') ? 0 : item.href)
-    }
   }
 }
 </script>

@@ -7,49 +7,141 @@ export default new Vuex.Store({
   state: {
     articles: require('../data/articles.json'),
     drawer: false,
-    items: [
+    link: [
       {
         text: '메인',
-        href: '#/',
+        href: '/',
       },
       {
         text: '갤러리',
-        href: '#/board/list',
+        href: '/board/list/free',
+      },
+      {
+        text: '던파',
+        href: '/df',
+      },
+      {
+        text: '마비노기',
+        href: '/mb',
+      },
+      {
+        text: '와우',
+        href: '/wo',
       },
     ],
     menus: [
       {
         id: 1,
-        icon: "loop",
-        title: "메뉴 설정",
-        target: "Index",
+        icon: "mdi-circle",
+        title: "자유갤러리",
+        href: "/board/list/free",
+        target: "free",
+        type: "free"
       },
       {
         id: 2,
-        icon: "android",
-        title: "페이지2",
-        target: "Page2",
-        model: false,
-        childrens: [
-          {
-            id: 21,
-            icon: "assignment_ind",
-            title: "페이지2_1",
-            target: "Page2_1",
-          },
-          {
-            id: 22,
-            icon: "people_alt",
-            title: "페이지2_2",
-            target: "Page2_2",
-          }
-        ]
+        icon: "mdi-circle",
+        title: "유머갤러리",
+        href: "/board/list/gag",
+        target: "gag",
+        type: "free",
       },
       {
         id: 3,
-        icon: "trending_up",
-        title: "페이지3",
-        target: "Page3",
+        icon: "mdi-circle",
+        title: "던파갤러리",
+        target: "",
+        type: "df",
+        childrens: [
+          {
+            id: 31,
+            icon: "mdi-triangle",
+            href: "/board/list/df1",
+            title: "던파1",
+            target: "df1",
+          },
+          {
+            id: 32,
+            icon: "mdi-triangle",
+            title: "던파2",
+            href: "/board/list/df2",
+            target: "df2",
+          },
+          {
+            id: 33,
+            icon: "mdi-triangle",
+            title: "던파3",
+            href: "/board/list/df3",
+            target: "df3",
+          },
+        ]
+      },
+      {
+        id: 4,
+        icon: "mdi-circle",
+        title: "마비갤러리",
+        target: "",
+        type: "mb",
+        childrens: [
+          {
+            id: 41,
+            icon: "mdi-triangle",
+            title: "마비1",
+            href: "/board/list/mb1",
+            target: "mb1",
+          },
+          {
+            id: 42,
+            icon: "mdi-triangle",
+            title: "마비2",
+            href: "/board/list/mb2",
+            target: "mb2",
+          },
+          {
+            id: 44,
+            icon: "mdi-triangle",
+            title: "마비3",
+            href: "/board/list/mb3",
+            target: "mb3",
+          },
+          {
+            id: 45,
+            icon: "mdi-triangle",
+            title: "마비4",
+            href: "/board/list/mb4",
+            target: "mb4",
+          },
+        ]
+      },
+      {
+        id: 5,
+        icon: "mdi-circle",
+        title: "신화갤러리",
+        target: "",
+        type: "mis",
+        childrens: [
+          {
+            id: 51,
+            icon: "mdi-triangle",
+            title: "신화1",
+            href: "/board/list/mis1",
+            target: "mis1",
+          },
+          {
+            id: 52,
+            icon: "mdi-triangle",
+            title: "신화2",
+            href: "/board/list/mis2",
+            target: "mis2",
+          },
+          {
+            id: 54,
+            icon: "mdi-triangle",
+            title: "신화3",
+            href: "/board/list/mis3",
+            target: "mis3",
+          },
+        ]
       },
     ],
     colors: {
@@ -78,7 +170,8 @@ export default new Vuex.Store({
       return categories.sort().slice(0, 4)
     },
     links: (state, getters) => {
-      return state.items.concat(getters.categories)
+      // return state.items.concat(getters.categories)
+      return state.link
     },
   },
   mutations: {
