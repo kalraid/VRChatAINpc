@@ -4,6 +4,14 @@ dnd:
   secret:
     key: ZG5kcHJvamVjdGtleV9pbl9maXJzdA==
     names: dndprojectkey_in_first
+  fund: 
+    main:
+      url: https://cloud.iexapis.com/stable
+      kry: pk_43ed4de026cd4514b5620fcade42f8ad
+    test:
+      url: https://sandbox.iexapis.com/stable
+      key: Tpk_f7c7534bbfdf4fbe92fa48c9b2a97b67
+  
 server:
   port: 18080
   ssl:
@@ -36,3 +44,4 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+      
