@@ -4,6 +4,11 @@
 ## AI can play to VRChat
 ------------------------------------
 
+> **2026-11-09 저장소 정리**
+> - 이 저장소 안에서 함께 개발하던 던전앤파이터·갤러리·ETF 웹 서비스(`DnDPartes`, `dnd-project`)는 커밋 이력을 유지한 채 **[dnd-project](https://github.com/kalraid/dnd-project)** 저장소로 분리했습니다.
+> - 이력에서 평문 비밀값을 `***REMOVED***`로 바꾸고 `__pycache__`를 지웠습니다. 그래서 커밋 해시가 이전과 다릅니다.
+> - 이 저장소에는 2020-04 ~ 2020-12에 진행한 VRChat AI NPC 모듈(Main·Body·Camera·Heart·Keyboard·Mic·Speaker)만 남아 있습니다.
+
 ### README.md 용 마크다운 문법
 1. https://github.com/sejong-interface/Interface_Manual/wiki/Git-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0%233-README.md-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0!
 2. https://heropy.blog/2017/09/30/markdown/
